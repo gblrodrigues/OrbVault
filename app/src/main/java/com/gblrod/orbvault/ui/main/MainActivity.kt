@@ -1,4 +1,4 @@
-package com.gblrod.orbvault
+package com.gblrod.orbvault.ui.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,10 +13,11 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.gblrod.orbvault.components.BottomBar
 import com.gblrod.orbvault.components.TopBar
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
-import com.gblrod.orbvault.presentation.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.theme.OrbVaultTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -56,6 +57,9 @@ class MainActivity : ComponentActivity() {
                                         }
                                     }
                                 )
+                            },
+                            bottomBar = {
+                                BottomBar(navHostController = navHostController)
                             }
                         ) { paddingValues ->
                             NavigationGraph(

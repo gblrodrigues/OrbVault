@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.components
+package com.gblrod.orbvault.ui.presentation.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

@@ -1,10 +1,8 @@
-package com.gblrod.orbvault.presentation.screen
+package com.gblrod.orbvault.ui.presentation.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -17,14 +15,14 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
-import com.gblrod.orbvault.components.CountriesUiState
-import com.gblrod.orbvault.components.ErrorMessage
-import com.gblrod.orbvault.components.SearchBar
-import com.gblrod.orbvault.presentation.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.presentation.components.CardCountryDetails
+import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
+import com.gblrod.orbvault.ui.presentation.components.ErrorMessage
+import com.gblrod.orbvault.ui.presentation.components.SearchBar
+import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
 
 @Composable
-fun OrbVaultScreen(
+fun HomeScreen(
     modifier: Modifier = Modifier,
     countriesViewModel: CountriesViewModel
 ) {
@@ -60,37 +58,12 @@ fun OrbVaultScreen(
             is CountriesUiState.Loading -> {}
 
             is CountriesUiState.Success -> {
-                val country = (uiState as CountriesUiState.Success).country
-
                 Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Text(
-                        text = "Nome: ${country.name.common}"
-                    )
-
-                    Text(
-                        text = "Nome Of: ${country.name.official}"
-                    )
-
-                    Text(
-                        text = "Capital: ${country.capital.firstOrNull() ?: "N/A"}"
-                    )
-
-                    Text(
-                        text = "População: ${country.population}"
-                    )
-
-                    Text(
-                        text = "Região: ${country.region}"
-                    )
-
-                    AsyncImage(
-                        model = country.flags.png,
-                        contentDescription = null,
-                        modifier = Modifier.size(80.dp)
-                    )
-                }
+                    modifier = Modifier.padding(16.dp),
+                    content = {
+                        CardCountryDetails(countriesViewModel = countriesViewModel)
+                    }
+                )
             }
 
             is CountriesUiState.Error -> {

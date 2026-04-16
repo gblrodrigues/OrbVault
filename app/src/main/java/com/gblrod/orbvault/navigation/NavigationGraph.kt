@@ -7,9 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.gblrod.orbvault.presentation.screen.OrbVaultScreen
-import com.gblrod.orbvault.presentation.screen.ScreenTest
-import com.gblrod.orbvault.presentation.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.presentation.screen.ExploreScreen
+import com.gblrod.orbvault.ui.presentation.screen.FavoritesScreen
+import com.gblrod.orbvault.ui.presentation.screen.HomeScreen
+import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
 
 @Composable
 fun NavigationGraph(
@@ -23,11 +24,15 @@ fun NavigationGraph(
         modifier = Modifier.padding(paddingValues = paddingValues)
     ) {
         composable(route = Routes.Home.route) {
-            OrbVaultScreen(countriesViewModel = countriesViewModel)
+            HomeScreen(countriesViewModel = countriesViewModel)
         }
 
-        composable(route = Routes.ScreenTest.route) {
-            ScreenTest()
+        composable(route = Routes.Explore.route) {
+            ExploreScreen()
+        }
+
+        composable(route = Routes.Favorites.route) {
+            FavoritesScreen()
         }
     }
 }

@@ -4,8 +4,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -29,14 +30,19 @@ fun DrawerContent(
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
     val items = listOf(
         DrawerItem(
-            label = "Home",
+            label = stringResource(id = R.string.drawer_item_home),
             icon = Icons.Default.Home,
             route = Routes.Home.route
         ),
         DrawerItem(
-            label = "Test",
-            icon = Icons.Default.BugReport,
-            route = Routes.ScreenTest.route
+            label = stringResource(id = R.string.drawer_item_explore),
+            icon = Icons.Default.Map,
+            route = Routes.Explore.route
+        ),
+        DrawerItem(
+            label = stringResource(id = R.string.drawer_item_favorites),
+            icon = Icons.Default.Star,
+            route = Routes.Favorites.route
         )
     )
 

@@ -7,7 +7,11 @@ sealed class Routes(
         route = "home"
     )
 
-    object ScreenTest : Routes(
-        route = "screentest"
+    object Favorites : Routes(
+        route = "favorites"
+    )
+
+    object Explore : Routes(
+        route = "explore"
     )
 }

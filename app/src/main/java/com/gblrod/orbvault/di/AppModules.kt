@@ -1,7 +1,7 @@
 package com.gblrod.orbvault.di
 
 import com.gblrod.orbvault.network.CountriesAPI
-import com.gblrod.orbvault.presentation.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit

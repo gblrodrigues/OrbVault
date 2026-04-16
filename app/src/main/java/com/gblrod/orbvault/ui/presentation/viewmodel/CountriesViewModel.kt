@@ -1,10 +1,9 @@
-package com.gblrod.orbvault.presentation.viewmodel
+package com.gblrod.orbvault.ui.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.components.CountriesUiState
-import com.gblrod.orbvault.dto.CountriesDto
+import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
 import com.gblrod.orbvault.network.CountriesAPI
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job

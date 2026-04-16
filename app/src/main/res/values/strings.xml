@@ -7,17 +7,34 @@
 
     <!-- NavigationDrawer -->
     <string name="drawer_title">OrbVault</string>
+    <string name="drawer_item_home">Início</string>
+    <string name="drawer_item_explore">Explorar</string>
+    <string name="drawer_item_favorites">Favoritos</string>
+
+    <!-- BottomBar -->
+    <string name="bottom_bar_home">Início</string>
+    <string name="bottom_bar_explore">Explorar</string>
+    <string name="bottom_bar_favorites">Favoritos</string>
 
     <!-- Buttons -->
     <string name="button_retry">Tentar novamente</string>
 
     <!-- OutlinedTextField -->
-    <string name="outlined_text_field_placeholder">Ex: Brazil</string>
+    <string name="outlined_text_field_placeholder">Ex: Brasil</string>
 
     <!-- CountriesUiState-->
     <string name="countries_ui_state_ioexception">Sem acesso a internet. Verifique sua conexão.</string>
     <string name="countries_ui_state_httpexception">Erro do servidor: %1$d</string>
     <string name="countries_ui_state_cancellationexception">Ocorreu um erro inesperado!</string>
     <string name="countries_ui_state_not_found">País não encontrado</string>
+
+    <!-- InfoRow -->
+    <string name="info_row_label_capital">Capital</string>
+    <string name="info_row_label_region">Região</string>
+    <string name="info_row_label_sub_region">Sub-Região</string>
+    <string name="info_row_label_languages">Idioma</string>
+    <string name="info_row_label_currencies">Moeda</string>
+    <string name="info_row_label_population">População</string>
+    <string name="info_row_label_timezone">Fuso Horário</string>
 
 </resources>

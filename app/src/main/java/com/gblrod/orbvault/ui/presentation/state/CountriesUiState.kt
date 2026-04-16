@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.components
+package com.gblrod.orbvault.ui.presentation.state
 
 import com.gblrod.orbvault.dto.CountriesDto
 
