@@ -14,4 +14,8 @@ sealed class Routes(
     object Explore : Routes(
         route = "explore"
     )
+
+    object PopulatedCountries : Routes(
+        route = "populatedcountries"
+    )
 }

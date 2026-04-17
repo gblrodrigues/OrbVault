@@ -1,6 +1,6 @@
-package com.gblrod.orbvault.domain.mapper
+package com.gblrod.orbvault.data.mapper
 
-import com.gblrod.orbvault.dto.CountriesDto
+import com.gblrod.orbvault.data.dto.CountriesDto
 
 fun getCurrency(country: CountriesDto): String {
     val firstCurrency = country.currencies.values.firstOrNull() ?: return "N/A"

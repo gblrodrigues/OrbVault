@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.dto
+package com.gblrod.orbvault.data.dto
 
 data class CountriesDto(
     val name: NameDto,

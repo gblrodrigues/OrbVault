@@ -7,16 +7,19 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.gblrod.orbvault.ui.presentation.screen.ExploreScreen
-import com.gblrod.orbvault.ui.presentation.screen.FavoritesScreen
-import com.gblrod.orbvault.ui.presentation.screen.HomeScreen
-import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.presentation.explore.components.PopulatedCountries
+import com.gblrod.orbvault.ui.presentation.explore.screen.ExploreScreen
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
+import com.gblrod.orbvault.ui.presentation.favorites.screen.FavoritesScreen
+import com.gblrod.orbvault.ui.presentation.home.screen.HomeScreen
+import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 
 @Composable
 fun NavigationGraph(
     paddingValues: PaddingValues,
     navHostController: NavHostController,
-    countriesViewModel: CountriesViewModel
+    countriesViewModel: CountriesViewModel,
+    exploreViewModel: ExploreViewModel
 ) {
     NavHost(
         navController = navHostController,
@@ -28,11 +31,18 @@ fun NavigationGraph(
         }
 
         composable(route = Routes.Explore.route) {
-            ExploreScreen()
+            ExploreScreen(
+                navHostController = navHostController,
+                exploreViewModel = exploreViewModel
+            )
         }
 
         composable(route = Routes.Favorites.route) {
             FavoritesScreen()
+        }
+
+        composable(route = Routes.PopulatedCountries.route) {
+            PopulatedCountries(exploreViewModel = exploreViewModel)
         }
     }
 }

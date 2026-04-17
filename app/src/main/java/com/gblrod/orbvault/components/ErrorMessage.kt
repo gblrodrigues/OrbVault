@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.components
+package com.gblrod.orbvault.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,14 +24,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
 import kotlinx.coroutines.delay
 
 @Composable
 fun ErrorMessage(
     message: String,
-    country: String,
-    countriesViewModel: CountriesViewModel
+    onRetry: () -> Unit,
 ) {
     var isLoading by remember { mutableStateOf(false) }
     val focus = LocalFocusManager.current
@@ -61,7 +59,7 @@ fun ErrorMessage(
             TextButton(
                 onClick = {
                     isLoading = true
-                    countriesViewModel.fetchCountry(country = country)
+                    onRetry()
                     focus.clearFocus(force = true)
                     keyboardController?.hide()
                 },

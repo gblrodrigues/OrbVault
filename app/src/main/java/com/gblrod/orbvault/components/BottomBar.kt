@@ -2,8 +2,8 @@ package com.gblrod.orbvault.components
 
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -31,7 +31,7 @@ fun BottomBar(navHostController: NavHostController) {
         ),
         BottomItem(
             label = stringResource(id = R.string.bottom_bar_explore),
-            icon = Icons.Default.Map,
+            icon = Icons.Default.Explore,
             route = Routes.Explore.route
         ),
         BottomItem(
@@ -64,7 +64,6 @@ fun BottomBar(navHostController: NavHostController) {
                                 saveState = true
                             }
                             launchSingleTop = true
-                            restoreState = true
                         }
                     },
                     colors = NavigationBarItemDefaults.colors(

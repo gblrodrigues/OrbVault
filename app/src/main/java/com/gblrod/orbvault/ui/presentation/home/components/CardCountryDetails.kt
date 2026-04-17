@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.components
+package com.gblrod.orbvault.ui.presentation.home.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,11 +35,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.domain.mapper.getCurrency
-import com.gblrod.orbvault.domain.mapper.getLanguage
-import com.gblrod.orbvault.domain.mapper.getTimezones
+import com.gblrod.orbvault.data.mapper.getCurrency
+import com.gblrod.orbvault.data.mapper.getLanguage
+import com.gblrod.orbvault.data.mapper.getTimezones
 import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
-import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 
 @Composable
 fun CardCountryDetails(

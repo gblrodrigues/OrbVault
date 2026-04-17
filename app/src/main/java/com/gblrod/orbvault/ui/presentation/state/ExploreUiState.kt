@@ -2,15 +2,15 @@ package com.gblrod.orbvault.ui.presentation.state
 
 import com.gblrod.orbvault.data.dto.CountriesDto
 
-sealed class CountriesUiState {
-    object Loading : CountriesUiState()
+sealed class ExploreUiState {
+    object Loading : ExploreUiState()
 
     data class Success(
-        val country: CountriesDto
-    ) : CountriesUiState()
+        val countries: List<CountriesDto>
+    ) : ExploreUiState()
 
     data class Error(
         val messageResId: Int,
         val code: Int? = null
-    ) : CountriesUiState()
+    ) : ExploreUiState()
 }

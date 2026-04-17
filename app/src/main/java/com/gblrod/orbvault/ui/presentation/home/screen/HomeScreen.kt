@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.screen
+package com.gblrod.orbvault.ui.presentation.home.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,11 +15,11 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.gblrod.orbvault.ui.presentation.components.CardCountryDetails
+import com.gblrod.orbvault.components.ErrorMessage
+import com.gblrod.orbvault.ui.presentation.home.components.CardCountryDetails
+import com.gblrod.orbvault.ui.presentation.home.components.SearchBar
+import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
-import com.gblrod.orbvault.ui.presentation.components.ErrorMessage
-import com.gblrod.orbvault.ui.presentation.components.SearchBar
-import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
 
 @Composable
 fun HomeScreen(
@@ -74,8 +74,7 @@ fun HomeScreen(
                 }
                 ErrorMessage(
                     message = message,
-                    country = countryQuery,
-                    countriesViewModel = countriesViewModel
+                    onRetry = { countriesViewModel.fetchCountry(country = countryQuery) }
                 )
             }
         }

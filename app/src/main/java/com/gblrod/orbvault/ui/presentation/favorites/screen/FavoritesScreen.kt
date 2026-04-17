@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.screen
+package com.gblrod.orbvault.ui.presentation.favorites.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

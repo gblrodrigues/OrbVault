@@ -1,10 +1,10 @@
-package com.gblrod.orbvault.ui.presentation.viewmodel
+package com.gblrod.orbvault.ui.presentation.home.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
+import com.gblrod.orbvault.data.network.CountriesAPI
 import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
-import com.gblrod.orbvault.network.CountriesAPI
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,7 +20,7 @@ class CountriesViewModel(
     private val _countriesUiState = MutableStateFlow<CountriesUiState>(CountriesUiState.Loading)
     val countriesUiState: StateFlow<CountriesUiState> = _countriesUiState
 
-    fun fetchCountry(country: String) {
+    fun fetchCountry(country: String?) {
         job?.cancel()
 
         job = viewModelScope.launch {
@@ -31,7 +31,7 @@ class CountriesViewModel(
             }
 
             try {
-                val countriesResponse = api.findCountries(name = country)
+                val countriesResponse = api.findCountry(name = country)
                 val countryResult = countriesResponse.firstOrNull()
 
                 if (countryResult != null) {
@@ -47,10 +47,7 @@ class CountriesViewModel(
 
             } catch (e: HttpException) {
                 if (e.code() == 404) {
-                    _countriesUiState.value = CountriesUiState.Error(
-                        messageResId = R.string.countries_ui_state_not_found,
-                        code = e.code()
-                    )
+                    _countriesUiState.value = CountriesUiState.Error(messageResId = R.string.countries_ui_state_not_found)
 
                 } else {
                     _countriesUiState.value = CountriesUiState.Error(

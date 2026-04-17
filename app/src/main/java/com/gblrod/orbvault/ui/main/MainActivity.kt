@@ -17,7 +17,8 @@ import com.gblrod.orbvault.components.BottomBar
 import com.gblrod.orbvault.components.TopBar
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
-import com.gblrod.orbvault.ui.presentation.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
+import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.theme.OrbVaultTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -31,6 +32,8 @@ class MainActivity : ComponentActivity() {
             val scope = rememberCoroutineScope()
             val navHostController = rememberNavController()
             val countriesViewModel: CountriesViewModel = koinViewModel()
+            val exploreViewModel: ExploreViewModel = koinViewModel()
+
             OrbVaultTheme {
                 ModalNavigationDrawer(
                     drawerState = drawerState,
@@ -65,7 +68,8 @@ class MainActivity : ComponentActivity() {
                             NavigationGraph(
                                 navHostController = navHostController,
                                 paddingValues = paddingValues,
-                                countriesViewModel = countriesViewModel
+                                countriesViewModel = countriesViewModel,
+                                exploreViewModel = exploreViewModel
                             )
                         }
                     }
