@@ -50,7 +50,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/a1029e68-5e56-4f1d-a950-f6fbb35044cd
+> https://github.com/user-attachments/assets/615e3c20-aa4b-4fcd-96b2-4ff63326fcd6
 
 ## Tomadas de Decisões
 
