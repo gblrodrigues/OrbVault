@@ -38,6 +38,12 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
   * Fusos horários  
 * Exibição da bandeira do país  
 
+### Explore
+* Top 10 países mais populosos  
+* Top 10 maiores países (por área)  
+* País aleatório com possibilidade de gerar novos resultados  
+* Navegação entre diferentes categorias de exploração  
+
 ### Gerais
 * Tratamento de estados de carregamento e erro com opção de retry
 
@@ -49,7 +55,7 @@ Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:
 ## Tomadas de Decisões
 
 ### Jetpack Compose
-Optei por Jetpack Compose por já ter experiência com a abordagem declarativa, que torna a construção da interface mais organizada. Confesso que não sinto falta do XML
+Optei por Jetpack Compose por já ter experiência com a abordagem declarativa, que torna a construção da interface mais organizada. Confesso que não sinto falta do XML ;)
 
 ### Arquitetura (MVVM)
 Escolhi estruturar o projeto em MVVM para manter a lógica separada da interface.  
