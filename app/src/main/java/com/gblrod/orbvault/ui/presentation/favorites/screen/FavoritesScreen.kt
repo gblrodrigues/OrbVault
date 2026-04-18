@@ -3,6 +3,7 @@ package com.gblrod.orbvault.ui.presentation.favorites.screen
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,7 +19,8 @@ fun FavoritesScreen(modifier: Modifier = Modifier) {
     ) {
         Text(
             text = "Em breve".uppercase(),
-            fontSize = 22.sp
+            fontSize = 22.sp,
+            color = MaterialTheme.colorScheme.onSurface
         )
     }
 }

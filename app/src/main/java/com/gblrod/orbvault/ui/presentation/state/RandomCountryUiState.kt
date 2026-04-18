@@ -2,17 +2,17 @@ package com.gblrod.orbvault.ui.presentation.state
 
 import com.gblrod.orbvault.data.dto.CountriesDto
 
-sealed class CountriesUiState {
-    object Idle : CountriesUiState()
+sealed class RandomCountryUiState {
+    object Idle : RandomCountryUiState()
 
-    object Loading : CountriesUiState()
+    object Loading : RandomCountryUiState()
 
     data class Success(
         val country: CountriesDto
-    ) : CountriesUiState()
+    ) : RandomCountryUiState()
 
     data class Error(
         val messageResId: Int,
         val code: Int? = null
-    ) : CountriesUiState()
+    ) : RandomCountryUiState()
 }

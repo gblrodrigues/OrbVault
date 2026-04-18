@@ -1,9 +1,12 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">OrbVault</string>
 
     <!-- TopBar -->
     <string name="topbar_title">OrbVault</string>
     <string name="cd_menu_topbar">Ícone do Menu</string>
+
+    <!-- LoadingScreen -->
+    <string name="loading_screen_label" tools:ignore="TypographyEllipsis">Carregando...</string>
 
     <!-- NavigationDrawer -->
     <string name="drawer_title">OrbVault</string>
@@ -34,15 +37,37 @@
     <string name="explore_ui_state_cancellationexception">Ocorreu um erro inesperado!</string>
 
     <!-- Explore -->
+    <string name="explore_screen_title">O que explorar hoje?</string>
+    <string name="explore_screen_sub_title">Selecione uma das opções</string>
     <string name="explore_title_top10_populated_contries">Países Populosos</string>
+    <string name="explore_title_top10_largest_contries">Maiores Países</string>
+    <string name="explore_title_random_country">País Aleatório</string>
 
-    <!-- InfoRow -->
-    <string name="info_row_label_capital">Capital</string>
-    <string name="info_row_label_region">Região</string>
-    <string name="info_row_label_sub_region">Sub-Região</string>
-    <string name="info_row_label_languages">Idioma</string>
-    <string name="info_row_label_currencies">Moeda</string>
-    <string name="info_row_label_population">População</string>
-    <string name="info_row_label_timezone">Fuso Horário</string>
+    <!-- Home -->
+    <string name="home_screen_title">Descubra um país</string>
+    <string name="home_screen_sub_title">Digite o nome para conhecer</string>
+
+    <!-- CountryDetails -->
+    <string name="country_details_label_capital">Capital</string>
+    <string name="country_details_label_region">Região</string>
+    <string name="country_details_label_sub_region">Sub-Região</string>
+    <string name="country_details_label_language">Idioma</string>
+    <string name="country_details_label_currencies">Moeda</string>
+    <string name="country_details_label_population">População</string>
+    <string name="country_details_label_timezone">Fuso Horário</string>
+
+    <!-- LargestCountries -->
+    <string name="largest_country_label_explore">Explorando</string>
+    <string name="largest_country_label_explore_top10">Conhecendo os TOP 10 maiores países em área</string>
+    <string name="largest_country_label_area">Área</string>
+
+    <!-- PopulatedCountries -->
+    <string name="populated_country_label_explore">Explorando</string>
+    <string name="populated_country_label_explore_top10">Conhecendo os TOP 10 países mais populosos</string>
+    <string name="populated_country_label_population">População</string>
+
+    <!-- RandomCountry -->
+    <string name="random_country_label_explore">Explorando</string>
+    <string name="random_country_label">Conhecendo um país aleatório</string>
 
 </resources>

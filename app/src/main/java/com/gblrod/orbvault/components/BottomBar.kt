@@ -42,39 +42,38 @@ fun BottomBar(navHostController: NavHostController) {
     )
     NavigationBar(
         containerColor = Color.Transparent,
-        modifier = Modifier.navigationBarsPadding(),
-        content = {
-            items.forEach { item ->
-                NavigationBarItem(
-                    selected = currentRoute == item.route,
-                    label = {
-                        Text(
-                            text = item.label
-                        )
-                    },
-                    icon = {
-                        Icon(
-                            imageVector = item.icon,
-                            contentDescription = item.label
-                        )
-                    },
-                    onClick = {
-                        navHostController.navigate(item.route) {
-                            popUpTo(route = Routes.Home.route) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                        }
-                    },
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Color.White,
-                        unselectedIconColor = Color.LightGray,
-                        unselectedTextColor = Color.LightGray,
-                        selectedTextColor = Color.White,
-                        indicatorColor = Color.Transparent
+        modifier = Modifier.navigationBarsPadding()
+    ) {
+        items.forEach { item ->
+            NavigationBarItem(
+                selected = currentRoute == item.route,
+                label = {
+                    Text(
+                        text = item.label
                     )
+                },
+                icon = {
+                    Icon(
+                        imageVector = item.icon,
+                        contentDescription = item.label
+                    )
+                },
+                onClick = {
+                    navHostController.navigate(item.route) {
+                        popUpTo(route = Routes.Home.route) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                    }
+                },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = Color.White,
+                    unselectedIconColor = Color.LightGray,
+                    unselectedTextColor = Color.LightGray,
+                    selectedTextColor = Color.White,
+                    indicatorColor = Color.Transparent
                 )
-            }
+            )
         }
-    )
+    }
 }

@@ -12,6 +12,10 @@ interface CountriesAPI {
         @Query(value = "fields") fields: String = "name,capital,population,flags,region,subregion,currencies,languages,timezones"
     ) : List<CountriesDto>
 
-    @GET(value = "v3.1/all?fields=name,population,flags,region")
+    @GET(value = "v3.1/all?fields=name,population,flags,region,independent,area")
     suspend fun getAllCountries(): List<CountriesDto>
+
+    @GET(value = "v3.1/all?fields=name,capital,population,flags,region,subregion,currencies,languages,timezones")
+    suspend fun getRandomCountry(
+    ) : List<CountriesDto>
 }

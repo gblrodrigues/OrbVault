@@ -5,6 +5,8 @@ data class CountriesDto(
     val flags: FlagsDto,
     val capital: List<String?>,
     val population: Long,
+    val area: Double?,
+    val independent: Boolean?,
     val region: String,
     val subregion: String?,
     val currencies: Map<String, CurrenciesDto?>,

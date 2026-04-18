@@ -91,7 +91,7 @@ fun SearchBar(
             focusedIndicatorColor = MaterialTheme.colorScheme.onSurface
         ),
         modifier = Modifier
-            .padding(40.dp)
-            .fillMaxWidth(1f)
+            .padding(16.dp)
+            .fillMaxWidth()
     )
 }

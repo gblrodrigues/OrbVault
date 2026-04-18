@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.network.CountriesAPI
 import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
+import com.gblrod.orbvault.ui.presentation.state.RandomCountryUiState
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,18 +18,19 @@ class CountriesViewModel(
     val api: CountriesAPI
 ) : ViewModel() {
     private var job: Job? = null
-    private val _countriesUiState = MutableStateFlow<CountriesUiState>(CountriesUiState.Loading)
+    private val _countriesUiState = MutableStateFlow<CountriesUiState>(CountriesUiState.Idle)
     val countriesUiState: StateFlow<CountriesUiState> = _countriesUiState
+    private val _randomCountryUiState = MutableStateFlow<RandomCountryUiState>(RandomCountryUiState.Idle)
+    val randomCountryUiState: StateFlow<RandomCountryUiState> = _randomCountryUiState
 
     fun fetchCountry(country: String?) {
+        if (country.isNullOrBlank()) return
+
         job?.cancel()
 
         job = viewModelScope.launch {
-            val firstLoad = _countriesUiState.value is CountriesUiState.Loading
 
-            if (firstLoad) {
-                _countriesUiState.value = CountriesUiState.Loading
-            }
+            _countriesUiState.value = CountriesUiState.Loading
 
             try {
                 val countriesResponse = api.findCountry(name = country)
@@ -60,6 +62,29 @@ class CountriesViewModel(
                 if (e is CancellationException) throw e
                 _countriesUiState.value =
                     CountriesUiState.Error(messageResId = R.string.countries_ui_state_cancellationexception)
+            }
+        }
+    }
+
+    fun fetchRandomCountry() {
+        viewModelScope.launch {
+            _randomCountryUiState.value = RandomCountryUiState.Loading
+
+            try {
+                val countries = api.getRandomCountry()
+                val randomCountry = countries.random()
+
+                _randomCountryUiState.value = RandomCountryUiState.Success(country = randomCountry)
+
+            } catch (e: HttpException) {
+                _randomCountryUiState.value = RandomCountryUiState.Error(
+                    messageResId = R.string.explore_ui_state_httpexception,
+                    code = e.code()
+                )
+
+            } catch (e: IOException) {
+                _randomCountryUiState.value =
+                    RandomCountryUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
             }
         }
     }

@@ -42,10 +42,10 @@ import com.gblrod.orbvault.components.InfoRow
 import com.gblrod.orbvault.components.TopList
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.state.ExploreUiState
-import com.gblrod.orbvault.ui.theme.PopulatedCountriesColor
+import com.gblrod.orbvault.ui.theme.LargestCountriesColor
 
 @Composable
-fun PopulatedCountriesList(
+fun LargestCountriesList(
     modifier: Modifier = Modifier,
     exploreViewModel: ExploreViewModel
 ) {
@@ -55,21 +55,21 @@ fun PopulatedCountriesList(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp)
     ) {
         item {
             Column {
                 Text(
-                    text = stringResource(id = R.string.populated_country_label_explore),
+                    text = stringResource(id = R.string.largest_country_label_explore),
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = stringResource(id = R.string.populated_country_label_explore_top10),
+                    text = stringResource(id = R.string.largest_country_label_explore_top10),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
-                    color = PopulatedCountriesColor
+                    color = LargestCountriesColor
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -118,7 +118,7 @@ fun PopulatedCountriesList(
                             Icon(
                                 imageVector = if (favorite) Icons.Default.Star else Icons.Default.StarBorder,
                                 contentDescription = null,
-                                tint = if (favorite) Color.Yellow else MaterialTheme.colorScheme.onSurface,
+                                tint = if (favorite) Color.Yellow else MaterialTheme.colorScheme.onSurface
                             )
                         }
                     }
@@ -130,9 +130,9 @@ fun PopulatedCountriesList(
                     Spacer(modifier = Modifier.height(4.dp))
 
                     InfoRow(
-                        label = stringResource(id = R.string.populated_country_label_population),
-                        value = "%,d".format(country.population),
-                        labelWidth = 100.dp
+                        label = stringResource(id = R.string.largest_country_label_area),
+                        value = "%,.2f".format(country.area),
+                        labelWidth = 50.dp
                     )
                 }
             }

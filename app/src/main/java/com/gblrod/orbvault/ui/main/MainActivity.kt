@@ -4,21 +4,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gblrod.orbvault.components.BottomBar
 import com.gblrod.orbvault.components.TopBar
 import com.gblrod.orbvault.navigation.NavigationGraph
+import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.theme.BackgroundColorOne
+import com.gblrod.orbvault.ui.theme.BackgroundColorThree
+import com.gblrod.orbvault.ui.theme.BackgroundColorTwo
 import com.gblrod.orbvault.ui.theme.OrbVaultTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -33,6 +42,19 @@ class MainActivity : ComponentActivity() {
             val navHostController = rememberNavController()
             val countriesViewModel: CountriesViewModel = koinViewModel()
             val exploreViewModel: ExploreViewModel = koinViewModel()
+            val backgroundGradient = Brush.verticalGradient(
+                colors = listOf(
+                    BackgroundColorOne,
+                    BackgroundColorTwo,
+                    BackgroundColorThree,
+                )
+            )
+
+            val currentBackStackEntry by navHostController.currentBackStackEntryAsState()
+            val currentRoute = currentBackStackEntry?.destination?.route
+            val isPrincipalScreen = currentRoute == Routes.LargestCountries.route ||
+                    currentRoute == Routes.PopulatedCountries.route ||
+                    currentRoute == Routes.RandomCountry.route
 
             OrbVaultTheme {
                 ModalNavigationDrawer(
@@ -48,23 +70,32 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         }
-                    },
-                    content = {
-                        Scaffold(
-                            modifier = Modifier.fillMaxSize(),
-                            topBar = {
-                                TopBar(
-                                    onOpenDrawer = {
-                                        scope.launch {
-                                            if (drawerState.isClosed) drawerState.open() else drawerState.close()
-                                        }
+                    }
+                ) {
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        topBar = {
+                            TopBar(
+                                onOpenDrawer = {
+                                    scope.launch {
+                                        if (drawerState.isClosed) drawerState.open() else drawerState.close()
                                     }
-                                )
-                            },
-                            bottomBar = {
-                                BottomBar(navHostController = navHostController)
-                            }
-                        ) { paddingValues ->
+                                },
+                                onBackClick = {
+                                    navHostController.navigate(route = Routes.Explore.route)
+                                },
+                                isPrincipalScreen = isPrincipalScreen
+                            )
+                        },
+                        bottomBar = {
+                            BottomBar(navHostController = navHostController)
+                        }
+                    ) { paddingValues ->
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(brush = backgroundGradient)
+                        ) {
                             NavigationGraph(
                                 navHostController = navHostController,
                                 paddingValues = paddingValues,
@@ -73,7 +104,7 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     }
-                )
+                }
             }
         }
     }

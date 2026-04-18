@@ -18,4 +18,12 @@ sealed class Routes(
     object PopulatedCountries : Routes(
         route = "populatedcountries"
     )
+
+    object LargestCountries : Routes(
+        route = "largestcountries"
+    )
+
+    object RandomCountry : Routes(
+        route = "randomcountry"
+    )
 }
