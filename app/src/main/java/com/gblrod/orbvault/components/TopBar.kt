@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.components
 
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -26,6 +27,7 @@ fun TopBar(
     isPrincipalScreen: Boolean
 ) {
     TopAppBar(
+        modifier = Modifier.height(76.dp),
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color.Transparent
         ),

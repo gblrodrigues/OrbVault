@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.explore.screen
+package com.gblrod.orbvault.ui.presentation.explore.largest.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -6,12 +6,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import com.gblrod.orbvault.components.ErrorMessage
 import com.gblrod.orbvault.components.LoadingScreen
-import com.gblrod.orbvault.ui.presentation.explore.components.PopulatedCountriesList
+import com.gblrod.orbvault.ui.presentation.explore.largest.components.LargestCountriesList
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.state.ExploreUiState
 
 @Composable
-fun PopulatedCountriesScreen(
+fun LargestCountriesScreen(
     exploreViewModel: ExploreViewModel
 ) {
     val uiState by exploreViewModel.exploreUiState.collectAsState()
@@ -23,7 +23,7 @@ fun PopulatedCountriesScreen(
         }
 
         is ExploreUiState.Success -> {
-            PopulatedCountriesList(
+            LargestCountriesList(
                 exploreViewModel = exploreViewModel
             )
         }
@@ -37,7 +37,7 @@ fun PopulatedCountriesScreen(
 
             ErrorMessage(
                 message = message,
-                onRetry = { exploreViewModel.fetchTopPopulatedCountries() }
+                onRetry = { exploreViewModel.fetchTopLargestCountries() }
             )
         }
     }

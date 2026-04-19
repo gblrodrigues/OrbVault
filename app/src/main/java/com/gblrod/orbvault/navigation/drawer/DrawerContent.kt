@@ -18,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.Routes
@@ -75,13 +76,14 @@ fun DrawerContent(
             },
             selected = currentRoute == item.route,
             onClick = {
+                onItemClick()
                 navController.navigate(item.route) {
-                    popUpTo(route = Routes.Home.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
                         saveState = true
                     }
                     launchSingleTop = true
+                    restoreState = true
                 }
-                onItemClick()
             }
         )
     }

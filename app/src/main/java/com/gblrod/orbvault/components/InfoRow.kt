@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -22,14 +23,14 @@ fun InfoRow(
     ) {
         Text(
             text = "$label: ",
-            color = MaterialTheme.colorScheme.onSurface,
+            color = MaterialTheme.colorScheme.inverseSurface,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.width(labelWidth)
         )
 
         Text(
             text = value,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = Color.LightGray
         )
     }
 }

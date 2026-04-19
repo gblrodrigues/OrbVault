@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.OrbVault" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.OrbVault.Splash" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/black</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+    </style>
+
 </resources>

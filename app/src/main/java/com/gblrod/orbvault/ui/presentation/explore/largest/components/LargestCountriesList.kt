@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.explore.components
+package com.gblrod.orbvault.ui.presentation.explore.largest.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -72,7 +72,7 @@ fun LargestCountriesList(
                     color = LargestCountriesColor
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
         }
 
         itemsIndexed(country) { index, country ->
@@ -82,7 +82,7 @@ fun LargestCountriesList(
                 modifier = modifier
                     .fillMaxWidth()
                     .padding(vertical = 16.dp),
-                shape = RoundedCornerShape(20.dp),
+                shape = RoundedCornerShape(16.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
             ) {
                 Column(

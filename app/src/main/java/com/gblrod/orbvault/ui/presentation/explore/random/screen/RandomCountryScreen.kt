@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.explore.screen
+package com.gblrod.orbvault.ui.presentation.explore.random.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.components.ErrorMessage
 import com.gblrod.orbvault.components.LoadingScreen
-import com.gblrod.orbvault.ui.presentation.explore.components.RandomCountryScreenDetails
+import com.gblrod.orbvault.ui.presentation.explore.random.components.RandomCountryDetails
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.presentation.state.RandomCountryUiState
 
@@ -34,9 +34,13 @@ fun RandomCountryScreen(
             }
 
             is RandomCountryUiState.Success -> {
-                RandomCountryScreenDetails(
+                RandomCountryDetails(
                     countriesViewModel = countriesViewModel,
-                    country = state.country
+                    country = state.country,
+                    onCountryClick = { code ->
+                        countriesViewModel.fetchCountryForRandom(code = code)
+                    },
+                    countryQuery = {}
                 )
             }
 

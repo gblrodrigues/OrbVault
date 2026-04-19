@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -19,7 +18,7 @@ import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.ui.presentation.explore.components.CardExploreDetails
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
-import com.gblrod.orbvault.ui.theme.ExploreScreenTitleColor
+import com.gblrod.orbvault.ui.theme.ExploreScreenSubTitleColor
 
 @Composable
 fun ExploreScreen(
@@ -41,7 +40,7 @@ fun ExploreScreen(
                 text = stringResource(id = R.string.explore_screen_sub_title),
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
-                color = ExploreScreenTitleColor
+                color = ExploreScreenSubTitleColor
             )
         }
         Spacer(modifier = Modifier.height(16.dp))

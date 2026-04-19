@@ -2,6 +2,9 @@ package com.gblrod.orbvault.data.mapper
 
 import com.gblrod.orbvault.data.dto.CountriesDto
 
+private const val MAX_LANGUAGES = 3
+private const val MAX_TIMEZONES = 2
+
 fun getCurrency(country: CountriesDto): String {
     val firstCurrency = country.currencies.values.firstOrNull() ?: return "N/A"
     return "${firstCurrency.name} (${firstCurrency.symbol ?: ""})"
@@ -14,7 +17,7 @@ fun getLanguage(country: CountriesDto): String {
         return "N/A"
     }
 
-    return languages.values.joinToString(separator = "\n")
+    return languages.values.take(n = MAX_LANGUAGES).joinToString(separator = ", ")
 }
 
 fun getTimezones(
@@ -26,5 +29,5 @@ fun getTimezones(
         return "N/A"
     }
 
-    return timezones.joinToString(separator = "\n")
+    return timezones.take(n = MAX_TIMEZONES).joinToString(separator = ", ")
 }

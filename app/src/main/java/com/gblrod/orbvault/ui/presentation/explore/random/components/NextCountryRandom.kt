@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.explore.components
+package com.gblrod.orbvault.ui.presentation.explore.random.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -17,7 +17,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.theme.ButtonBackExploreScreen
 
 @Composable
@@ -44,7 +46,7 @@ fun NextCountryRandom(
             horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Próximo País",
+                text = stringResource(id = R.string.button_next_random_country),
                 color = MaterialTheme.colorScheme.onSurface
             )
             Spacer(modifier = Modifier.width(8.dp))

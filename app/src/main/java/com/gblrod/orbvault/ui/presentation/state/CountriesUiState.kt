@@ -8,7 +8,9 @@ sealed class CountriesUiState {
     object Loading : CountriesUiState()
 
     data class Success(
-        val country: CountriesDto
+        val country: CountriesDto,
+        val code: CountriesDto,
+        val borders: List<CountriesDto> = emptyList()
     ) : CountriesUiState()
 
     data class Error(

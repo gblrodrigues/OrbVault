@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.explore.components
+package com.gblrod.orbvault.ui.presentation.explore.populated.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -55,7 +55,7 @@ fun PopulatedCountriesList(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp)
     ) {
         item {
             Column {
@@ -72,7 +72,7 @@ fun PopulatedCountriesList(
                     color = PopulatedCountriesColor
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
         }
 
         itemsIndexed(country) { index, country ->
@@ -82,7 +82,7 @@ fun PopulatedCountriesList(
                 modifier = modifier
                     .fillMaxWidth()
                     .padding(vertical = 16.dp),
-                shape = RoundedCornerShape(20.dp),
+                shape = RoundedCornerShape(16.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
             ) {
                 Column(

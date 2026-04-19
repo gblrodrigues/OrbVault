@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.ui.presentation.home.components
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +11,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
@@ -37,20 +40,28 @@ import com.gblrod.orbvault.data.dto.CountriesDto
 import com.gblrod.orbvault.data.mapper.getCurrency
 import com.gblrod.orbvault.data.mapper.getLanguage
 import com.gblrod.orbvault.data.mapper.getTimezones
+import com.gblrod.orbvault.ui.presentation.state.BordersUiState
 
 @Composable
 fun CardCountryDetails(
     country: CountriesDto,
-    modifier: Modifier = Modifier
-) {
+    modifier: Modifier = Modifier,
+    onFetchBorders: (CountriesDto) -> Unit,
+    onCountryClick: (String) -> Unit,
+    countryQuery: (String) -> Unit,
+    bordersState: BordersUiState,
+
+    ) {
     var favorite by remember { mutableStateOf(false) }
+    var showBorders by remember(key1 = country.cca3) { mutableStateOf(false) }
 
     Card(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .animateContentSize(),
+        shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.LightGray
+            containerColor = Color.Gray
         )
     ) {
         Column(
@@ -88,6 +99,18 @@ fun CardCountryDetails(
                         tint = if (favorite) Color.Yellow else MaterialTheme.colorScheme.onSurface
                     )
                 }
+                IconButton(
+                    onClick = {
+                        showBorders = !showBorders
+                        if (showBorders) onFetchBorders(country)
+                    },
+                    modifier = Modifier.align(Alignment.Top)
+                ) {
+                    Icon(
+                        imageVector = if (showBorders) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                        contentDescription = null
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -98,7 +121,7 @@ fun CardCountryDetails(
 
             InfoRow(
                 label = stringResource(id = R.string.country_details_label_capital),
-                value = country.capital.firstOrNull() ?: "N/A"
+                value = country.capital?.firstOrNull() ?: "N/A"
             )
             InfoRow(
                 label = stringResource(id = R.string.country_details_label_region),
@@ -109,7 +132,8 @@ fun CardCountryDetails(
                 value = country.subregion ?: "N/A"
             )
             InfoRow(
-                label = stringResource(id = R.string.country_details_label_language),
+                label = if (country.languages.size <= 1) stringResource(id = R.string.country_details_label_language)
+                else stringResource(id = R.string.country_details_label_languages),
                 value = getLanguage(country = country)
             )
             InfoRow(
@@ -124,6 +148,28 @@ fun CardCountryDetails(
                 label = stringResource(id = R.string.country_details_label_timezone),
                 value = getTimezones(country = country)
             )
+
+            if (showBorders) {
+                val shown = (bordersState as? BordersUiState.Success)?.neighbors?.size
+                val total = country.borders.size
+                val value = shown?.let { "$it de $total" } ?: ""
+
+                val label = if (total <= 1) stringResource(id = R.string.neighbors_one_label)
+                else stringResource(id = R.string.neighbors_more_label)
+
+                InfoRow(
+                    label = label,
+                    value = value
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                BorderCountriesRow(
+                    bordersState = bordersState,
+                    onCountryClick = onCountryClick,
+                    countryQuery = countryQuery
+                )
+            }
         }
     }
 }

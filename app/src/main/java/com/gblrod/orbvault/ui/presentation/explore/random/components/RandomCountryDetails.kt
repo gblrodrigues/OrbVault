@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.presentation.explore.components
+package com.gblrod.orbvault.ui.presentation.explore.random.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -20,10 +22,14 @@ import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.theme.CountryRandomColor
 
 @Composable
-fun RandomCountryScreenDetails(
+fun RandomCountryDetails(
     countriesViewModel: CountriesViewModel,
-    country: CountriesDto
+    country: CountriesDto,
+    onCountryClick: (String) -> Unit,
+    countryQuery: (String) -> Unit
 ) {
+    val bordersState by countriesViewModel.bordersUiState.collectAsState()
+
     Column {
         Text(
             text = stringResource(id = R.string.random_country_label_explore),
@@ -45,7 +51,13 @@ fun RandomCountryScreenDetails(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CardCountryDetails(
-            country = country
+            country = country,
+            onFetchBorders = {
+                countriesViewModel.fetchBorders(country = it)
+            },
+            bordersState = bordersState,
+            onCountryClick = onCountryClick,
+            countryQuery = countryQuery
         )
 
         NextCountryRandom(

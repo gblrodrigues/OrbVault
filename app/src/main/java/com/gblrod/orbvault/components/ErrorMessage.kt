@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
@@ -53,7 +54,7 @@ fun ErrorMessage(
                 isLoading = false
             }
             CircularProgressIndicator(
-                color = MaterialTheme.colorScheme.inverseSurface
+                color = MaterialTheme.colorScheme.inverseOnSurface
             )
         } else {
             TextButton(
@@ -66,7 +67,8 @@ fun ErrorMessage(
             ) {
                 Text(
                     text = stringResource(id = R.string.button_retry).uppercase(),
-                    color = MaterialTheme.colorScheme.inverseSurface
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.inverseOnSurface
                 )
             }
         }
