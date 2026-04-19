@@ -27,7 +27,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ## Funcionalidades
 
 ### Países
-* Busca de países pelo nome  
+* Busca de países pelo nome ou código (cca3)  
 * Exibição de informações detalhadas do país:
   * Nome comum e oficial  
   * Capital  
@@ -36,7 +36,10 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
   * Moeda  
   * População formatada  
   * Fusos horários  
-* Exibição da bandeira do país  
+* Exibição da bandeira do país
+* Países Vizinhos
+  * Exibição de países vizinhos (máx. 5)  
+  * Navegação ao clicar em um país vizinho   
 
 ### Explore
 * Top 10 países mais populosos  
@@ -50,7 +53,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/615e3c20-aa4b-4fcd-96b2-4ff63326fcd6
+> https://github.com/user-attachments/assets/2cfbd350-4762-4c90-a341-cc3bdd2b86e2
 
 ## Tomadas de Decisões
 
@@ -64,19 +67,16 @@ O uso de ViewModel com StateFlow permite que a interface reaja automaticamente �
 ### Consumo de API
 Os dados dos países são obtidos por meio de uma API pública. Isso me permitiu praticar requisições HTTP, tratamento de dados e organização em camadas dentro do projeto.
 
+Apliquei otimizações como:
+* Uso de `fields` para reduzir payload
+* Limitação de idiomas e fusos horários
+* Limitação de vizinhos exibidos (máx. 5)
+
 > 🔗 Link da API: https://restcountries.com/
 
 ### Gerenciamento de Estado de UI (UiState)
 Para lidar com os estados da tela (carregando, sucesso e erro), utilizei uma abordagem com sealed class (UiState) junto com StateFlow.
 Com isso, a interface reage automaticamente às mudanças de estado, deixando o código mais organizado e fácil de entender.
-
-### Formatação de Dados
-Criei funções auxiliares para tratar dados vindos da API, como:
-- moedas
-- idiomas
-- fusos horários  
-
-Isso melhora a legibilidade das informações exibidas e a organização do projeto.
 
 ### Carregamento de Imagens
 Utilizei a biblioteca Coil para carregar imagens das bandeiras via URL de forma assíncrona, garantindo uma experiência mais fluida e melhor desempenho na renderização das imagens.
