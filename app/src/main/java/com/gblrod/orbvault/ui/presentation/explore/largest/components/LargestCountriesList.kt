@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.ui.presentation.explore.largest.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -36,10 +37,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.components.InfoRow
 import com.gblrod.orbvault.components.TopList
+import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.state.ExploreUiState
 import com.gblrod.orbvault.ui.theme.LargestCountriesColor
@@ -47,7 +50,9 @@ import com.gblrod.orbvault.ui.theme.LargestCountriesColor
 @Composable
 fun LargestCountriesList(
     modifier: Modifier = Modifier,
-    exploreViewModel: ExploreViewModel
+    exploreViewModel: ExploreViewModel,
+    navHostController: NavHostController,
+    onCountryClick: (String) -> Unit
 ) {
     val uiState by exploreViewModel.exploreUiState.collectAsState()
     val country = (uiState as ExploreUiState.Success).countries
@@ -81,7 +86,12 @@ fun LargestCountriesList(
             Card(
                 modifier = modifier
                     .fillMaxWidth()
-                    .padding(vertical = 16.dp),
+                    .padding(vertical = 16.dp)
+                    .clickable {
+                        navHostController.navigate(route = Routes.Home.route) {
+                            onCountryClick(country.name.common)
+                        }
+                    },
                 shape = RoundedCornerShape(16.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
             ) {
@@ -97,7 +107,7 @@ fun LargestCountriesList(
                             contentDescription = null,
                             modifier = Modifier
                                 .size(72.dp)
-                                .clip(shape = RoundedCornerShape(12.dp))
+                                .clip(shape = RoundedCornerShape(16.dp))
                         )
 
                         Spacer(modifier = Modifier.width(16.dp))

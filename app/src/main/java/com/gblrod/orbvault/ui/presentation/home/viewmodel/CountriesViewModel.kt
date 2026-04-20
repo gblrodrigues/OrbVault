@@ -20,13 +20,21 @@ class CountriesViewModel(
     private val repository: CountriesRepository
 ) : ViewModel() {
     private var job: Job? = null
+
     private val _countriesUiState = MutableStateFlow<CountriesUiState>(CountriesUiState.Idle)
     val countriesUiState: StateFlow<CountriesUiState> = _countriesUiState
+
     private val _randomCountryUiState =
         MutableStateFlow<RandomCountryUiState>(RandomCountryUiState.Idle)
     val randomCountryUiState: StateFlow<RandomCountryUiState> = _randomCountryUiState
+
     private val _bordersUiState = MutableStateFlow<BordersUiState>(BordersUiState.Idle)
     val bordersUiState: StateFlow<BordersUiState> = _bordersUiState
+
+    private val historyStack = mutableListOf<CountriesDto>()
+    private var currentCountry: CountriesDto? = null
+    private val _previewReturnCountry = MutableStateFlow(false)
+    val previewReturnCountry: StateFlow<Boolean> = _previewReturnCountry
 
     fun fetchCountry(country: String?) {
         if (country.isNullOrBlank()) return
@@ -79,6 +87,11 @@ class CountriesViewModel(
 
             try {
                 val randomCountry = repository.getRandomCountry()
+
+                currentCountry?.let { historyStack.add(it) }
+                _previewReturnCountry.value = historyStack.isNotEmpty()
+                currentCountry = randomCountry
+
                 _randomCountryUiState.value = RandomCountryUiState.Success(country = randomCountry)
 
             } catch (e: HttpException) {
@@ -90,6 +103,18 @@ class CountriesViewModel(
             } catch (e: IOException) {
                 _randomCountryUiState.value =
                     RandomCountryUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
+            }
+        }
+    }
+
+    fun returnRandomCountry() {
+        viewModelScope.launch {
+            if (historyStack.isNotEmpty()) {
+                val previous = historyStack.removeAt(historyStack.lastIndex)
+                currentCountry = previous
+
+                _randomCountryUiState.value = RandomCountryUiState.Success(country = previous)
+                _previewReturnCountry.value = historyStack.isNotEmpty()
             }
         }
     }

@@ -7,10 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.gblrod.orbvault.ui.presentation.explore.populated.screen.PopulatedCountriesScreen
-import com.gblrod.orbvault.ui.presentation.explore.screen.ExploreScreen
 import com.gblrod.orbvault.ui.presentation.explore.largest.screen.LargestCountriesScreen
+import com.gblrod.orbvault.ui.presentation.explore.populated.screen.PopulatedCountriesScreen
 import com.gblrod.orbvault.ui.presentation.explore.random.screen.RandomCountryScreen
+import com.gblrod.orbvault.ui.presentation.explore.screen.ExploreScreen
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.favorites.screen.FavoritesScreen
 import com.gblrod.orbvault.ui.presentation.home.screen.HomeScreen
@@ -45,11 +45,18 @@ fun NavigationGraph(
         }
 
         composable(route = Routes.PopulatedCountries.route) {
-            PopulatedCountriesScreen(exploreViewModel = exploreViewModel)
+            PopulatedCountriesScreen(
+                exploreViewModel = exploreViewModel,
+                navHostController = navHostController,
+                countriesViewModel = countriesViewModel)
         }
 
         composable(route = Routes.LargestCountries.route) {
-            LargestCountriesScreen(exploreViewModel = exploreViewModel)
+            LargestCountriesScreen(
+                exploreViewModel = exploreViewModel,
+                navHostController = navHostController,
+                countriesViewModel = countriesViewModel
+            )
         }
 
         composable(route = Routes.RandomCountry.route) {

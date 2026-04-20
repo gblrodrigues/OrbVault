@@ -46,7 +46,7 @@ fun NeighborCountryCard(
                 contentDescription = null,
                 modifier = Modifier
                     .size(40.dp)
-                    .clip(shape = RoundedCornerShape(12.dp))
+                    .clip(shape = RoundedCornerShape(16.dp))
             )
 
             Spacer(modifier = Modifier.width(12.dp))

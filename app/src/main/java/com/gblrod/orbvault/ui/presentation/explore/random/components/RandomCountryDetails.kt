@@ -29,6 +29,7 @@ fun RandomCountryDetails(
     countryQuery: (String) -> Unit
 ) {
     val bordersState by countriesViewModel.bordersUiState.collectAsState()
+    val hasPreview by countriesViewModel.previewReturnCountry.collectAsState()
 
     Column {
         Text(
@@ -60,10 +61,14 @@ fun RandomCountryDetails(
             countryQuery = countryQuery
         )
 
-        NextCountryRandom(
-            onClick = {
+        ButtonCountryRandom(
+            onNextCountry = {
                 countriesViewModel.fetchRandomCountry()
-            }
+            },
+            onReturnCountry = {
+                countriesViewModel.returnRandomCountry()
+            },
+            previewReturnCountry = hasPreview
         )
     }
 }

@@ -37,7 +37,7 @@ fun CardExploreDetails(
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() }
-            .clip(shape = RoundedCornerShape(12.dp))
+            .clip(shape = RoundedCornerShape(16.dp))
     ) {
         AsyncImage(
             model = background,

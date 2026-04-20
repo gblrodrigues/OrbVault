@@ -76,7 +76,7 @@ fun CardCountryDetails(
                     contentDescription = null,
                     modifier = Modifier
                         .size(72.dp)
-                        .clip(shape = RoundedCornerShape(12.dp))
+                        .clip(shape = RoundedCornerShape(16.dp))
                 )
 
                 Spacer(modifier = Modifier.width(16.dp))
@@ -152,7 +152,10 @@ fun CardCountryDetails(
             if (showBorders) {
                 val shown = (bordersState as? BordersUiState.Success)?.neighbors?.size
                 val total = country.borders.size
-                val value = shown?.let { "$it de $total" } ?: ""
+                val value = shown?.let {
+                    if (shown < 1) stringResource(id = R.string.neighbors_empty)
+                    else "$it de $total"
+                } ?: ""
 
                 val label = if (total <= 1) stringResource(id = R.string.neighbors_one_label)
                 else stringResource(id = R.string.neighbors_more_label)

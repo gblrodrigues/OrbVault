@@ -26,12 +26,7 @@ fun BorderCountriesRow(
         is BordersUiState.Success -> {
             val neighbors = bordersState.neighbors
 
-            if (neighbors.isEmpty()) {
-                Text(
-                    text = stringResource(id = R.string.neighbors_empty),
-                    color = Color.DarkGray
-                )
-            } else {
+            if (neighbors.isNotEmpty()) {
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
