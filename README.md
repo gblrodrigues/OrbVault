@@ -44,7 +44,8 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ### Explore
 * Top 10 países mais populosos  
 * Top 10 maiores países (por área)  
-* País aleatório com possibilidade de gerar novos resultados  
+* País aleatório com possibilidade de gerar novos resultados
+* Exibição de detalhes em BottomSheet para melhor experiência de navegação sem sair da tela principal  
 * Navegação entre diferentes categorias de exploração  
 
 ### Gerais
@@ -53,7 +54,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/2cfbd350-4762-4c90-a341-cc3bdd2b86e2
+> https://github.com/user-attachments/assets/ae8eb70f-12b4-4edb-b418-ebfd6a82ea78
 
 ## Tomadas de Decisões
 
@@ -62,7 +63,9 @@ Optei por Jetpack Compose por já ter experiência com a abordagem declarativa, 
 
 ### Arquitetura (MVVM)
 Escolhi estruturar o projeto em MVVM para manter a lógica separada da interface.  
-O uso de ViewModel com StateFlow permite que a interface reaja automaticamente às mudanças de estado.
+O uso de ViewModel com StateFlow permite que a interface reaja automaticamente às mudanças de estado.  
+
+> Durante a evolução do projeto, os ViewModels foram reorganizados para separar a lógica de listagem e detalhes de países, reduzindo o acoplamento entre telas.
 
 ### Consumo de API
 Os dados dos países são obtidos por meio de uma API pública. Isso me permitiu praticar requisições HTTP, tratamento de dados e organização em camadas dentro do projeto.
@@ -71,6 +74,8 @@ Apliquei otimizações como:
 * Uso de `fields` para reduzir payload
 * Limitação de idiomas e fusos horários
 * Limitação de vizinhos exibidos (máx. 5)
+
+> A busca de países foi otimizada para suportar busca por nome ou código (CCA3)
 
 > 🔗 Link da API: https://restcountries.com/
 
