@@ -19,16 +19,17 @@ import androidx.compose.ui.graphics.Brush
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gblrod.orbvault.components.BottomBar
+import com.gblrod.orbvault.components.ThemeConfigDefault
 import com.gblrod.orbvault.components.TopBar
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.theme.BackgroundColorOne
 import com.gblrod.orbvault.ui.theme.BackgroundColorThree
 import com.gblrod.orbvault.ui.theme.BackgroundColorTwo
-import com.gblrod.orbvault.ui.theme.OrbVaultTheme
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -42,6 +43,7 @@ class MainActivity : ComponentActivity() {
             val navHostController = rememberNavController()
             val countriesViewModel: CountriesViewModel = koinViewModel()
             val exploreViewModel: ExploreViewModel = koinViewModel()
+            val countryDetailsViewModel: CountryDetailsViewModel = koinViewModel()
             val backgroundGradient = Brush.verticalGradient(
                 colors = listOf(
                     BackgroundColorOne,
@@ -56,7 +58,7 @@ class MainActivity : ComponentActivity() {
                     currentRoute == Routes.PopulatedCountries.route ||
                     currentRoute == Routes.RandomCountry.route
 
-            OrbVaultTheme {
+            ThemeConfigDefault {
                 ModalNavigationDrawer(
                     drawerState = drawerState,
                     drawerContent = {
@@ -100,7 +102,8 @@ class MainActivity : ComponentActivity() {
                                 navHostController = navHostController,
                                 paddingValues = paddingValues,
                                 countriesViewModel = countriesViewModel,
-                                exploreViewModel = exploreViewModel
+                                exploreViewModel = exploreViewModel,
+                                countryDetailsViewModel = countryDetailsViewModel
                             )
                         }
                     }

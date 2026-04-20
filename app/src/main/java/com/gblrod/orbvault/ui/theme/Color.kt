@@ -14,8 +14,8 @@ val BackgroundColorOne = Color(0xFF61A5FD)
 val BackgroundColorTwo = Color(0xFF81A1E8)
 val BackgroundColorThree = Color(0xFF5490C9)
 
-val ButtonNextRandomCountry = Color(0xFF0484DA)
-val ButtonReturnRandomCountry = Color(0xFF0589A8)
+val ButtonNextRandomCountry = Color(0xFF375FD9)
+val ButtonReturnRandomCountry = Color(0xFF6FA8FF)
 
 val HomeScreenSubTitleColor = Color(0xFF086FEC)
 val ExploreScreenSubTitleColor = Color(0xFF375FD9)

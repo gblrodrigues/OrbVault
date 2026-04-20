@@ -27,7 +27,7 @@ interface CountriesAPI {
 
     @GET(value = "v3.1/alpha")
     suspend fun getBordersCountries(
-        @Query(value = "codes") codes: String,
+        @Query(value = "codes") codes: String?,
         @Query(value = "fields") fields: String = BORDER_FIELDS
     ): List<CountriesDto>
 

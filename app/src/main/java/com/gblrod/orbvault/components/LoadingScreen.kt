@@ -21,11 +21,11 @@ fun LoadingScreen() {
     ) {
         Text(
             text = stringResource(id = R.string.loading_screen_label),
-            color = MaterialTheme.colorScheme.inverseOnSurface,
+            color = MaterialTheme.colorScheme.inverseSurface,
             modifier = Modifier.padding(top = 80.dp)
         )
         CircularProgressIndicator(
-            color = MaterialTheme.colorScheme.inverseOnSurface
+            color = MaterialTheme.colorScheme.inverseSurface
         )
     }
 }

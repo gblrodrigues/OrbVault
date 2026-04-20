@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.dto.CountriesDto
+import com.gblrod.orbvault.data.mapper.isCountryCode
 import com.gblrod.orbvault.data.repository.CountriesRepository
 import com.gblrod.orbvault.ui.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
@@ -47,7 +48,11 @@ class CountriesViewModel(
             _bordersUiState.value = BordersUiState.Idle
 
             try {
-                val result = repository.fetchCountry(name = country)
+                val result = if (isCountryCode(country)) {
+                    repository.fetchCountryByCode(country.uppercase())
+                } else {
+                    repository.fetchCountry(name = country)
+                }
 
                 if (result != null) {
                     _countriesUiState.value =

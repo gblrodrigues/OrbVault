@@ -131,8 +131,9 @@ fun CardCountryDetails(
                 label = stringResource(id = R.string.country_details_label_sub_region),
                 value = country.subregion ?: "N/A"
             )
+            val languagesSize = country.languages?.size ?: 0
             InfoRow(
-                label = if (country.languages.size <= 1) stringResource(id = R.string.country_details_label_language)
+                label = if (languagesSize <= 1) stringResource(id = R.string.country_details_label_language)
                 else stringResource(id = R.string.country_details_label_languages),
                 value = getLanguage(country = country)
             )
@@ -150,12 +151,12 @@ fun CardCountryDetails(
             )
 
             if (showBorders) {
-                val shown = (bordersState as? BordersUiState.Success)?.neighbors?.size
-                val total = country.borders.size
-                val value = shown?.let {
+                val shown = (bordersState as? BordersUiState.Success)?.neighbors?.size ?: 0
+                val total = country.borders?.size ?: 0
+                val value = shown.let {
                     if (shown < 1) stringResource(id = R.string.neighbors_empty)
                     else "$it de $total"
-                } ?: ""
+                }
 
                 val label = if (total <= 1) stringResource(id = R.string.neighbors_one_label)
                 else stringResource(id = R.string.neighbors_more_label)

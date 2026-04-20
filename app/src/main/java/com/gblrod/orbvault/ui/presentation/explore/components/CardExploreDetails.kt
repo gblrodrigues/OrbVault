@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,7 +34,7 @@ fun CardExploreDetails(
             .height(80.dp)
             .border(
                 width = 2.dp,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = Color.White,
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() }
@@ -53,7 +54,7 @@ fun CardExploreDetails(
         ) {
             Text(
                 text = title,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = Color.White,
                 fontSize = 19.sp,
                 fontWeight = FontWeight.Bold
             )

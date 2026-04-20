@@ -25,12 +25,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.components.ErrorMessage
-import com.gblrod.orbvault.components.LoadingScreen
-import com.gblrod.orbvault.ui.presentation.home.components.CardCountryDetails
+import com.gblrod.orbvault.ui.presentation.home.components.CountryResults
 import com.gblrod.orbvault.ui.presentation.home.components.SearchBar
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
-import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
 import com.gblrod.orbvault.ui.theme.HomeScreenSubTitleColor
 
 @Composable
@@ -100,55 +97,22 @@ fun HomeScreen(
             )
         }
 
-
-        when (val state = uiState) {
-            is CountriesUiState.Idle -> {}
-
-            is CountriesUiState.Loading -> {
-                item {
-                    LoadingScreen()
+        item {
+            CountryResults(
+                state = uiState,
+                countryQuery = countryQuery,
+                onQueryChange = { newQuery -> countryQuery = newQuery },
+                bordersState = bordersState,
+                onRetry = { countriesViewModel.fetchCountry(countryQuery) },
+                onFetchBorders = { borders ->
+                    countriesViewModel.fetchBorders(
+                        country = borders
+                    )
+                },
+                onFetchCountry = { country ->
+                    countriesViewModel.fetchCountry(country = country)
                 }
-            }
-
-            is CountriesUiState.Success -> {
-                item {
-                    Column(
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        CardCountryDetails(
-                            country = state.country,
-                            bordersState = bordersState,
-                            onFetchBorders = {
-                                countriesViewModel.fetchBorders(country = it)
-                            },
-                            onCountryClick = { country ->
-                                countriesViewModel.fetchCountry(country = country)
-                            },
-                            countryQuery = { newQuery ->
-                                countryQuery = newQuery
-                            }
-                        )
-                    }
-                }
-            }
-
-            is CountriesUiState.Error -> {
-                item {
-                    Column(
-                        modifier = Modifier.padding(vertical = 32.dp)
-                    ) {
-                        val message = if (state.code == null) {
-                            stringResource(id = state.messageResId)
-                        } else {
-                            stringResource(id = state.messageResId, state.code)
-                        }
-                        ErrorMessage(
-                            message = message,
-                            onRetry = { countriesViewModel.fetchCountry(country = countryQuery) }
-                        )
-                    }
-                }
-            }
+            )
         }
     }
 }

@@ -14,10 +14,9 @@ class CountriesRepository(
 
     suspend fun getBorders(country: CountriesDto): List<CountriesDto> {
         val codes = country.borders
-            .filterNotNull()
-            .joinToString(separator = ",")
+            ?.joinToString(separator = ",")
 
-        if (codes.isBlank()) return emptyList()
+        if (codes?.isBlank() ?: false) return emptyList()
 
         return api.getBordersCountries(codes = codes)
             .take(n = MAX_BORDERS)

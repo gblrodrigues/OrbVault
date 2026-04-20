@@ -2,6 +2,7 @@ package com.gblrod.orbvault.di
 
 import com.gblrod.orbvault.data.network.CountriesAPI
 import com.gblrod.orbvault.data.repository.CountriesRepository
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import org.koin.core.module.dsl.viewModel
@@ -34,6 +35,7 @@ val appModules = module {
 
     // ViewModel
     viewModelOf(constructor = ::CountriesViewModel)
+    viewModelOf(constructor = ::CountryDetailsViewModel)
 
     viewModel {
         ExploreViewModel(

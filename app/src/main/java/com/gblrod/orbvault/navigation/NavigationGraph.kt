@@ -11,6 +11,7 @@ import com.gblrod.orbvault.ui.presentation.explore.largest.screen.LargestCountri
 import com.gblrod.orbvault.ui.presentation.explore.populated.screen.PopulatedCountriesScreen
 import com.gblrod.orbvault.ui.presentation.explore.random.screen.RandomCountryScreen
 import com.gblrod.orbvault.ui.presentation.explore.screen.ExploreScreen
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.favorites.screen.FavoritesScreen
 import com.gblrod.orbvault.ui.presentation.home.screen.HomeScreen
@@ -21,7 +22,8 @@ fun NavigationGraph(
     paddingValues: PaddingValues,
     navHostController: NavHostController,
     countriesViewModel: CountriesViewModel,
-    exploreViewModel: ExploreViewModel
+    exploreViewModel: ExploreViewModel,
+    countryDetailsViewModel: CountryDetailsViewModel
 ) {
     NavHost(
         navController = navHostController,
@@ -47,15 +49,14 @@ fun NavigationGraph(
         composable(route = Routes.PopulatedCountries.route) {
             PopulatedCountriesScreen(
                 exploreViewModel = exploreViewModel,
-                navHostController = navHostController,
-                countriesViewModel = countriesViewModel)
+                countryDetailsViewModel = countryDetailsViewModel
+            )
         }
 
         composable(route = Routes.LargestCountries.route) {
             LargestCountriesScreen(
                 exploreViewModel = exploreViewModel,
-                navHostController = navHostController,
-                countriesViewModel = countriesViewModel
+                countryDetailsViewModel = countryDetailsViewModel
             )
         }
 
