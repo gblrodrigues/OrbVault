@@ -37,6 +37,10 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
   * População formatada  
   * Fusos horários  
 * Exibição da bandeira do país
+* Ações rápidas do país:
+  * Ver Clima (próx. feature)
+  * Ver no Mapa
+  * Ver Vizinhos  
 * Países Vizinhos
   * Exibição de países vizinhos (máx. 5)  
   * Navegação ao clicar em um país vizinho   
@@ -54,7 +58,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/ae8eb70f-12b4-4edb-b418-ebfd6a82ea78
+> https://github.com/user-attachments/assets/a903626b-6c98-469a-b236-2909233aab2a
 
 ## Tomadas de Decisões
 
