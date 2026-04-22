@@ -24,6 +24,14 @@
     <string name="button_next_random_country">Próximo</string>
     <string name="button_return_random_country">Anterior</string>
 
+    <!-- CountryOptionsMenu -->
+    <string name="dropdown_menu_item_weather_title">Ver Clima</string>
+    <string name="dropdown_menu_item_weather_sub_title">Informações meteorológicas</string>
+    <string name="dropdown_menu_item_map_title">Ver no Mapa</string>
+    <string name="dropdown_menu_item_map_sub_title">Abrir localização</string>
+    <string name="dropdown_menu_item_neighbors_title">Ver Vizinhos</string>
+    <string name="dropdown_menu_item_neighbors_sub_title">Países fronteiros</string>
+
     <!-- OutlinedTextField -->
     <string name="outlined_text_field_placeholder">Ex: Brasil</string>
 
@@ -76,5 +84,8 @@
     <!-- RandomCountry -->
     <string name="random_country_label_explore">Explorando</string>
     <string name="random_country_label">Conhecendo um país aleatório</string>
+    
+    <!-- News Features -->
+    <string name="new_feature_coming_soon">Em breve</string>
 
 </resources>

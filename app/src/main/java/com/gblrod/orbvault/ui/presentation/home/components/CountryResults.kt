@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.gblrod.orbvault.components.ErrorMessage
-import com.gblrod.orbvault.components.LoadingScreen
+import com.gblrod.orbvault.ui.shared.components.ErrorMessage
+import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 import com.gblrod.orbvault.data.dto.CountriesDto
 import com.gblrod.orbvault.ui.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.presentation.state.CountriesUiState

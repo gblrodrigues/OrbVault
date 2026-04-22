@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.components
+package com.gblrod.orbvault.ui.shared.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

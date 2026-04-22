@@ -11,8 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
@@ -21,26 +20,35 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.components.InfoRow
-import com.gblrod.orbvault.components.TopList
 import com.gblrod.orbvault.data.dto.CountriesDto
 import com.gblrod.orbvault.data.mapper.getCurrency
 import com.gblrod.orbvault.data.mapper.getLanguage
 import com.gblrod.orbvault.data.mapper.getTimezones
+import com.gblrod.orbvault.ui.actions.MapOpener
 import com.gblrod.orbvault.ui.presentation.state.BordersUiState
+import com.gblrod.orbvault.ui.shared.components.CountryOptionsMenu
+import com.gblrod.orbvault.ui.shared.components.InfoRow
+import com.gblrod.orbvault.ui.shared.components.TopList
+import kotlinx.coroutines.launch
 
 @Composable
 fun CardCountryDetails(
@@ -49,11 +57,16 @@ fun CardCountryDetails(
     onFetchBorders: (CountriesDto) -> Unit,
     onCountryClick: (String) -> Unit,
     countryQuery: (String) -> Unit,
-    bordersState: BordersUiState,
-
-    ) {
+    bordersState: BordersUiState
+) {
     var favorite by remember { mutableStateOf(false) }
     var showBorders by remember(key1 = country.cca3) { mutableStateOf(false) }
+    var expanded by remember(key1 = country.cca3) { mutableStateOf(false) }
+    val context = LocalContext.current
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+    val newFeature = stringResource(id = R.string.new_feature_coming_soon)
 
     Card(
         modifier = modifier
@@ -99,16 +112,38 @@ fun CardCountryDetails(
                         tint = if (favorite) Color.Yellow else MaterialTheme.colorScheme.onSurface
                     )
                 }
+
                 IconButton(
-                    onClick = {
-                        showBorders = !showBorders
-                        if (showBorders) onFetchBorders(country)
-                    },
+                    onClick = { expanded = !expanded },
                     modifier = Modifier.align(Alignment.Top)
                 ) {
                     Icon(
-                        imageVector = if (showBorders) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                        imageVector = Icons.Default.MoreVert,
                         contentDescription = null
+                    )
+
+                    CountryOptionsMenu(
+                        modifier = modifier,
+                        expanded = expanded,
+                        onDismissRequest = { expanded = false },
+                        onCountryMap = {
+                            MapOpener.openMap(context = context, countryName = country.name.common)
+                            expanded = false
+                        },
+                        onCountryBorders = {
+                            showBorders = !showBorders
+                            if (showBorders) onFetchBorders(country)
+                            expanded = false
+                        },
+                        onWeatherClick = {
+                            scope.launch {
+                                snackbarHostState.showSnackbar(
+                                    message = newFeature.uppercase(),
+                                    duration = SnackbarDuration.Short
+                                )
+                            }
+                            expanded = false
+                        }
                     )
                 }
             }
@@ -175,5 +210,14 @@ fun CardCountryDetails(
                 )
             }
         }
+    }
+    SnackbarHost(
+        hostState = snackbarHostState,
+        modifier = Modifier.padding(16.dp)
+    ) { data ->
+        Snackbar(
+            snackbarData = data,
+            shape = RoundedCornerShape(16.dp)
+        )
     }
 }

@@ -38,8 +38,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.gblrod.orbvault.components.InfoRow
-import com.gblrod.orbvault.components.TopList
+import com.gblrod.orbvault.ui.shared.components.InfoRow
+import com.gblrod.orbvault.ui.shared.components.TopList
 import com.gblrod.orbvault.data.dto.CountriesDto
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel

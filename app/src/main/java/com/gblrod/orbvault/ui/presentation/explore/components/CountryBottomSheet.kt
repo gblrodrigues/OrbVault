@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.components.LoadingScreen
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.home.components.CardCountryDetails
 import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
@@ -41,7 +40,7 @@ fun CountryBottomSheet(
             when (val state = countryState) {
 
                 is CountriesUiState.Loading -> {
-                    LoadingScreen()
+                    // LoadingScreen()
                 }
 
                 is CountriesUiState.Success -> {

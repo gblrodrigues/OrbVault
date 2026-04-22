@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.gblrod.orbvault.components.BottomBar
-import com.gblrod.orbvault.components.ThemeConfigDefault
-import com.gblrod.orbvault.components.TopBar
+import com.gblrod.orbvault.ui.shared.components.BottomBar
+import com.gblrod.orbvault.ui.theme.ThemeConfigDefault
+import com.gblrod.orbvault.ui.shared.components.TopBar
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.navigation.drawer.DrawerContent

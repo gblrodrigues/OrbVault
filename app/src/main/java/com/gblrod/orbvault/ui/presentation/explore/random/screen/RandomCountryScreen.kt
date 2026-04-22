@@ -9,8 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.gblrod.orbvault.components.ErrorMessage
-import com.gblrod.orbvault.components.LoadingScreen
+import com.gblrod.orbvault.ui.shared.components.ErrorMessage
+import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 import com.gblrod.orbvault.ui.presentation.explore.random.components.RandomCountryDetails
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.presentation.state.RandomCountryUiState
