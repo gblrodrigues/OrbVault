@@ -1,0 +1,91 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">OrbVault</string>
+
+    <!-- TopBar -->
+    <string name="topbar_title">OrbVault</string>
+    <string name="cd_menu_topbar">Icono do Menu</string>
+
+    <!-- LoadingScreen -->
+    <string name="loading_screen_label" tools:ignore="TypographyEllipsis">Cargando...</string>
+
+    <!-- NavigationDrawer -->
+    <string name="drawer_title">OrbVault</string>
+    <string name="drawer_item_home">Inicio</string>
+    <string name="drawer_item_explore">Explorar</string>
+    <string name="drawer_item_favorites">Favoritos</string>
+
+    <!-- BottomBar -->
+    <string name="bottom_bar_home">Inicio</string>
+    <string name="bottom_bar_explore">Explorar</string>
+    <string name="bottom_bar_favorites">Favoritos</string>
+
+    <!-- Buttons -->
+    <string name="button_retry">Intentar otra vez</string>
+    <string name="button_next_random_country">Siguiente</string>
+    <string name="button_return_random_country">Anterior</string>
+
+    <!-- CountryOptionsMenu -->
+    <string name="dropdown_menu_item_weather_title">Ver el Clima</string>
+    <string name="dropdown_menu_item_weather_sub_title">Información del clima</string>
+    <string name="dropdown_menu_item_map_title">Ver el Mapa</string>
+    <string name="dropdown_menu_item_map_sub_title">Abrir ubicación</string>
+    <string name="dropdown_menu_item_neighbors_title">Ver Vecinos</string>
+    <string name="dropdown_menu_item_neighbors_sub_title">Países fronterizos</string>
+
+    <!-- OutlinedTextField -->
+    <string name="outlined_text_field_placeholder">Ex: Brasil</string>
+
+    <!-- CountriesUiState-->
+    <string name="countries_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
+    <string name="countries_ui_state_httpexception">Error do servidor: %1$d</string>
+    <string name="countries_ui_state_cancellationexception">¡Ha ocurrido un error inesperado!</string>
+    <string name="countries_ui_state_not_found">País no encontrado</string>
+
+    <!-- ExploreUiState -->
+    <string name="explore_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
+    <string name="explore_ui_state_httpexception">Error do servidor: %1$d</string>
+    <string name="explore_ui_state_cancellationexception">¡Ha ocurrido un error inesperado!</string>
+
+    <!-- Explore -->
+    <string name="explore_screen_title">¿Qué explorar hoy?</string>
+    <string name="explore_screen_sub_title">Seleccione una de las opciones</string>
+    <string name="explore_title_top10_populated_contries">Países más poblados</string>
+    <string name="explore_title_top10_largest_contries">Países más grandes</string>
+    <string name="explore_title_random_country">País Aleatorio</string>
+
+    <!-- Home -->
+    <string name="home_screen_title">Descubre un país</string>
+    <string name="home_screen_sub_title">Escribe el nombre para conocerlo</string>
+    <string name="neighbors_empty">País sin vicinos</string>
+    <string name="neighbors_error">Error al cargar países vecinos</string>
+    <string name="neighbors_one_label">Vicino</string>
+    <string name="neighbors_more_label">Vicinos</string>
+
+    <!-- CountryDetails -->
+    <string name="country_details_label_capital">Capital</string>
+    <string name="country_details_label_region">Región</string>
+    <string name="country_details_label_sub_region">Sub-Región</string>
+    <string name="country_details_label_language">Idioma</string>
+    <string name="country_details_label_languages">Idiomas</string>
+    <string name="country_details_label_currencies">Moneda</string>
+    <string name="country_details_label_population">Población</string>
+    <string name="country_details_label_timezone">Zona Horaria</string>
+
+    <!-- LargestCountries -->
+    <string name="largest_country_label_explore">Explorando</string>
+    <string name="largest_country_label_explore_top10">Descubriendo los TOP 10 países más grandes por área</string>
+    <string name="largest_country_label_area">Área</string>
+
+    <!-- PopulatedCountries -->
+    <string name="populated_country_label_explore">Explorando</string>
+    <string name="populated_country_label_explore_top10">Descubriendo los TOP 10 países más poblados</string>
+    <string name="populated_country_label_population">Población</string>
+
+    <!-- RandomCountry -->
+    <string name="random_country_label_explore">Explorando</string>
+    <string name="random_country_label">Descubriendo un país aleatorio</string>
+
+    <!-- News Features -->
+    <string name="new_feature_coming_soon">Próximamente</string>
+
+</resources>

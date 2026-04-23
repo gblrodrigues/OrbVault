@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -44,7 +43,7 @@ fun ErrorMessage(
         Text(
             text = message,
             textAlign = TextAlign.Center,
-            color = Color.LightGray
+            color = Color.Black
         )
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -54,7 +53,7 @@ fun ErrorMessage(
                 isLoading = false
             }
             CircularProgressIndicator(
-                color = MaterialTheme.colorScheme.inverseOnSurface
+                color = Color.Black
             )
         } else {
             TextButton(
@@ -68,7 +67,7 @@ fun ErrorMessage(
                 Text(
                     text = stringResource(id = R.string.button_retry).uppercase(),
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.inverseOnSurface
+                    color = Color.Black
                 )
             }
         }
