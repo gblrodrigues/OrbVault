@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.dto.CountriesDto
 import com.gblrod.orbvault.ui.presentation.explore.components.ExploreItems
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
@@ -27,7 +26,7 @@ fun LargestCountriesList(
         fourthValue = { "%,.2f".format(it.area) },
         labelWidth = 50.dp,
         onClick = { country ->
-            countryDetailsViewModel.fetchCountry(country = country.name.common)
+            countryDetailsViewModel.fetchCountryByCode(code = country.cca3)
         }
     )
 }

@@ -12,6 +12,7 @@ interface CountriesAPI {
     @GET(value = "v3.1/name/{name}")
     suspend fun findCountry(
         @Path(value = "name") name: String?,
+        @Query(value = "fullText") fullText: Boolean = true,
         @Query(value = "fields") fields: String = COUNTRY_DETAILS_FIELDS
     ): List<CountriesDto>
 
@@ -33,7 +34,7 @@ interface CountriesAPI {
 
     @GET(value = "v3.1/alpha/{code}")
     suspend fun findCountryByCode(
-        @Path(value = "code") code: String,
+        @Path(value = "code") code: String?,
         @Query(value = "fields") fields: String = COUNTRY_DETAILS_FIELDS
     ): CountriesDto
 }

@@ -81,7 +81,7 @@ class CountriesViewModel(
             } catch (e: Exception) {
                 if (e is CancellationException) throw e
                 _countriesUiState.value =
-                    CountriesUiState.Error(messageResId = R.string.countries_ui_state_cancellationexception)
+                    CountriesUiState.Error(messageResId = R.string.countries_ui_state_generic_error)
             }
         }
     }
@@ -155,9 +155,17 @@ class CountriesViewModel(
                         RandomCountryUiState.Error(R.string.countries_ui_state_not_found)
                 }
 
-            } catch (e: Exception) {
+            } catch (e: IOException) {
                 _randomCountryUiState.value =
                     RandomCountryUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
+
+            } catch (e: HttpException) {
+                _randomCountryUiState.value =
+                    RandomCountryUiState.Error(
+                        messageResId = R.string.countries_ui_state_httpexception,
+                        code = e.code()
+                    )
+
             } catch (e: Exception) {
                 _randomCountryUiState.value =
                     RandomCountryUiState.Error(messageResId = R.string.countries_ui_state_httpexception)

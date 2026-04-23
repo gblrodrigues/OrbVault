@@ -38,13 +38,13 @@
     <!-- CountriesUiState-->
     <string name="countries_ui_state_ioexception">No internet access. \nCheck your connection</string>
     <string name="countries_ui_state_httpexception">Server error: %1$d</string>
-    <string name="countries_ui_state_cancellationexception">An unexpected error occurred!</string>
+    <string name="countries_ui_state_generic_error">An unexpected error occurred!</string>
     <string name="countries_ui_state_not_found">Country not find</string>
 
     <!-- ExploreUiState -->
     <string name="explore_ui_state_ioexception">No internet access. \nCheck your connection</string>
     <string name="explore_ui_state_httpexception">Server error: %1$d</string>
-    <string name="explore_ui_state_cancellationexception">An unexpected error occurred!</string>
+    <string name="explore_ui_state_generic_error">An unexpected error occurred!</string>
 
     <!-- Explore -->
     <string name="explore_screen_title">What to explore today?</string>

@@ -8,7 +8,12 @@ private const val MAX_BORDERS = 5
 class CountriesRepository(
     private val api: CountriesAPI
 ) {
-    suspend fun fetchCountry(name: String) = api.findCountry(name).firstOrNull()
+    suspend fun fetchCountry(name: String): CountriesDto? {
+        return api.findCountry(name = name, fullText = true)
+            .firstOrNull {
+                it.name.common.equals(other = name, ignoreCase = true)
+            }
+    }
 
     suspend fun getRandomCountry() = api.getRandomCountry().random()
 
@@ -22,6 +27,6 @@ class CountriesRepository(
             .take(n = MAX_BORDERS)
     }
 
-    suspend fun fetchCountryByCode(code: String) =
+    suspend fun fetchCountryByCode(code: String?) =
         api.findCountryByCode(code = code)
 }

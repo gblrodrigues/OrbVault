@@ -24,7 +24,7 @@ fun PopulatedCountriesList(
         fourthValue = { "%,d".format(it.population) },
         labelWidth = 100.dp,
         onClick = { country ->
-            countryDetailsViewModel.fetchCountry(country = country.name.common)
+            countryDetailsViewModel.fetchCountryByCode(code = country.cca3)
         }
     )
 }
