@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.ui.presentation.home.components
 
+import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,7 +25,9 @@ import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,6 +47,7 @@ import com.gblrod.orbvault.data.mapper.getCurrency
 import com.gblrod.orbvault.data.mapper.getLanguage
 import com.gblrod.orbvault.data.mapper.getTimezones
 import com.gblrod.orbvault.ui.actions.MapOpener
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.shared.components.CountryOptionsMenu
 import com.gblrod.orbvault.ui.shared.components.InfoRow
@@ -57,9 +61,9 @@ fun CardCountryDetails(
     onFetchBorders: (CountriesDto) -> Unit,
     onCountryClick: (String) -> Unit,
     countryQuery: (String) -> Unit,
-    bordersState: BordersUiState
+    bordersState: BordersUiState,
+    countryDetailsViewModel: CountryDetailsViewModel
 ) {
-    var favorite by remember { mutableStateOf(false) }
     var showBorders by remember(key1 = country.cca3) { mutableStateOf(false) }
     var expanded by remember(key1 = country.cca3) { mutableStateOf(false) }
     val context = LocalContext.current
@@ -67,6 +71,8 @@ fun CardCountryDetails(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
     val newFeature = stringResource(id = R.string.new_feature_coming_soon)
+    val favorites by countryDetailsViewModel.favorites.collectAsState(initial = emptyList())
+    val isFavorite = favorites.any { it.code == country.cca3 }
 
     Card(
         modifier = modifier
@@ -74,7 +80,7 @@ fun CardCountryDetails(
             .animateContentSize(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Gray
+            containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(12.dp)
         )
     ) {
         Column(
@@ -103,13 +109,15 @@ fun CardCountryDetails(
                     )
                 }
                 IconButton(
-                    onClick = { favorite = !favorite },
+                    onClick = {
+                        countryDetailsViewModel.toggleFavorite(country)
+                    },
                     modifier = Modifier.align(Alignment.Top)
                 ) {
                     Icon(
-                        imageVector = if (favorite) Icons.Default.Star else Icons.Default.StarBorder,
+                        imageVector = if (isFavorite) Icons.Default.Star else Icons.Default.StarBorder,
                         contentDescription = null,
-                        tint = if (favorite) Color.Yellow else MaterialTheme.colorScheme.onSurface
+                        tint = if (isFavorite) Color.Yellow else MaterialTheme.colorScheme.onSurface
                     )
                 }
 

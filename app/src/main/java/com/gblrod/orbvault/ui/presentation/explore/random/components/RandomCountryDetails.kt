@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.dto.CountriesDto
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.home.components.CardCountryDetails
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.theme.CountryRandomColor
@@ -26,7 +27,8 @@ fun RandomCountryDetails(
     countriesViewModel: CountriesViewModel,
     country: CountriesDto,
     onCountryClick: (String) -> Unit,
-    countryQuery: (String) -> Unit
+    countryQuery: (String) -> Unit,
+    countryDetailsViewModel: CountryDetailsViewModel
 ) {
     val bordersState by countriesViewModel.bordersUiState.collectAsState()
     val hasPreview by countriesViewModel.previewReturnCountry.collectAsState()
@@ -58,7 +60,8 @@ fun RandomCountryDetails(
             },
             bordersState = bordersState,
             onCountryClick = onCountryClick,
-            countryQuery = countryQuery
+            countryQuery = countryQuery,
+            countryDetailsViewModel = countryDetailsViewModel
         )
 
         ButtonCountryRandom(

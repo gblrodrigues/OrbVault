@@ -31,7 +31,10 @@ fun NavigationGraph(
         modifier = Modifier.padding(paddingValues = paddingValues)
     ) {
         composable(route = Routes.Home.route) {
-            HomeScreen(countriesViewModel = countriesViewModel)
+            HomeScreen(
+                countriesViewModel = countriesViewModel,
+                countryDetailsViewModel = countryDetailsViewModel
+            )
         }
 
         composable(route = Routes.Explore.route) {
@@ -43,7 +46,9 @@ fun NavigationGraph(
         }
 
         composable(route = Routes.Favorites.route) {
-            FavoritesScreen()
+            FavoritesScreen(
+                countryDetailsViewModel = countryDetailsViewModel
+            )
         }
 
         composable(route = Routes.PopulatedCountries.route) {
@@ -61,7 +66,10 @@ fun NavigationGraph(
         }
 
         composable(route = Routes.RandomCountry.route) {
-            RandomCountryScreen(countriesViewModel = countriesViewModel)
+            RandomCountryScreen(
+                countriesViewModel = countriesViewModel,
+                countryDetailsViewModel = countryDetailsViewModel
+            )
         }
     }
 }

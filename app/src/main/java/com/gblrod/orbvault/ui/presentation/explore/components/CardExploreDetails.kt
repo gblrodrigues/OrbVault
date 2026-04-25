@@ -34,7 +34,7 @@ fun CardExploreDetails(
             .height(80.dp)
             .border(
                 width = 2.dp,
-                color = Color.White,
+                color = MaterialTheme.colorScheme.outline,
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() }

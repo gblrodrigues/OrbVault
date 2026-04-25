@@ -12,12 +12,14 @@ import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 import com.gblrod.orbvault.ui.presentation.explore.random.components.RandomCountryDetails
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.presentation.state.RandomCountryUiState
 
 @Composable
 fun RandomCountryScreen(
-    countriesViewModel: CountriesViewModel
+    countriesViewModel: CountriesViewModel,
+    countryDetailsViewModel: CountryDetailsViewModel
 ) {
     val uiState by countriesViewModel.randomCountryUiState.collectAsState()
 
@@ -40,7 +42,8 @@ fun RandomCountryScreen(
                     onCountryClick = { code ->
                         countriesViewModel.fetchCountryForRandom(code = code)
                     },
-                    countryQuery = {}
+                    countryQuery = {},
+                    countryDetailsViewModel = countryDetailsViewModel
                 )
             }
 

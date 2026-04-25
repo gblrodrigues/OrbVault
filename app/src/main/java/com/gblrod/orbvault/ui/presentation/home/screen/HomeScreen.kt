@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gblrod.orbvault.R
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.home.components.CountryResults
 import com.gblrod.orbvault.ui.presentation.home.components.SearchBar
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
@@ -33,13 +34,14 @@ import com.gblrod.orbvault.ui.theme.HomeScreenSubTitleColor
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    countriesViewModel: CountriesViewModel
+    countriesViewModel: CountriesViewModel,
+    countryDetailsViewModel: CountryDetailsViewModel
 ) {
     var countryQuery by remember { mutableStateOf("") }
     val uiState by countriesViewModel.countriesUiState.collectAsState()
     val focus = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
-    val bordersState by countriesViewModel.bordersUiState.collectAsState()
+    val bordersState by countryDetailsViewModel.bordersUiState.collectAsState()
 
     LazyColumn(
         modifier = modifier
@@ -105,13 +107,12 @@ fun HomeScreen(
                 bordersState = bordersState,
                 onRetry = { countriesViewModel.fetchCountry(countryQuery) },
                 onFetchBorders = { borders ->
-                    countriesViewModel.fetchBorders(
-                        country = borders
-                    )
+                    countryDetailsViewModel.fetchBorders(country = borders)
                 },
                 onFetchCountry = { country ->
                     countriesViewModel.fetchCountry(country = country)
-                }
+                },
+                countryDetailsViewModel = countryDetailsViewModel
             )
         }
     }

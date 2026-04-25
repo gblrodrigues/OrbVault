@@ -14,9 +14,11 @@ fun TopList(
     official: String,
     index: Int? = null
 ) {
+    val valueText = if (index != null) "${index}. $country" else country
+
     Column {
         Text(
-            text = if (index != null) "${index}. $country" else country,
+            text = valueText,
             color = MaterialTheme.colorScheme.onSurface,
             fontSize = 19.sp,
             fontWeight = FontWeight.Bold,

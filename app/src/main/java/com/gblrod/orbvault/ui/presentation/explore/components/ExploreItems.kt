@@ -38,12 +38,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.gblrod.orbvault.ui.shared.components.InfoRow
-import com.gblrod.orbvault.ui.shared.components.TopList
 import com.gblrod.orbvault.data.dto.CountriesDto
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.state.ExploreUiState
+import com.gblrod.orbvault.ui.shared.components.InfoRow
+import com.gblrod.orbvault.ui.shared.components.TopList
 
 @Composable
 fun ExploreItems(
@@ -62,6 +62,7 @@ fun ExploreItems(
     val countries = (uiState as? ExploreUiState.Success)?.countries ?: emptyList()
     var showSheet by remember { mutableStateOf(false) }
     var selectedCountry by remember { mutableStateOf<CountriesDto?>(null) }
+    val favorites by countryDetailsViewModel.favorites.collectAsState()
 
     LazyColumn(
         modifier = Modifier
@@ -69,7 +70,9 @@ fun ExploreItems(
             .padding(horizontal = 16.dp)
     ) {
         item {
-            Column {
+            Column(
+                modifier = Modifier.padding(vertical = 8.dp)
+            ) {
                 Text(
                     text = primaryValue,
                     fontSize = 30.sp,
@@ -83,16 +86,15 @@ fun ExploreItems(
                     color = colorCustom
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
         }
 
         itemsIndexed(countries) { index, country ->
-            var favorite by remember { mutableStateOf(false) }
+            val isFavorite = favorites.any { it.code == country.cca3 }
 
             Card(
                 modifier = modifier
                     .fillMaxWidth()
-                    .padding(vertical = 16.dp)
+                    .padding(vertical = 8.dp)
                     .clickable {
                         selectedCountry = country
                         showSheet = true
@@ -128,13 +130,13 @@ fun ExploreItems(
                             )
                         }
                         IconButton(
-                            onClick = { favorite = !favorite },
+                            onClick = { countryDetailsViewModel.toggleFavorite(country = country) },
                             modifier = Modifier.align(Alignment.Top)
                         ) {
                             Icon(
-                                imageVector = if (favorite) Icons.Default.Star else Icons.Default.StarBorder,
+                                imageVector = if (isFavorite) Icons.Default.Star else Icons.Default.StarBorder,
                                 contentDescription = null,
-                                tint = if (favorite) Color.Yellow else MaterialTheme.colorScheme.onSurface
+                                tint = if (isFavorite) Color.Yellow else MaterialTheme.colorScheme.onSurface
                             )
                         }
                     }

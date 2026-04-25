@@ -58,7 +58,8 @@ fun CountryBottomSheet(
                             onCountryClick = { code ->
                                 countryDetailsViewModel.fetchCountryByCode(code = code)
                             },
-                            countryQuery = {}
+                            countryQuery = {},
+                            countryDetailsViewModel = countryDetailsViewModel
                         )
                     }
                 }

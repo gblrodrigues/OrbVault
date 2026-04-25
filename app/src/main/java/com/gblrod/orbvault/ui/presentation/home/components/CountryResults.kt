@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 import com.gblrod.orbvault.data.dto.CountriesDto
+import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.presentation.state.CountriesUiState
 
@@ -20,7 +21,8 @@ fun CountryResults(
     onRetry: () -> Unit,
     onFetchCountry: (String) -> Unit,
     onFetchBorders: (CountriesDto) -> Unit,
-    onQueryChange: (String) -> Unit
+    onQueryChange: (String) -> Unit,
+    countryDetailsViewModel: CountryDetailsViewModel
 ) {
     when (state) {
         is CountriesUiState.Idle -> {}
@@ -38,7 +40,8 @@ fun CountryResults(
                     bordersState = bordersState,
                     onFetchBorders = onFetchBorders,
                     onCountryClick = onFetchCountry,
-                    countryQuery = onQueryChange
+                    countryQuery = onQueryChange,
+                    countryDetailsViewModel = countryDetailsViewModel
                 )
             }
         }
