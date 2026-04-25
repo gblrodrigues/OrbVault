@@ -7,7 +7,8 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 - [Tecnologias](#tecnologias-utilizadas)  
 - [Funcionalidades](#funcionalidades)  
 - [Demonstração](#demonstração)  
-- [Tomadas de Decisões](#tomadas-de-decisões)  
+- [Tomadas de Decisões](#tomadas-de-decisões)
+- [Maior Desafio](#maior-desafio)
 - [Objetivo](#objetivo-do-projeto)  
 - [Contato](#contato)  
 - [Aviso Legal](#aviso-legal)  
@@ -19,6 +20,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 - [Material 3](https://m3.material.io/) — Utilizado para manter consistência visual e boas práticas de UI
 - Arquitetura MVVM — Organização do projeto utilizando ViewModel e StateFlow para gerenciamento de estado e separação de responsabilidades.
 - [Retrofit](https://square.github.io/retrofit/) — Cliente HTTP para consumo da API REST.
+- [Room](https://developer.android.com/training/data-storage/room) — Persistência de dados local utilizada para salvar países favoritados com suporte a consultas via SQLite
 - [Koin](https://insert-koin.io/) — Utilizado para gerenciar dependências do app de forma mais organizada e sem complicações.
 - [Coil](https://coil-kt.github.io/coil/compose/) — Carregamento assíncrono de imagens via URL (AsyncImage)
 - [Navigation](https://developer.android.com/jetpack/compose/navigation) — Gerenciamento de navegação entre telas.
@@ -50,7 +52,10 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 * Top 10 maiores países (por área)  
 * País aleatório com possibilidade de gerar novos resultados
 * Exibição de detalhes em BottomSheet para melhor experiência de navegação sem sair da tela principal  
-* Navegação entre diferentes categorias de exploração  
+* Navegação entre diferentes categorias de exploração
+
+### Favorites
+* Listagem de países favoritados com persistência local (Room)
 
 ### Gerais
 * Tratamento de estados de carregamento e erro com opção de retry
@@ -58,7 +63,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/a903626b-6c98-469a-b236-2909233aab2a
+> https://github.com/user-attachments/assets/0807de31-a598-4199-92e0-8d8835269c68
 
 ## Tomadas de Decisões
 
@@ -83,6 +88,9 @@ Apliquei otimizações como:
 
 > 🔗 Link da API: https://restcountries.com/
 
+### Persistência de Favoritos (Room)
+Para permitir que os países favoritados fossem mantidos mesmo após fechar o aplicativo, utilizei Room como solução de persistência local. 
+
 ### Gerenciamento de Estado de UI (UiState)
 Para lidar com os estados da tela (carregando, sucesso e erro), utilizei uma abordagem com sealed class (UiState) junto com StateFlow.
 Com isso, a interface reage automaticamente às mudanças de estado, deixando o código mais organizado e fácil de entender.
@@ -95,6 +103,11 @@ Material 3 foi escolhido para manter um visual moderno e consistente, aproveitan
 
 ### Navegação entre Telas (Navigation)
 Para organizar a navegação entre as telas, utilizei o Navigation. Essa biblioteca facilita muito a definição de rotas e o gerenciamento da navegação.
+
+## Maior Desafio
+
+Utilizar o **Room** foi um pouco complicado no começo, já que eu tinha mais experiência com DataStore. Tive que aprender entidades, DAOs e migrations, o que me ajudou a entender melhor quando usar banco relacional.  
+> Curti muito as vantagens do Room, com certeza será meu preferencial em projetos futuros
 
 ## Objetivo do Projeto
 
