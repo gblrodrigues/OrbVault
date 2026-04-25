@@ -11,13 +11,12 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gblrod.orbvault.navigation.NavigationGraph
-import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
@@ -39,19 +38,7 @@ class MainActivity : ComponentActivity() {
             val countriesViewModel: CountriesViewModel = koinViewModel()
             val exploreViewModel: ExploreViewModel = koinViewModel()
             val countryDetailsViewModel: CountryDetailsViewModel = koinViewModel()
-//            val backgroundGradient = Brush.verticalGradient(
-//                colors = listOf(
-//                    BackgroundColorOne,
-//                    BackgroundColorTwo,
-//                    BackgroundColorThree,
-//                )
-//            )
-
-            val currentBackStackEntry by navHostController.currentBackStackEntryAsState()
-            val currentRoute = currentBackStackEntry?.destination?.route
-            val isPrincipalScreen = currentRoute == Routes.LargestCountries.route ||
-                    currentRoute == Routes.PopulatedCountries.route ||
-                    currentRoute == Routes.RandomCountry.route
+            val favorites by countryDetailsViewModel.favorites.collectAsState()
 
             ThemeConfigDefault {
                 ModalNavigationDrawer(
@@ -78,10 +65,8 @@ class MainActivity : ComponentActivity() {
                                         if (drawerState.isClosed) drawerState.open() else drawerState.close()
                                     }
                                 },
-                                onBackClick = {
-                                    navHostController.navigate(route = Routes.Explore.route)
-                                },
-                                isPrincipalScreen = isPrincipalScreen
+                                navHostController = navHostController,
+                                favorites = favorites
                             )
                         },
                         bottomBar = {

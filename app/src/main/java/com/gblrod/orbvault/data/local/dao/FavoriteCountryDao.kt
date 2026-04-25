@@ -21,4 +21,7 @@ interface FavoriteCountryDao {
 
     @Query(value = "SELECT EXISTS(SELECT 1 FROM favorite_countries WHERE code = :code)")
     suspend fun isFavorite(code: String): Boolean
+
+    @Query("DELETE FROM favorite_countries WHERE code = :code")
+    suspend fun deleteByCode(code: String)
 }

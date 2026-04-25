@@ -1,6 +1,5 @@
 package com.gblrod.orbvault.ui.presentation.home.components
 
-import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

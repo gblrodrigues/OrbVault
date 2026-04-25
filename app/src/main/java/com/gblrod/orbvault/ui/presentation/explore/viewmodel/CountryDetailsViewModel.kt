@@ -86,6 +86,13 @@ class CountryDetailsViewModel(
         }
     }
 
+    fun removeFavoriteByCode(code: String?) {
+        viewModelScope.launch {
+            if (code == null) return@launch
+            favoriteRepository.removeFavoriteByCode(code)
+        }
+    }
+
     fun isFavoriteFlow(code: String): Flow<Boolean> =
         flow {
             emit(value = favoriteRepository.isFavorite(code = code))

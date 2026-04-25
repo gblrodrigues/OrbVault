@@ -10,21 +10,21 @@ class CountriesRepository(
 ) {
     suspend fun fetchCountry(name: String): CountriesDto? {
         return api.findCountry(name = name, fullText = true)
-            .firstOrNull {
-                it.name.common.equals(other = name, ignoreCase = true)
-            }
+            .firstOrNull { it.name.common.equals(other = name, ignoreCase = true) }
     }
 
-    suspend fun getRandomCountry() = api.getRandomCountry().random()
+    suspend fun getRandomCountry(): CountriesDto {
+        val countries = api.getAllCountries()
+        val random = countries.random()
+        return api.findCountryByCode(random.cca3)
+    }
 
     suspend fun getBorders(country: CountriesDto): List<CountriesDto> {
-        val codes = country.borders
-            ?.joinToString(separator = ",")
+        val codes = country.borders?.joinToString(separator = ",")
 
         if (codes?.isBlank() ?: false) return emptyList()
 
-        return api.getBordersCountries(codes = codes)
-            .take(n = MAX_BORDERS)
+        return api.getBordersCountries(codes = codes).take(n = MAX_BORDERS)
     }
 
     suspend fun fetchCountryByCode(code: String?) =

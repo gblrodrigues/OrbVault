@@ -71,6 +71,14 @@
     <string name="country_details_label_population">Población</string>
     <string name="country_details_label_timezone">Zona Horaria</string>
 
+    <!-- Favorites -->
+    <string name="favorite_list_label">Mi Museo</string>
+    <string name="favorite_list_label_empty">Cuando añadas países a favoritos, \naparecerán aquí.</string>
+    <string name="favorite_list_details_empty">Ningún país favorito</string>
+    <string name="favorite_list_details_one">Visualizando %1$d país favorito</string>
+    <string name="favorite_list_details">Visualizando %1$d países favoritos</string>
+    <string name="cd_favorite_back_button">Favorito Países</string>
+
     <!-- LargestCountries -->
     <string name="largest_country_label_explore">Explorando</string>
     <string name="largest_country_label_explore_top10">Descubriendo los TOP 10 países más grandes por área</string>

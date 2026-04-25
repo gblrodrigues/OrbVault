@@ -7,7 +7,7 @@ import com.gblrod.orbvault.data.local.entity.FavoriteCountryEntity
 
 @Database(
     entities = [FavoriteCountryEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class OrbVaultDataBase : RoomDatabase() {

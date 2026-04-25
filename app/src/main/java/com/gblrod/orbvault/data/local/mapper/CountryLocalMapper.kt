@@ -9,7 +9,8 @@ fun CountriesDto.toEntity() = FavoriteCountryEntity(
     name = name.common,
     capital = capital?.firstOrNull(),
     region = region,
-    flagUrl = flags.png
+    flagUrl = flags.png,
+    official = name.official
 )
 
 fun FavoriteCountryEntity.toDomain() = FavoriteCountry(
@@ -17,5 +18,6 @@ fun FavoriteCountryEntity.toDomain() = FavoriteCountry(
     name = name,
     capital = capital,
     region = region,
-    flagUrl = flagUrl
+    flagUrl = flagUrl,
+    official = official
 )

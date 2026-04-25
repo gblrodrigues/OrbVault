@@ -19,4 +19,8 @@ class FavoriteRepository(
 
     suspend fun isFavorite(code: String) =
         favoriteCountryDao.isFavorite(code)
+
+    suspend fun removeFavoriteByCode(code: String) {
+        favoriteCountryDao.deleteByCode(code)
+    }
 }

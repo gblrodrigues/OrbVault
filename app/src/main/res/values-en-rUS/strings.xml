@@ -71,6 +71,14 @@
     <string name="country_details_label_population">Population</string>
     <string name="country_details_label_timezone">Timezone</string>
 
+    <!-- Favorites -->
+    <string name="favorite_list_label">My Museum</string>
+    <string name="favorite_list_label_empty">When you favorite countries, \nthey will appear here.</string>
+    <string name="favorite_list_details_empty">No favorite country</string>
+    <string name="favorite_list_details_one">Viewing %1$d favorited country</string>
+    <string name="favorite_list_details">Viewing %1$d favorite countries</string>
+    <string name="cd_favorite_back_button">Favorite Countries</string>
+
     <!-- LargestCountries -->
     <string name="largest_country_label_explore">Exploring</string>
     <string name="largest_country_label_explore_top10">Top 10 largest countries by area</string>

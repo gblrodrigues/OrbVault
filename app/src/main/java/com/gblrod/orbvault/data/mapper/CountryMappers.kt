@@ -2,7 +2,7 @@ package com.gblrod.orbvault.data.mapper
 
 import com.gblrod.orbvault.data.dto.CountriesDto
 
-private const val MAX_LANGUAGES = 3
+private const val MAX_LANGUAGES = 2
 private const val MAX_TIMEZONES = 2
 private const val NOT_AVAILABLE = "N/A"
 

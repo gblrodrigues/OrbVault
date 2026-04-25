@@ -21,11 +21,6 @@ interface CountriesAPI {
         @Query(value = "fields") fields: String = COUNTRY_LIST_FIELDS
     ): List<CountriesDto>
 
-    @GET(value = "v3.1/all")
-    suspend fun getRandomCountry(
-        @Query(value = "fields") fields: String = COUNTRY_DETAILS_FIELDS
-    ): List<CountriesDto>
-
     @GET(value = "v3.1/alpha")
     suspend fun getBordersCountries(
         @Query(value = "codes") codes: String?,

@@ -2,6 +2,7 @@ package com.gblrod.orbvault.di
 
 import androidx.room.Room
 import com.gblrod.orbvault.data.local.db.OrbVaultDataBase
+import com.gblrod.orbvault.data.local.db.migrations.MIGRATION_1_2
 import com.gblrod.orbvault.data.network.CountriesAPI
 import com.gblrod.orbvault.data.repository.CountriesRepository
 import com.gblrod.orbvault.data.repository.FavoriteRepository
@@ -10,7 +11,6 @@ import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
-import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,8 +31,16 @@ val appModule = module {
     }
 
     // ViewModel
-    viewModelOf(constructor = ::CountriesViewModel)
-    viewModelOf(constructor = ::CountryDetailsViewModel)
+    viewModel {
+        CountriesViewModel(repository = get())
+    }
+
+    viewModel {
+        CountryDetailsViewModel(
+            countriesRepository = get(),
+            favoriteRepository = get()
+        )
+    }
 
     viewModel {
         ExploreViewModel(
@@ -56,7 +64,9 @@ val storageModule = module {
             context = androidContext(),
             klass = OrbVaultDataBase::class.java,
             name = "OrbVault.db"
-        ).build()
+        )
+            .addMigrations(MIGRATION_1_2)
+            .build()
     }
 
     // Dao
