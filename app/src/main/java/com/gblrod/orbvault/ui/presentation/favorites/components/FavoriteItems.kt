@@ -79,7 +79,8 @@ fun FavoriteItems(
         val result = snackbarHostState.showSnackbar(
             message = snackbarMessage ?: "",
             actionLabel = snackbarActionLabel,
-            duration = SnackbarDuration.Short
+            duration = SnackbarDuration.Short,
+            withDismissAction = true
         )
 
         if (result == SnackbarResult.ActionPerformed) {
@@ -127,13 +128,20 @@ fun FavoriteItems(
                     stop = Color.Red,
                     fraction = 1f - dismissState.progress
                 )
-                LaunchedEffect(key1 = dismissState.currentValue) {
-                    if (dismissState.currentValue == SwipeToDismissBoxValue.EndToStart) {
-                        val currentList = favorites.toList()
-                        val index = currentList.indexOfFirst { it.code == country.code }
-                        pendingRemoval = country to index
+                LaunchedEffect(key1 = dismissState.targetValue) {
+                    if (dismissState.targetValue == SwipeToDismissBoxValue.EndToStart) {
+                        val index = favorites.indexOfFirst {
+                            it.code == country.code
+                        }
 
-                        viewModel.removeFavoriteByCode(country.code)
+                        if (index != -1) {
+                            pendingRemoval = country to index
+                            viewModel.removeFavoriteByCode(country.code)
+                        }
+
+                        dismissState.snapTo(
+                            targetValue = SwipeToDismissBoxValue.Settled
+                        )
                     }
                 }
 
