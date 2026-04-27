@@ -56,6 +56,8 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 
 ### Favorites
 * Listagem de países favoritados com persistência local (Room)
+* Remoção por swipe, com opção de desfazer via Snackbar
+* Ordenação dos favoritos mantida automaticamente de forma persistente
 
 ### Gerais
 * Tratamento de estados de carregamento e erro com opção de retry
@@ -63,7 +65,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/0807de31-a598-4199-92e0-8d8835269c68
+> https://github.com/user-attachments/assets/27a230a9-deb6-4b24-89f2-777deb27ab3e
 
 ## Tomadas de Decisões
 
