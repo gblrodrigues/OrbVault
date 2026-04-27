@@ -1,16 +1,17 @@
 package com.gblrod.orbvault.data.local.mapper
 
 import com.gblrod.orbvault.data.dto.CountriesDto
-import com.gblrod.orbvault.data.local.model.FavoriteCountry
 import com.gblrod.orbvault.data.local.entity.FavoriteCountryEntity
+import com.gblrod.orbvault.data.local.model.FavoriteCountry
 
-fun CountriesDto.toEntity() = FavoriteCountryEntity(
+fun CountriesDto.toEntity(position: Int) = FavoriteCountryEntity(
     code = cca3 ?: error("Country code cannot be null"),
     name = name.common,
     capital = capital?.firstOrNull(),
     region = region,
     flagUrl = flags.png,
-    official = name.official
+    official = name.official,
+    position = position
 )
 
 fun FavoriteCountryEntity.toDomain() = FavoriteCountry(
@@ -20,4 +21,14 @@ fun FavoriteCountryEntity.toDomain() = FavoriteCountry(
     region = region,
     flagUrl = flagUrl,
     official = official
+)
+
+fun FavoriteCountry.toEntity(position: Int) = FavoriteCountryEntity(
+    code = code,
+    name = name,
+    official = official,
+    capital = capital,
+    region = region,
+    flagUrl = flagUrl,
+    position = position
 )

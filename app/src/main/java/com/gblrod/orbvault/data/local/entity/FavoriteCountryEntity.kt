@@ -10,5 +10,6 @@ data class FavoriteCountryEntity(
     val official: String,
     val capital: String?,
     val region: String?,
-    val flagUrl: String?
+    val flagUrl: String?,
+    val position: Int
 )

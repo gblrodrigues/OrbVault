@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.local.entity.FavoriteCountryEntity
+import com.gblrod.orbvault.data.local.model.FavoriteCountry
 import com.gblrod.orbvault.navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,7 +29,7 @@ import com.gblrod.orbvault.navigation.Routes
 fun TopBar(
     onOpenDrawer: () -> Unit,
     navHostController: NavHostController,
-    favorites: List<FavoriteCountryEntity>
+    favorites: List<FavoriteCountry>
 ) {
     val currentBackStackEntry by navHostController.currentBackStackEntryAsState()
     val currentRoute = currentBackStackEntry?.destination?.route

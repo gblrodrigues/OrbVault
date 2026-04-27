@@ -2,6 +2,7 @@ package com.gblrod.orbvault.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -23,7 +24,8 @@ fun NavigationGraph(
     navHostController: NavHostController,
     countriesViewModel: CountriesViewModel,
     exploreViewModel: ExploreViewModel,
-    countryDetailsViewModel: CountryDetailsViewModel
+    countryDetailsViewModel: CountryDetailsViewModel,
+    snackbarHostState: SnackbarHostState
 ) {
     NavHost(
         navController = navHostController,
@@ -47,7 +49,8 @@ fun NavigationGraph(
 
         composable(route = Routes.Favorites.route) {
             FavoritesScreen(
-                countryDetailsViewModel = countryDetailsViewModel
+                countryDetailsViewModel = countryDetailsViewModel,
+                snackbarHostState = snackbarHostState
             )
         }
 

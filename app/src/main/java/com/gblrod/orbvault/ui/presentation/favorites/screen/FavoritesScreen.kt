@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.ui.presentation.favorites.screen
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -9,10 +10,10 @@ import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.favorites.components.FavoriteItems
 
-
 @Composable
 fun FavoritesScreen(
-    countryDetailsViewModel: CountryDetailsViewModel
+    countryDetailsViewModel: CountryDetailsViewModel,
+    snackbarHostState: SnackbarHostState
 ) {
     val favorites by countryDetailsViewModel.favorites.collectAsState()
     val secondValue = when {
@@ -37,6 +38,7 @@ fun FavoritesScreen(
             if (code != null) {
                 countryDetailsViewModel.fetchCountryByCode(code)
             }
-        }
+        },
+        snackbarHostState = snackbarHostState
     )
 }

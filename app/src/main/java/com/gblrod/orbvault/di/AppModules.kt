@@ -2,7 +2,7 @@ package com.gblrod.orbvault.di
 
 import androidx.room.Room
 import com.gblrod.orbvault.data.local.db.OrbVaultDataBase
-import com.gblrod.orbvault.data.local.db.migrations.MIGRATION_1_2
+import com.gblrod.orbvault.data.local.db.migrations.MIGRATION_2_3
 import com.gblrod.orbvault.data.network.CountriesAPI
 import com.gblrod.orbvault.data.repository.CountriesRepository
 import com.gblrod.orbvault.data.repository.FavoriteRepository
@@ -65,7 +65,7 @@ val storageModule = module {
             klass = OrbVaultDataBase::class.java,
             name = "OrbVault.db"
         )
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_2_3)
             .build()
     }
 

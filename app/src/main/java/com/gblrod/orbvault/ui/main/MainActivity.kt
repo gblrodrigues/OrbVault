@@ -10,9 +10,12 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
@@ -39,6 +42,7 @@ class MainActivity : ComponentActivity() {
             val exploreViewModel: ExploreViewModel = koinViewModel()
             val countryDetailsViewModel: CountryDetailsViewModel = koinViewModel()
             val favorites by countryDetailsViewModel.favorites.collectAsState()
+            val snackbarHostState = remember { SnackbarHostState() }
 
             ThemeConfigDefault {
                 ModalNavigationDrawer(
@@ -71,6 +75,11 @@ class MainActivity : ComponentActivity() {
                         },
                         bottomBar = {
                             BottomBar(navHostController = navHostController)
+                        },
+                        snackbarHost = {
+                            SnackbarHost(
+                                hostState = snackbarHostState
+                            )
                         }
                     ) { paddingValues ->
                         Box(
@@ -81,7 +90,8 @@ class MainActivity : ComponentActivity() {
                                 paddingValues = paddingValues,
                                 countriesViewModel = countriesViewModel,
                                 exploreViewModel = exploreViewModel,
-                                countryDetailsViewModel = countryDetailsViewModel
+                                countryDetailsViewModel = countryDetailsViewModel,
+                                snackbarHostState = snackbarHostState
                             )
                         }
                     }

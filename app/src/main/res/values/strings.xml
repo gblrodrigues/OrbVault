@@ -93,6 +93,10 @@
     <string name="random_country_label_explore">Explorando</string>
     <string name="random_country_label">Conhecendo um país aleatório</string>
     
+    <!-- SnackBar -->
+    <string name="snackbar_country_message_removed">%1$s removido dos favoritos</string>
+    <string name="snackbar_country_actionLabel">Desfazer</string>
+
     <!-- News Features -->
     <string name="new_feature_coming_soon">Em breve</string>
 
