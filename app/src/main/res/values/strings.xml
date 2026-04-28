@@ -2,8 +2,13 @@
     <string name="app_name">OrbVault</string>
 
     <!-- TopBar -->
-    <string name="topbar_title">OrbVault</string>
-    <string name="cd_menu_topbar">Ícone do Menu</string>
+    <string name="topbar_home_title">Início</string>
+    <string name="topbar_explore_title">Explorar</string>
+    <string name="topbar_favorite_title">Favoritos</string>
+    <string name="topbar_populated_countries_title">Países Populosos</string>
+    <string name="topbar_largest_countries_title">Maiores Países</string>
+    <string name="topbar_random_country_title">País Aleatório</string>
+    <string name="topbar_principal_title">OrbVault</string>
 
     <!-- LoadingScreen -->
     <string name="loading_screen_label" tools:ignore="TypographyEllipsis">Carregando...</string>
@@ -23,6 +28,7 @@
     <string name="button_retry">Tentar novamente</string>
     <string name="button_next_random_country">Próximo</string>
     <string name="button_return_random_country">Anterior</string>
+    <string name="button_explore_countries">Explorar países"</string>
 
     <!-- CountryOptionsMenu -->
     <string name="dropdown_menu_item_weather_title">Ver Clima</string>
@@ -31,6 +37,11 @@
     <string name="dropdown_menu_item_map_sub_title">Abrir localização</string>
     <string name="dropdown_menu_item_neighbors_title">Ver Vizinhos</string>
     <string name="dropdown_menu_item_neighbors_sub_title">Países fronteiros</string>
+
+    <!-- ContentDescription -->
+    <string name="cd_menu_topbar">Ícone do Menu</string>
+    <string name="cd_add_favorite">Adicionar aos favoritos</string>
+    <string name="cd_remove_favorite">Remover dos favoritos</string>
 
     <!-- OutlinedTextField -->
     <string name="outlined_text_field_placeholder">Ex: Brasil</string>

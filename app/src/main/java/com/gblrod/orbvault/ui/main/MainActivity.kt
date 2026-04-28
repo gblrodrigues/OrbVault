@@ -13,14 +13,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.rememberDrawerState
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
+import com.gblrod.orbvault.navigation.mapRouteToNavigationUiState
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
@@ -37,12 +38,17 @@ class MainActivity : ComponentActivity() {
         setContent {
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val scope = rememberCoroutineScope()
+
             val navHostController = rememberNavController()
             val countriesViewModel: CountriesViewModel = koinViewModel()
             val exploreViewModel: ExploreViewModel = koinViewModel()
             val countryDetailsViewModel: CountryDetailsViewModel = koinViewModel()
-            val favorites by countryDetailsViewModel.favorites.collectAsState()
+
             val snackbarHostState = remember { SnackbarHostState() }
+
+            val navBackStackEntry by navHostController.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry?.destination?.route
+            val navigationUiState = mapRouteToNavigationUiState(route = currentRoute)
 
             ThemeConfigDefault {
                 ModalNavigationDrawer(
@@ -63,18 +69,23 @@ class MainActivity : ComponentActivity() {
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
                         topBar = {
-                            TopBar(
-                                onOpenDrawer = {
-                                    scope.launch {
-                                        if (drawerState.isClosed) drawerState.open() else drawerState.close()
-                                    }
-                                },
-                                navHostController = navHostController,
-                                favorites = favorites
-                            )
+                            if (navigationUiState.showTopBar) {
+                                TopBar(
+                                    onOpenDrawer = {
+                                        scope.launch {
+                                            if (drawerState.isClosed) drawerState.open()
+                                            else drawerState.close()
+                                        }
+                                    },
+                                    navHostController = navHostController,
+                                    navigationUiState = navigationUiState
+                                )
+                            }
                         },
                         bottomBar = {
-                            BottomBar(navHostController = navHostController)
+                            if (navigationUiState.showBottomBar) {
+                                BottomBar(navHostController = navHostController)
+                            }
                         },
                         snackbarHost = {
                             SnackbarHost(

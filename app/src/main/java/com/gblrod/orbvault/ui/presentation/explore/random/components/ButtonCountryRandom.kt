@@ -2,9 +2,7 @@ package com.gblrod.orbvault.ui.presentation.explore.random.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
@@ -22,8 +20,6 @@ fun ButtonCountryRandom(
     onReturnCountry: () -> Unit,
     previewReturnCountry: Boolean
 ) {
-    Spacer(modifier = Modifier.height(16.dp))
-
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(16.dp)

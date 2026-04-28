@@ -16,11 +16,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DeleteSweep
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
@@ -50,6 +48,7 @@ import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.local.model.FavoriteCountry
 import com.gblrod.orbvault.ui.presentation.explore.components.CountryBottomSheet
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
+import com.gblrod.orbvault.ui.shared.components.FavoriteButton
 import com.gblrod.orbvault.ui.shared.components.TopList
 
 @Composable
@@ -60,7 +59,8 @@ fun FavoriteItems(
     secondValue: String,
     colorCustom: Color,
     onClick: (String?) -> Unit,
-    snackbarHostState: SnackbarHostState
+    snackbarHostState: SnackbarHostState,
+    onNavigateHome: () -> Unit
 ) {
     var showSheet by remember { mutableStateOf(false) }
     var selectedCode by remember { mutableStateOf<String?>(null) }
@@ -91,7 +91,11 @@ fun FavoriteItems(
     }
 
     if (favorites.isEmpty()) {
-        EmptyFavoriteScreen()
+        EmptyFavoriteScreen(
+            onNavigateHome = {
+                onNavigateHome()
+            }
+        )
     } else {
         LazyColumn(
             modifier = Modifier
@@ -204,22 +208,17 @@ fun FavoriteItems(
                                     )
                                 }
 
-                                IconButton(
+                                FavoriteButton(
+                                    isFavorite = true,
+                                    modifier = Modifier.align(Alignment.Top),
                                     onClick = {
                                         val index =
                                             favorites.indexOfFirst { it.code == country.code }
 
                                         pendingRemoval = country to index
                                         viewModel.removeFavoriteByCode(country.code)
-                                    },
-                                    modifier = Modifier.align(Alignment.Top)
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Star,
-                                        contentDescription = null,
-                                        tint = Color.Yellow
-                                    )
-                                }
+                                    }
+                                )
                             }
                         }
                     }

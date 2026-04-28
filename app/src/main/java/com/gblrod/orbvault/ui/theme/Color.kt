@@ -12,6 +12,7 @@ val Pink40 = Color(0xFF7D5260)
 
 val ButtonNextRandomCountry = Color(0xFF375FD9)
 val ButtonReturnRandomCountry = Color(0xFF6FA8FF)
+val ButtonExploreCountries = Color(0xFF1D58D5)
 
 val HomeScreenSubTitleColor = Color(0xFF086FEC)
 val ExploreScreenSubTitleColor = Color(0xFF375FD9)
@@ -20,3 +21,4 @@ val NavigationSelectedColor = Color(0xFF086FEC)
 val PopulatedCountriesColor = Color(0xFF324CE3)
 val LargestCountriesColor = Color(0xFF0E70E7)
 val CountryRandomColor = Color(0xFF4167E0)
+val YellowActions = Color(0xFFFFC107)

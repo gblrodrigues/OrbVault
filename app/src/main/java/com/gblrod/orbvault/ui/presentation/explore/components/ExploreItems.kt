@@ -13,14 +13,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,6 +37,7 @@ import com.gblrod.orbvault.data.dto.CountriesDto
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.presentation.state.ExploreUiState
+import com.gblrod.orbvault.ui.shared.components.FavoriteButton
 import com.gblrod.orbvault.ui.shared.components.InfoRow
 import com.gblrod.orbvault.ui.shared.components.TopList
 
@@ -129,16 +125,11 @@ fun ExploreItems(
                                 index = index + 1
                             )
                         }
-                        IconButton(
-                            onClick = { countryDetailsViewModel.toggleFavorite(country = country) },
-                            modifier = Modifier.align(Alignment.Top)
-                        ) {
-                            Icon(
-                                imageVector = if (isFavorite) Icons.Default.Star else Icons.Default.StarBorder,
-                                contentDescription = null,
-                                tint = if (isFavorite) Color.Yellow else MaterialTheme.colorScheme.onSurface
-                            )
-                        }
+                        FavoriteButton(
+                            isFavorite = isFavorite,
+                            modifier = Modifier.align(Alignment.Top),
+                            onClick = { countryDetailsViewModel.toggleFavorite(country) }
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(4.dp))

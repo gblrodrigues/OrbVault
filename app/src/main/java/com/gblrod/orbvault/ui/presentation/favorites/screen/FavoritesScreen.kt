@@ -4,16 +4,17 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.presentation.favorites.components.FavoriteItems
+import com.gblrod.orbvault.ui.theme.YellowActions
 
 @Composable
 fun FavoritesScreen(
     countryDetailsViewModel: CountryDetailsViewModel,
-    snackbarHostState: SnackbarHostState
+    snackbarHostState: SnackbarHostState,
+    onNavigateHome: () -> Unit
 ) {
     val favorites by countryDetailsViewModel.favorites.collectAsState()
     val secondValue = when {
@@ -33,12 +34,15 @@ fun FavoritesScreen(
         viewModel = countryDetailsViewModel,
         primaryValue = stringResource(id = R.string.favorite_list_label),
         secondValue = secondValue,
-        colorCustom = Color.Yellow,
+        colorCustom = YellowActions,
         onClick = { code ->
             if (code != null) {
                 countryDetailsViewModel.fetchCountryByCode(code)
             }
         },
-        snackbarHostState = snackbarHostState
+        snackbarHostState = snackbarHostState,
+        onNavigateHome = {
+            onNavigateHome()
+        }
     )
 }

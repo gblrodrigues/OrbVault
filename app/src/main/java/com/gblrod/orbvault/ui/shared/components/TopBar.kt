@@ -13,34 +13,21 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.local.model.FavoriteCountry
-import com.gblrod.orbvault.navigation.Routes
+import com.gblrod.orbvault.navigation.NavigationUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
     onOpenDrawer: () -> Unit,
     navHostController: NavHostController,
-    favorites: List<FavoriteCountry>
+    navigationUiState: NavigationUiState
 ) {
-    val currentBackStackEntry by navHostController.currentBackStackEntryAsState()
-    val currentRoute = currentBackStackEntry?.destination?.route
-
-    val isFavoriteScreen = currentRoute == Routes.Favorites.route
-    val isPrincipalScreen = currentRoute == Routes.Home.route ||
-            currentRoute == Routes.Explore.route ||
-            currentRoute == Routes.Favorites.route
-
-    val canGoBack = (isFavoriteScreen && favorites.isEmpty()) || !isPrincipalScreen
-
     TopAppBar(
         modifier = Modifier.height(76.dp),
         colors = TopAppBarDefaults.topAppBarColors(
@@ -48,36 +35,40 @@ fun TopBar(
         ),
         title = {
             Text(
-                text = stringResource(id = R.string.topbar_title),
+                text = stringResource(id = navigationUiState.titleRes),
                 color = MaterialTheme.colorScheme.onSurface
             )
         },
         navigationIcon = {
-            if (canGoBack) {
-                IconButton(
-                    onClick = {
-                        if (navHostController.previousBackStackEntry != null) {
-                            navHostController.popBackStack()
+            when {
+                navigationUiState.showBackButton -> {
+                    IconButton(
+                        onClick = {
+                            if (navHostController.previousBackStackEntry != null) {
+                                navHostController.popBackStack()
+                            }
                         }
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.size(28.dp)
+                        )
                     }
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.size(28.dp)
-                    )
                 }
-            } else {
-                IconButton(
-                    onClick = { onOpenDrawer() }
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Menu,
-                        contentDescription = stringResource(id = R.string.cd_menu_topbar),
-                        tint = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.size(28.dp)
-                    )
+
+                navigationUiState.showDrawerIcon -> {
+                    IconButton(
+                        onClick = { onOpenDrawer() }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Menu,
+                            contentDescription = stringResource(id = R.string.cd_menu_topbar),
+                            tint = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.size(28.dp)
+                        )
+                    }
                 }
             }
         }
