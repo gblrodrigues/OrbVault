@@ -1,0 +1,179 @@
+package com.gblrod.orbvault.ui.countries.presentation.home.viewmodel
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.gblrod.orbvault.R
+import com.gblrod.orbvault.data.dto.countries.CountriesDto
+import com.gblrod.orbvault.data.mapper.isCountryCode
+import com.gblrod.orbvault.data.repository.countries.CountriesRepository
+import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
+import com.gblrod.orbvault.ui.countries.presentation.state.CountriesUiState
+import com.gblrod.orbvault.ui.countries.presentation.state.RandomCountryUiState
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import okio.IOException
+import retrofit2.HttpException
+
+class CountriesViewModel(
+    private val repository: CountriesRepository
+) : ViewModel() {
+    private var job: Job? = null
+
+    private val _countriesUiState = MutableStateFlow<CountriesUiState>(CountriesUiState.Idle)
+    val countriesUiState: StateFlow<CountriesUiState> = _countriesUiState
+
+    private val _randomCountryUiState =
+        MutableStateFlow<RandomCountryUiState>(RandomCountryUiState.Idle)
+    val randomCountryUiState: StateFlow<RandomCountryUiState> = _randomCountryUiState
+
+    private val _bordersUiState = MutableStateFlow<BordersUiState>(BordersUiState.Idle)
+    val bordersUiState: StateFlow<BordersUiState> = _bordersUiState
+
+    private val historyStack = mutableListOf<CountriesDto>()
+    private var currentCountry: CountriesDto? = null
+    private val _previewReturnCountry = MutableStateFlow(false)
+    val previewReturnCountry: StateFlow<Boolean> = _previewReturnCountry
+
+    fun fetchCountry(country: String?) {
+        if (country.isNullOrBlank()) return
+
+        job?.cancel()
+
+        job = viewModelScope.launch {
+
+            _countriesUiState.value = CountriesUiState.Loading
+            _bordersUiState.value = BordersUiState.Idle
+
+            try {
+                val result = if (isCountryCode(country)) {
+                    repository.fetchCountryByCode(country.uppercase())
+                } else {
+                    repository.fetchCountry(name = country)
+                }
+
+                if (result != null) {
+                    _countriesUiState.value =
+                        CountriesUiState.Success(country = result, code = result)
+                } else {
+                    _countriesUiState.value =
+                        CountriesUiState.Error(R.string.countries_ui_state_not_found)
+                }
+
+            } catch (e: IOException) {
+                _countriesUiState.value =
+                    CountriesUiState.Error(messageResId = R.string.countries_ui_state_ioexception)
+
+            } catch (e: HttpException) {
+                if (e.code() == 404) {
+                    _countriesUiState.value =
+                        CountriesUiState.Error(messageResId = R.string.countries_ui_state_not_found)
+
+                } else {
+                    _countriesUiState.value = CountriesUiState.Error(
+                        messageResId = R.string.countries_ui_state_httpexception,
+                        code = e.code()
+                    )
+                }
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _countriesUiState.value =
+                    CountriesUiState.Error(messageResId = R.string.countries_ui_state_generic_error)
+            }
+        }
+    }
+
+    fun fetchRandomCountry() {
+        viewModelScope.launch {
+            _randomCountryUiState.value = RandomCountryUiState.Loading
+
+            try {
+                val randomCountry = repository.getRandomCountry()
+
+                currentCountry?.let { historyStack.add(it) }
+                _previewReturnCountry.value = historyStack.isNotEmpty()
+                currentCountry = randomCountry
+
+                _randomCountryUiState.value = RandomCountryUiState.Success(country = randomCountry)
+
+            } catch (e: HttpException) {
+                _randomCountryUiState.value = RandomCountryUiState.Error(
+                    messageResId = R.string.explore_ui_state_httpexception,
+                    code = e.code()
+                )
+
+            } catch (e: IOException) {
+                _randomCountryUiState.value =
+                    RandomCountryUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
+            }
+        }
+    }
+
+    fun returnRandomCountry() {
+        viewModelScope.launch {
+            if (historyStack.isNotEmpty()) {
+                val previous = historyStack.removeAt(historyStack.lastIndex)
+                currentCountry = previous
+
+                _randomCountryUiState.value = RandomCountryUiState.Success(country = previous)
+                _previewReturnCountry.value = historyStack.isNotEmpty()
+            }
+        }
+    }
+
+    fun fetchBorders(country: CountriesDto) {
+        viewModelScope.launch {
+            _bordersUiState.value = BordersUiState.Loading
+
+            try {
+                val neighbors = repository.getBorders(country = country)
+                _bordersUiState.value = BordersUiState.Success(neighbors = neighbors)
+
+            } catch (e: Exception) {
+                _bordersUiState.value =
+                    BordersUiState.Error(messageResId = R.string.countries_ui_state_httpexception)
+            }
+        }
+    }
+
+    fun fetchCountryForRandom(code: String) {
+        viewModelScope.launch {
+            _randomCountryUiState.value = RandomCountryUiState.Loading
+            _bordersUiState.value = BordersUiState.Idle
+
+            try {
+                val result = repository.fetchCountryByCode(code)
+
+                if (result != null) {
+                    _randomCountryUiState.value =
+                        RandomCountryUiState.Success(country = result)
+                } else {
+                    _randomCountryUiState.value =
+                        RandomCountryUiState.Error(R.string.countries_ui_state_not_found)
+                }
+
+            } catch (e: IOException) {
+                _randomCountryUiState.value =
+                    RandomCountryUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
+
+            } catch (e: HttpException) {
+                _randomCountryUiState.value =
+                    RandomCountryUiState.Error(
+                        messageResId = R.string.countries_ui_state_httpexception,
+                        code = e.code()
+                    )
+
+            } catch (e: Exception) {
+                _randomCountryUiState.value =
+                    RandomCountryUiState.Error(messageResId = R.string.countries_ui_state_httpexception)
+            }
+        }
+    }
+
+    fun clearCountry() {
+        _countriesUiState.value = CountriesUiState.Idle
+    }
+}

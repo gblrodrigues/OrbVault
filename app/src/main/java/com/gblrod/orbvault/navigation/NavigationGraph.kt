@@ -9,15 +9,15 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.gblrod.orbvault.ui.presentation.explore.largest.screen.LargestCountriesScreen
-import com.gblrod.orbvault.ui.presentation.explore.populated.screen.PopulatedCountriesScreen
-import com.gblrod.orbvault.ui.presentation.explore.random.screen.RandomCountryScreen
-import com.gblrod.orbvault.ui.presentation.explore.screen.ExploreScreen
-import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
-import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.presentation.favorites.screen.FavoritesScreen
-import com.gblrod.orbvault.ui.presentation.home.screen.HomeScreen
-import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.countries.presentation.explore.largest.screen.LargestCountriesScreen
+import com.gblrod.orbvault.ui.countries.presentation.explore.populated.screen.PopulatedCountriesScreen
+import com.gblrod.orbvault.ui.countries.presentation.explore.random.screen.RandomCountryScreen
+import com.gblrod.orbvault.ui.countries.presentation.explore.screen.ExploreScreen
+import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
+import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
+import com.gblrod.orbvault.ui.countries.presentation.favorites.screen.FavoritesScreen
+import com.gblrod.orbvault.ui.countries.presentation.home.screen.HomeScreen
+import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
 
 @Composable
 fun NavigationGraph(

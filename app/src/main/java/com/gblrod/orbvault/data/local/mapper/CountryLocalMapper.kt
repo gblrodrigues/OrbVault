@@ -1,11 +1,11 @@
 package com.gblrod.orbvault.data.local.mapper
 
-import com.gblrod.orbvault.data.dto.CountriesDto
+import com.gblrod.orbvault.data.dto.countries.CountriesDto
 import com.gblrod.orbvault.data.local.entity.FavoriteCountryEntity
 import com.gblrod.orbvault.data.local.model.FavoriteCountry
 
 fun CountriesDto.toEntity(position: Int) = FavoriteCountryEntity(
-    code = cca3 ?: error("Country code cannot be null"),
+    code = cca3,
     name = name.common,
     capital = capital?.firstOrNull(),
     region = region,

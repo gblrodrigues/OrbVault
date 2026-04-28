@@ -52,6 +52,11 @@
     <string name="countries_ui_state_generic_error">Ocorreu um erro inesperado!</string>
     <string name="countries_ui_state_not_found">País não encontrado</string>
 
+    <!-- WeatherUiState-->
+    <string name="weather_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
+    <string name="weather_ui_state_httpexception">Erro do servidor: %1$d</string>
+    <string name="weather_ui_state_generic_error">Ocorreu um erro inesperado!</string>
+
     <!-- ExploreUiState -->
     <string name="explore_ui_state_ioexception">Sem acesso a internet. Verifique sua conexão.</string>
     <string name="explore_ui_state_httpexception">Erro do servidor: %1$d</string>
@@ -99,6 +104,25 @@
     <string name="populated_country_label_explore">Explorando</string>
     <string name="populated_country_label_explore_top10">Conhecendo os TOP 10 países mais populosos</string>
     <string name="populated_country_label_population">População</string>
+
+    <!-- Weather -->
+    <string name="weather_label_feels_like">Sensação</string>
+    <string name="weather_label_humidity">Umidade</string>
+    <string name="weather_temperature">%1$.0f°C</string>
+    <string name="weather_humidity">%1$d%%</string>
+    <string name="weather_label_wind">Vento</string>
+    <string name="weather_wind_speed">%1$.0f km/h</string>
+    <string name="weather_label_updated">Atualizado às</string>
+
+    <!-- Weather Description -->
+    <string name="weather_clear_sky">Céu limpo</string>
+    <string name="weather_partly_cloudy">Parcialmente nublado</string>
+    <string name="weather_fog">Neblina</string>
+    <string name="weather_drizzle">Garoa</string>
+    <string name="weather_rain">Chuva</string>
+    <string name="weather_snow">Neve</string>
+    <string name="weather_storm">Tempestade</string>
+    <string name="weather_unknown">Desconhecido</string>
 
     <!-- RandomCountry -->
     <string name="random_country_label_explore">Explorando</string>

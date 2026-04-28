@@ -3,34 +3,51 @@ package com.gblrod.orbvault.di
 import androidx.room.Room
 import com.gblrod.orbvault.data.local.db.OrbVaultDataBase
 import com.gblrod.orbvault.data.local.db.migrations.MIGRATION_2_3
-import com.gblrod.orbvault.data.network.CountriesAPI
-import com.gblrod.orbvault.data.repository.CountriesRepository
-import com.gblrod.orbvault.data.repository.FavoriteRepository
-import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
-import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.data.network.countries.CountriesAPI
+import com.gblrod.orbvault.data.network.weather.WeatherApi
+import com.gblrod.orbvault.data.repository.countries.CountriesRepository
+import com.gblrod.orbvault.data.repository.favorites.FavoriteRepository
+import com.gblrod.orbvault.data.repository.weather.WeatherRepository
+import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
+import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
+import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.weather.viewmodel.WeatherViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
 
-    // Network
-    single {
+    // Network (Countries)
+    single(qualifier = named("countriesRetrofit")) {
         Retrofit.Builder()
             .baseUrl("https://restcountries.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    // API
-    single<CountriesAPI> {
-        get<Retrofit>().create(CountriesAPI::class.java)
+    // Network (Weather)
+    single(qualifier = named("weatherRetrofit")) {
+        Retrofit.Builder()
+            .baseUrl("https://api.open-meteo.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 
-    // ViewModel
+    // API (Countries)
+    single<CountriesAPI> {
+        get<Retrofit>(qualifier = named("countriesRetrofit")).create(CountriesAPI::class.java)
+    }
+
+    // API (Weather)
+    single<WeatherApi> {
+        get<Retrofit>(qualifier = named("weatherRetrofit")).create(WeatherApi::class.java)
+    }
+
+    // ViewModel (Countries)
     viewModel {
         CountriesViewModel(repository = get())
     }
@@ -47,13 +64,27 @@ val appModule = module {
             api = get()
         )
     }
+
+    // ViewModel (Weather)
+    viewModel {
+        WeatherViewModel(
+            repository = get()
+        )
+    }
 }
 
 val storageModule = module {
 
-    // Repository (API)
+    // Repository Countries -> (API)
     single {
         CountriesRepository(
+            api = get()
+        )
+    }
+
+    // Repository Weather -> (API)
+    single {
+        WeatherRepository(
             api = get()
         )
     }

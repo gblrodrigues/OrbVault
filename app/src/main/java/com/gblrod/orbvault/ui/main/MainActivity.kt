@@ -22,9 +22,9 @@ import androidx.navigation.compose.rememberNavController
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
 import com.gblrod.orbvault.navigation.mapRouteToNavigationUiState
-import com.gblrod.orbvault.ui.presentation.explore.viewmodel.CountryDetailsViewModel
-import com.gblrod.orbvault.ui.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.presentation.home.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
+import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
+import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.shared.components.BottomBar
 import com.gblrod.orbvault.ui.shared.components.TopBar
 import com.gblrod.orbvault.ui.theme.ThemeConfigDefault
