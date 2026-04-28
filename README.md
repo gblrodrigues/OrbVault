@@ -57,15 +57,18 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ### Favorites
 * Listagem de países favoritados com persistência local (Room)
 * Remoção por swipe, com opção de desfazer via Snackbar
+* Tela de favoritos vazia com botão para explorar novos países
 * Ordenação dos favoritos mantida automaticamente de forma persistente
 
 ### Gerais
 * Tratamento de estados de carregamento e erro com opção de retry
+* Navegação dinâmica, ajustando TopBar e BottomBar conforme a tela atual
+* Títulos específicos em cada tela para facilitar a orientação do usuário
 
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/27a230a9-deb6-4b24-89f2-777deb27ab3e
+> https://github.com/user-attachments/assets/32cc7e28-d6eb-4cda-9a69-1ac30e17701f
 
 ## Tomadas de Decisões
 
