@@ -47,6 +47,14 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
   * Exibição de países vizinhos (máx. 5)  
   * Navegação ao clicar em um país vizinho   
 
+### Clima
+* Consulta de clima em tempo real por país
+* Exibição de:
+  * Temperatura atual e sensação térmica
+  * Umidade e vento
+  * Condição climática (céu limpo, chuva, etc.)
+* Integração com API Open-Meteo utilizando arquitetura multi-serviços
+
 ### Explore
 * Top 10 países mais populosos  
 * Top 10 maiores países (por área)  
@@ -68,7 +76,7 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/32cc7e28-d6eb-4cda-9a69-1ac30e17701f
+> https://github.com/user-attachments/assets/7068d074-641b-479f-9337-7b0bdc31ff31
 
 ## Tomadas de Decisões
 
@@ -79,10 +87,13 @@ Optei por Jetpack Compose por já ter experiência com a abordagem declarativa, 
 Escolhi estruturar o projeto em MVVM para manter a lógica separada da interface.  
 O uso de ViewModel com StateFlow permite que a interface reaja automaticamente às mudanças de estado.  
 
-> Durante a evolução do projeto, os ViewModels foram reorganizados para separar a lógica de listagem e detalhes de países, reduzindo o acoplamento entre telas.
+> O projeto evoluiu para uma separação por domínios (Countries e Weather), reduzindo acoplamento entre features/telas.
 
 ### Consumo de API
-Os dados dos países são obtidos por meio de uma API pública. Isso me permitiu praticar requisições HTTP, tratamento de dados e organização em camadas dentro do projeto.
+Os dados dos países e clima são obtidos por meio de APIs públicas. Isso me permitiu praticar requisições HTTP, tratamento de dados e organização em camadas dentro do projeto.
+
+- API de países (RestCountries) utilizada para listagem, detalhes dos países
+- API de clima (Open-Meteo) utilizada para dados meteorológicos em tempo real por localização
 
 Apliquei otimizações como:
 * Uso de `fields` para reduzir payload
@@ -91,7 +102,8 @@ Apliquei otimizações como:
 
 > A busca de países foi otimizada para suportar busca por nome ou código (CCA3)
 
-> 🔗 Link da API: https://restcountries.com/
+> 🔗 Link da API (RestCountries): https://restcountries.com/  
+> 🔗 Link da API (Open-Meteo): https://open-meteo.com/
 
 ### Persistência de Favoritos (Room)
 Para permitir que os países favoritados fossem mantidos mesmo após fechar o aplicativo, utilizei Room como solução de persistência local. 
@@ -132,5 +144,6 @@ Este projeto foi desenvolvido com o objetivo de:
 
 Este projeto foi desenvolvido exclusivamente para fins educacionais e de portfólio.
 
-Os dados utilizados neste aplicativo são fornecidos por uma API pública:  
-https://restcountries.com/
+Os dados utilizados neste aplicativo são fornecidos por APIs públicas:  
+* Países: https://restcountries.com/
+* Clima: https://open-meteo.com/
