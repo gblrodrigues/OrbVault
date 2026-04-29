@@ -2,6 +2,7 @@ package com.gblrod.orbvault.core
 
 import android.app.Application
 import com.gblrod.orbvault.di.appModule
+import com.gblrod.orbvault.di.preferencesModule
 import com.gblrod.orbvault.di.storageModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -16,7 +17,8 @@ class OrbVaultApplication : Application() {
             androidContext(this@OrbVaultApplication)
             modules(
                 appModule,
-                storageModule
+                storageModule,
+                preferencesModule
             )
         }
     }

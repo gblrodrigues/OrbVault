@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.dto.countries.CountriesDto
+import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.components.CardCountryDetails
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel

@@ -3,7 +3,7 @@ package com.gblrod.orbvault.ui.weather.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.repository.weather.WeatherRepository
+import com.gblrod.orbvault.data.weather.repository.WeatherRepository
 import com.gblrod.orbvault.ui.weather.state.WeatherUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

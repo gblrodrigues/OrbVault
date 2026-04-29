@@ -3,10 +3,10 @@ package com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.dto.countries.CountriesDto
-import com.gblrod.orbvault.data.local.model.FavoriteCountry
-import com.gblrod.orbvault.data.repository.countries.CountriesRepository
-import com.gblrod.orbvault.data.repository.favorites.FavoriteRepository
+import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
+import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
+import com.gblrod.orbvault.data.countries.repository.CountriesRepository
+import com.gblrod.orbvault.data.countries.repository.FavoriteRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.CountriesUiState
 import kotlinx.coroutines.flow.MutableStateFlow

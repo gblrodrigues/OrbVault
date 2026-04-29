@@ -13,10 +13,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gblrod.orbvault.navigation.NavigationGraph
@@ -28,6 +30,7 @@ import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesVie
 import com.gblrod.orbvault.ui.shared.components.BottomBar
 import com.gblrod.orbvault.ui.shared.components.TopBar
 import com.gblrod.orbvault.ui.theme.ThemeConfigDefault
+import com.gblrod.orbvault.ui.theme.viewmodel.ThemeViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
@@ -35,6 +38,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val splashScreen = installSplashScreen()
         setContent {
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val scope = rememberCoroutineScope()
@@ -43,6 +47,8 @@ class MainActivity : ComponentActivity() {
             val countriesViewModel: CountriesViewModel = koinViewModel()
             val exploreViewModel: ExploreViewModel = koinViewModel()
             val countryDetailsViewModel: CountryDetailsViewModel = koinViewModel()
+            val themeViewModel: ThemeViewModel = koinViewModel()
+            val theme by themeViewModel.theme.collectAsState()
 
             val snackbarHostState = remember { SnackbarHostState() }
 
@@ -50,60 +56,69 @@ class MainActivity : ComponentActivity() {
             val currentRoute = navBackStackEntry?.destination?.route
             val navigationUiState = mapRouteToNavigationUiState(route = currentRoute)
 
-            ThemeConfigDefault {
-                ModalNavigationDrawer(
-                    drawerState = drawerState,
-                    drawerContent = {
-                        ModalDrawerSheet {
-                            DrawerContent(
-                                navController = navHostController,
-                                onItemClick = {
-                                    scope.launch {
-                                        drawerState.close()
-                                    }
-                                }
-                            )
-                        }
-                    }
+            splashScreen.setKeepOnScreenCondition {
+                theme == null
+            }
+
+            if (theme != null) {
+                ThemeConfigDefault(
+                    themeOption = theme!!
                 ) {
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        topBar = {
-                            if (navigationUiState.showTopBar) {
-                                TopBar(
-                                    onOpenDrawer = {
+                    ModalNavigationDrawer(
+                        drawerState = drawerState,
+                        drawerContent = {
+                            ModalDrawerSheet {
+                                DrawerContent(
+                                    navController = navHostController,
+                                    themeViewModel = themeViewModel,
+                                    onItemClick = {
                                         scope.launch {
-                                            if (drawerState.isClosed) drawerState.open()
-                                            else drawerState.close()
+                                            drawerState.close()
                                         }
-                                    },
-                                    navHostController = navHostController,
-                                    navigationUiState = navigationUiState
+                                    }
                                 )
                             }
-                        },
-                        bottomBar = {
-                            if (navigationUiState.showBottomBar) {
-                                BottomBar(navHostController = navHostController)
-                            }
-                        },
-                        snackbarHost = {
-                            SnackbarHost(
-                                hostState = snackbarHostState
-                            )
                         }
-                    ) { paddingValues ->
-                        Box(
-                            modifier = Modifier.fillMaxSize()
-                        ) {
-                            NavigationGraph(
-                                navHostController = navHostController,
-                                paddingValues = paddingValues,
-                                countriesViewModel = countriesViewModel,
-                                exploreViewModel = exploreViewModel,
-                                countryDetailsViewModel = countryDetailsViewModel,
-                                snackbarHostState = snackbarHostState
-                            )
+                    ) {
+                        Scaffold(
+                            modifier = Modifier.fillMaxSize(),
+                            topBar = {
+                                if (navigationUiState.showTopBar) {
+                                    TopBar(
+                                        onOpenDrawer = {
+                                            scope.launch {
+                                                if (drawerState.isClosed) drawerState.open()
+                                                else drawerState.close()
+                                            }
+                                        },
+                                        navHostController = navHostController,
+                                        navigationUiState = navigationUiState
+                                    )
+                                }
+                            },
+                            bottomBar = {
+                                if (navigationUiState.showBottomBar) {
+                                    BottomBar(navHostController = navHostController)
+                                }
+                            },
+                            snackbarHost = {
+                                SnackbarHost(
+                                    hostState = snackbarHostState
+                                )
+                            }
+                        ) { paddingValues ->
+                            Box(
+                                modifier = Modifier.fillMaxSize()
+                            ) {
+                                NavigationGraph(
+                                    navHostController = navHostController,
+                                    paddingValues = paddingValues,
+                                    countriesViewModel = countriesViewModel,
+                                    exploreViewModel = exploreViewModel,
+                                    countryDetailsViewModel = countryDetailsViewModel,
+                                    snackbarHostState = snackbarHostState
+                                )
+                            }
                         }
                     }
                 }

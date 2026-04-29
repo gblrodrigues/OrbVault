@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.dto.weather.CurrentWeatherDto
+import com.gblrod.orbvault.data.weather.remote.dto.CurrentWeatherDto
 
 @Composable
 fun WeatherInfoRow(

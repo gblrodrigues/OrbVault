@@ -1,6 +1,6 @@
 package com.gblrod.orbvault.ui.weather.state
 
-import com.gblrod.orbvault.data.dto.weather.CurrentWeatherDto
+import com.gblrod.orbvault.data.weather.remote.dto.CurrentWeatherDto
 
 sealed class WeatherUiState{
     object Idle : WeatherUiState()

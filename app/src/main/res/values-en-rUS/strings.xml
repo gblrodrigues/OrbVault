@@ -15,9 +15,15 @@
 
     <!-- NavigationDrawer -->
     <string name="drawer_title">OrbVault</string>
+    <string name="drawer_sub_title">Explore countries and weather</string>
     <string name="drawer_item_home">Home</string>
     <string name="drawer_item_explore">Explore</string>
     <string name="drawer_item_favorites">Favorites</string>
+    <string name="drawer_item_themes">Theme</string>
+    <string name="drawer_item_languages">Language</string>
+    <string name="drawer_item_themes_cd">Theme</string>
+    <string name="drawer_item_languages_cd">Language</string>
+    <string name="drawer_category_preference">Preferences</string>
 
     <!-- BottomBar -->
     <string name="bottom_bar_home">Home</string>
@@ -94,6 +100,14 @@
     <string name="favorite_list_details_one">Viewing %1$d favorited country</string>
     <string name="favorite_list_details">Viewing %1$d favorite countries</string>
     <string name="cd_favorite_back_button">Favorite Countries</string>
+
+    <!-- Theme -->
+    <string name="theme_dialog_title">Choose a theme</string>
+    <string name="theme_dialog_confirm">Apply</string>
+    <string name="theme_dialog_dismiss">Cancel</string>
+    <string name="theme_darkmode">Dark</string>
+    <string name="theme_lightmode">Light</string>
+    <string name="theme_system">System</string>
 
     <!-- LargestCountries -->
     <string name="largest_country_label_explore">Exploring</string>

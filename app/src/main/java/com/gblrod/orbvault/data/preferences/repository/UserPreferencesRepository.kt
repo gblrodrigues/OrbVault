@@ -1,0 +1,33 @@
+package com.gblrod.orbvault.data.preferences.repository
+
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import com.gblrod.orbvault.data.preferences.model.UserPreferences
+import com.gblrod.orbvault.ui.theme.ThemeOptions
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+
+private val themeKey = stringPreferencesKey(name = "theme")
+
+class UserPreferencesRepository(
+    private val dataStore: DataStore<Preferences>
+) {
+
+    val userPreferences: Flow<UserPreferences> = dataStore.data.map { prefs ->
+        UserPreferences(
+            theme = ThemeOptions.entries.find {
+                it.name == prefs[themeKey]
+            } ?: ThemeOptions.SYSTEM
+        )
+    }
+
+    suspend fun saveTheme(
+        theme: ThemeOptions
+    ) {
+        dataStore.edit { prefs ->
+            prefs[themeKey] = theme.name
+        }
+    }
+}

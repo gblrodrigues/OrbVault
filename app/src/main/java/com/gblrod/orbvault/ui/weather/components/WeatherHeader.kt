@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.gblrod.orbvault.data.dto.countries.CountriesDto
+import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.shared.components.FavoriteButton
 import com.gblrod.orbvault.ui.shared.components.TopList
 

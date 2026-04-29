@@ -3,7 +3,7 @@ package com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.network.countries.CountriesAPI
+import com.gblrod.orbvault.data.countries.remote.api.CountriesAPI
 import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

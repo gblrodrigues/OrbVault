@@ -36,10 +36,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.dto.countries.CountriesDto
-import com.gblrod.orbvault.data.mapper.getCurrency
-import com.gblrod.orbvault.data.mapper.getLanguage
-import com.gblrod.orbvault.data.mapper.getTimezones
+import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
+import com.gblrod.orbvault.data.countries.mapper.getCurrency
+import com.gblrod.orbvault.data.countries.mapper.getLanguage
+import com.gblrod.orbvault.data.countries.mapper.getTimezones
 import com.gblrod.orbvault.ui.countries.actions.MapOpener
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState

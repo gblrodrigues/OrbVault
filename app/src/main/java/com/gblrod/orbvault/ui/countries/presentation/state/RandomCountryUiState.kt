@@ -1,6 +1,6 @@
 package com.gblrod.orbvault.ui.countries.presentation.state
 
-import com.gblrod.orbvault.data.dto.countries.CountriesDto
+import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 
 sealed class RandomCountryUiState {
     object Idle : RandomCountryUiState()

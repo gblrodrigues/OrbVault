@@ -3,9 +3,9 @@ package com.gblrod.orbvault.ui.countries.presentation.home.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.dto.countries.CountriesDto
-import com.gblrod.orbvault.data.mapper.isCountryCode
-import com.gblrod.orbvault.data.repository.countries.CountriesRepository
+import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
+import com.gblrod.orbvault.data.countries.mapper.isCountryCode
+import com.gblrod.orbvault.data.countries.repository.CountriesRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.CountriesUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.RandomCountryUiState

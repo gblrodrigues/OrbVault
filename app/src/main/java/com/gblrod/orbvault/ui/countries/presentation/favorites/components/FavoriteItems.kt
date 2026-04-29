@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.local.model.FavoriteCountry
+import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.CountryBottomSheet
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.shared.components.FavoriteButton

@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.dto.weather.CurrentWeatherDto
+import com.gblrod.orbvault.data.weather.remote.dto.CurrentWeatherDto
 import com.gblrod.orbvault.ui.weather.actions.WeatherMapper.getDesc
 import com.gblrod.orbvault.ui.weather.actions.WeatherMapper.getIcon
 
