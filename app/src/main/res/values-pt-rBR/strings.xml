@@ -1,0 +1,160 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">OrbVault</string>
+
+    <!-- TopBar -->
+    <string name="topbar_home_title">Início</string>
+    <string name="topbar_explore_title">Explorar</string>
+    <string name="topbar_favorite_title">Favoritos</string>
+    <string name="topbar_populated_countries_title">Países Populosos</string>
+    <string name="topbar_largest_countries_title">Maiores Países</string>
+    <string name="topbar_random_country_title">País Aleatório</string>
+    <string name="topbar_principal_title">OrbVault</string>
+
+    <!-- LoadingScreen -->
+    <string name="loading_screen_label" tools:ignore="TypographyEllipsis">Carregando...</string>
+
+    <!-- NavigationDrawer -->
+    <string name="drawer_title">OrbVault</string>
+    <string name="drawer_sub_title">Explore países e acompanhe o clima</string>
+    <string name="drawer_item_home">Início</string>
+    <string name="drawer_item_explore">Explorar</string>
+    <string name="drawer_item_favorites">Favoritos</string>
+    <string name="drawer_item_themes">Tema</string>
+    <string name="drawer_item_languages">Idioma</string>
+    <string name="drawer_item_themes_cd">Tema</string>
+    <string name="drawer_item_languages_cd">Idioma</string>
+    <string name="drawer_category_preference">Preferências</string>
+
+    <!-- BottomBar -->
+    <string name="bottom_bar_home">Início</string>
+    <string name="bottom_bar_explore">Explorar</string>
+    <string name="bottom_bar_favorites">Favoritos</string>
+
+    <!-- Buttons -->
+    <string name="button_retry">Tentar novamente</string>
+    <string name="button_next_random_country">Próximo</string>
+    <string name="button_return_random_country">Anterior</string>
+    <string name="button_explore_countries">Explorar países"</string>
+
+    <!-- CountryOptionsMenu -->
+    <string name="dropdown_menu_item_weather_title">Ver Clima</string>
+    <string name="dropdown_menu_item_weather_sub_title">Informações meteorológicas</string>
+    <string name="dropdown_menu_item_map_title">Ver no Mapa</string>
+    <string name="dropdown_menu_item_map_sub_title">Abrir localização</string>
+    <string name="dropdown_menu_item_neighbors_title">Ver Vizinhos</string>
+    <string name="dropdown_menu_item_neighbors_sub_title">Países fronteiros</string>
+
+    <!-- ContentDescription -->
+    <string name="cd_menu_topbar">Ícone do Menu</string>
+    <string name="cd_add_favorite">Adicionar aos favoritos</string>
+    <string name="cd_remove_favorite">Remover dos favoritos</string>
+
+    <!-- OutlinedTextField -->
+    <string name="outlined_text_field_placeholder">Ex: Brasil</string>
+
+    <!-- CountriesUiState-->
+    <string name="countries_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
+    <string name="countries_ui_state_httpexception">Erro do servidor: %1$d</string>
+    <string name="countries_ui_state_generic_error">Ocorreu um erro inesperado!</string>
+    <string name="countries_ui_state_not_found">País não encontrado</string>
+
+    <!-- WeatherUiState-->
+    <string name="weather_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
+    <string name="weather_ui_state_httpexception">Erro do servidor: %1$d</string>
+    <string name="weather_ui_state_generic_error">Ocorreu um erro inesperado!</string>
+
+    <!-- ExploreUiState -->
+    <string name="explore_ui_state_ioexception">Sem acesso a internet. Verifique sua conexão.</string>
+    <string name="explore_ui_state_httpexception">Erro do servidor: %1$d</string>
+    <string name="explore_ui_state_generic_error">Ocorreu um erro inesperado!</string>
+
+    <!-- Explore -->
+    <string name="explore_screen_title">O que explorar hoje?</string>
+    <string name="explore_screen_sub_title">Selecione uma das opções</string>
+    <string name="explore_title_top10_populated_contries">Países Populosos</string>
+    <string name="explore_title_top10_largest_contries">Maiores Países</string>
+    <string name="explore_title_random_country">País Aleatório</string>
+
+    <!-- Home -->
+    <string name="home_screen_title">Descubra um país</string>
+    <string name="home_screen_sub_title">Digite o nome para conhecer</string>
+    <string name="neighbors_empty">País sem vizinhos</string>
+    <string name="neighbors_error">Erro ao carregar países vizinhos</string>
+    <string name="neighbors_one_label">Vizinho</string>
+    <string name="neighbors_more_label">Vizinhos</string>
+
+    <!-- CountryDetails -->
+    <string name="country_details_label_capital">Capital</string>
+    <string name="country_details_label_region">Região</string>
+    <string name="country_details_label_sub_region">Sub-Região</string>
+    <string name="country_details_label_language">Idioma</string>
+    <string name="country_details_label_languages">Idiomas</string>
+    <string name="country_details_label_currencies">Moeda</string>
+    <string name="country_details_label_population">População</string>
+    <string name="country_details_label_timezone">Fuso Horário</string>
+
+    <!-- Favorites -->
+    <string name="favorite_list_label">Meu Museu</string>
+    <string name="favorite_list_label_empty">Quando você favoritar Países, \neles aparecerão aqui.</string>
+    <string name="favorite_list_details_empty">Nenhum país favoritado</string>
+    <string name="favorite_list_details_one">Visualizando %1$d país favoritado</string>
+    <string name="favorite_list_details">Visualizando %1$d países favoritados</string>
+    <string name="cd_favorite_back_button">Favoritar Países</string>
+
+    <!-- Theme -->
+    <string name="theme_dialog_title">Escolha um tema</string>
+    <string name="theme_dialog_confirm">Aplicar</string>
+    <string name="theme_dialog_dismiss">Cancelar</string>
+    <string name="theme_darkmode">Escuro</string>
+    <string name="theme_lightmode">Claro</string>
+    <string name="theme_system">Sistema</string>
+
+    <!-- Language -->
+    <string name="language_bottom_sheet_title">Escolha um idioma</string>
+    <string name="language_bottom_sheet_confirm">Aplicar</string>
+    <string name="language_bottom_sheet_dismiss">Cancelar</string>
+    <string name="language_english_label">English (United States)</string>
+    <string name="language_portuguese_br_label">Português (Brasil)</string>
+    <string name="language_espanhol_label">Español (España)</string>
+
+    <!-- LargestCountries -->
+    <string name="largest_country_label_explore">Explorando</string>
+    <string name="largest_country_label_explore_top10">Conhecendo os TOP 10 maiores países em área</string>
+    <string name="largest_country_label_area">Área</string>
+
+    <!-- PopulatedCountries -->
+    <string name="populated_country_label_explore">Explorando</string>
+    <string name="populated_country_label_explore_top10">Conhecendo os TOP 10 países mais populosos</string>
+    <string name="populated_country_label_population">População</string>
+
+    <!-- Weather -->
+    <string name="weather_label_feels_like">Sensação</string>
+    <string name="weather_label_humidity">Umidade</string>
+    <string name="weather_temperature">%1$.0f°C</string>
+    <string name="weather_humidity">%1$d%%</string>
+    <string name="weather_label_wind">Vento</string>
+    <string name="weather_wind_speed">%1$.0f km/h</string>
+    <string name="weather_label_updated">Atualizado às</string>
+
+    <!-- Weather Description -->
+    <string name="weather_clear_sky">Céu limpo</string>
+    <string name="weather_partly_cloudy">Parcialmente nublado</string>
+    <string name="weather_fog">Neblina</string>
+    <string name="weather_drizzle">Garoa</string>
+    <string name="weather_rain">Chuva</string>
+    <string name="weather_snow">Neve</string>
+    <string name="weather_storm">Tempestade</string>
+    <string name="weather_unknown">Desconhecido</string>
+
+    <!-- RandomCountry -->
+    <string name="random_country_label_explore">Explorando</string>
+    <string name="random_country_label">Conhecendo um país aleatório</string>
+
+    <!-- SnackBar -->
+    <string name="snackbar_country_message_removed">%1$s removido dos favoritos</string>
+    <string name="snackbar_country_actionLabel">Desfazer</string>
+
+    <!-- News Features -->
+    <string name="new_feature_coming_soon">Em breve</string>
+
+</resources>

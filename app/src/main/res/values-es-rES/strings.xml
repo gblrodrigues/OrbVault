@@ -109,6 +109,14 @@
     <string name="theme_lightmode">Claro</string>
     <string name="theme_system">Sistema</string>
 
+    <!-- Language -->
+    <string name="language_bottom_sheet_title">Selecciona un idioma</string>
+    <string name="language_bottom_sheet_confirm">Aplicar</string>
+    <string name="language_bottom_sheet_dismiss">Cancelar</string>
+    <string name="language_english_label">English (United States)</string>
+    <string name="language_portuguese_br_label">Português (Brasil)</string>
+    <string name="language_espanhol_label">Español (España)</string>
+
     <!-- LargestCountries -->
     <string name="largest_country_label_explore">Explorando</string>
     <string name="largest_country_label_explore_top10">Descubriendo los TOP 10 países más grandes por área</string>

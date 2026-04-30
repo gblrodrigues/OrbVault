@@ -2,6 +2,7 @@ package com.gblrod.orbvault.di
 
 import com.gblrod.orbvault.data.preferences.datastore.dataStore
 import com.gblrod.orbvault.data.preferences.repository.UserPreferencesRepository
+import com.gblrod.orbvault.ui.language.viewmodel.LanguageViewModel
 import com.gblrod.orbvault.ui.theme.viewmodel.ThemeViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.singleOf
@@ -17,4 +18,5 @@ val preferencesModule = module {
 
     // viewModel
     viewModelOf(constructor = ::ThemeViewModel)
+    viewModelOf(constructor = ::LanguageViewModel)
 }

@@ -39,7 +39,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
+import com.gblrod.orbvault.core.utils.orDeviceDefault
 import com.gblrod.orbvault.navigation.Routes
+import com.gblrod.orbvault.ui.language.viewmodel.LanguageViewModel
 import com.gblrod.orbvault.ui.theme.ThemeOptions
 import com.gblrod.orbvault.ui.theme.viewmodel.ThemeViewModel
 
@@ -47,12 +49,16 @@ import com.gblrod.orbvault.ui.theme.viewmodel.ThemeViewModel
 fun DrawerContent(
     navController: NavController,
     onItemClick: () -> Unit,
-    themeViewModel: ThemeViewModel
+    themeViewModel: ThemeViewModel,
+    languageViewModel: LanguageViewModel
 ) {
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
     var showThemeDialog by remember { mutableStateOf(false) }
-    var showLanguageBottomSheet by remember { mutableStateOf(false) }
+    var showLanguageDialog by remember { mutableStateOf(false) }
     val theme = themeViewModel.theme.collectAsState().value ?: ThemeOptions.SYSTEM
+    val language = languageViewModel.language.collectAsState().value
+    val effectiveLanguage = language.orDeviceDefault()
+
     val items = listOf(
         DrawerItem(
             label = stringResource(id = R.string.drawer_item_home),
@@ -213,14 +219,26 @@ fun DrawerContent(
                         text = stringResource(id = R.string.drawer_item_languages),
                         color = MaterialTheme.colorScheme.onSurface
                     )
+                    Text(
+                        text = stringResource(id = effectiveLanguage.label),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 }
             },
             selected = false,
-            onClick = {},
+            onClick = {
+                showLanguageDialog = true
+            },
             shape = RoundedCornerShape(16.dp)
         )
-        if (showLanguageBottomSheet) {
-            // TODO("Implementar")
+        if (showLanguageDialog) {
+            LanguageMenu(
+                languageViewModel = languageViewModel,
+                onDismiss = {
+                    showLanguageDialog = false
+                }
+            )
         }
     }
 }

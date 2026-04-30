@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,12 +22,14 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.gblrod.orbvault.core.manager.LanguageManager
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
 import com.gblrod.orbvault.navigation.mapRouteToNavigationUiState
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
+import com.gblrod.orbvault.ui.language.viewmodel.LanguageViewModel
 import com.gblrod.orbvault.ui.shared.components.BottomBar
 import com.gblrod.orbvault.ui.shared.components.TopBar
 import com.gblrod.orbvault.ui.theme.ThemeConfigDefault
@@ -35,6 +38,13 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 class MainActivity : ComponentActivity() {
+    override fun attachBaseContext(newBase: Context) {
+        val language = LanguageManager.getStoredLanguage(newBase)
+        val locale = LanguageManager.resolveLocale(language)
+        val context = LanguageManager.applyLocale(newBase, locale)
+        super.attachBaseContext( context)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -48,6 +58,8 @@ class MainActivity : ComponentActivity() {
             val exploreViewModel: ExploreViewModel = koinViewModel()
             val countryDetailsViewModel: CountryDetailsViewModel = koinViewModel()
             val themeViewModel: ThemeViewModel = koinViewModel()
+            val languageViewModel: LanguageViewModel = koinViewModel()
+
             val theme by themeViewModel.theme.collectAsState()
 
             val snackbarHostState = remember { SnackbarHostState() }
@@ -71,6 +83,7 @@ class MainActivity : ComponentActivity() {
                                 DrawerContent(
                                     navController = navHostController,
                                     themeViewModel = themeViewModel,
+                                    languageViewModel = languageViewModel,
                                     onItemClick = {
                                         scope.launch {
                                             drawerState.close()
