@@ -1,8 +1,8 @@
 # OrbVault
 
-OrbVault é um aplicativo Android desenvolvido em Kotlin com Jetpack Compose.
+OrbVault é um aplicativo Android para exploração de países e dados geográficos, desenvolvido em Kotlin com Jetpack Compose.
 
-Criei o projeto para aplicar na prática conceitos como consumo de API, gerenciamento de estado e construção de interfaces declarativas.  
+Desenvolvi o projeto para colocar em prática o consumo de APIs, gerenciamento de estado e construção de interfaces declarativas com Jetpack Compose.
 
 - [Tecnologias](#tecnologias-utilizadas)  
 - [Funcionalidades](#funcionalidades)  
@@ -76,7 +76,11 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 * Suporte a temas (`Dark`, `Light` e `System`) com persistência usando DataStore
 * Sincronização com:
   * Status Bar;
-  * Navigation Bar. 
+  * Navigation Bar.
+* Sistema de internacionalização (i18n):
+  * Suporte a múltiplos idiomas (Inglês, Espanhol e Português)
+  * Persistência da escolha do usuário via DataStore
+  * Detecção automática do idioma do dispositivo com fallback para `inglês`
 
 ## Demonstração
 
@@ -110,8 +114,8 @@ Apliquei otimizações como:
 > 🔗 Link da API (RestCountries): https://restcountries.com/  
 > 🔗 Link da API (Open-Meteo): https://open-meteo.com/
 
-### Persistência de Favoritos (Room)
-Para permitir que os países favoritados fossem mantidos mesmo após fechar o aplicativo, utilizei Room como solução de persistência local. 
+### Persistência de Dados (Room + DataStore)
+Utilizei Room para dados estruturados (favoritos) e DataStore para preferências do usuário (tema e idioma)
 
 ### Gerenciamento de Estado de UI (UiState)
 Para lidar com os estados da tela (carregando, sucesso e erro), utilizei uma abordagem com sealed class (UiState) junto com StateFlow.
