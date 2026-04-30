@@ -15,15 +15,16 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 
 ## Tecnologias utilizadas
 
-- [Kotlin](https://kotlinlang.org/) — Melhor linguagem de todas
+- [Kotlin](https://kotlinlang.org/) — Linguagem utilizada no desenvolvimento (minha preferida 💜)
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) — Criação rápida e simples da interface
 - [Material 3](https://m3.material.io/) — Utilizado para manter consistência visual e boas práticas de UI
-- Arquitetura MVVM — Organização do projeto utilizando ViewModel e StateFlow para gerenciamento de estado e separação de responsabilidades.
 - [Retrofit](https://square.github.io/retrofit/) — Cliente HTTP para consumo da API REST.
 - [Room](https://developer.android.com/training/data-storage/room) — Persistência de dados local utilizada para salvar países favoritados com suporte a consultas via SQLite
+- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) — Persistência de dados local utilizada para salvar preferências do usuário
 - [Koin](https://insert-koin.io/) — Utilizado para gerenciar dependências do app de forma mais organizada e sem complicações.
 - [Coil](https://coil-kt.github.io/coil/compose/) — Carregamento assíncrono de imagens via URL (AsyncImage)
 - [Navigation](https://developer.android.com/jetpack/compose/navigation) — Gerenciamento de navegação entre telas.
+- Arquitetura MVVM — Organização do projeto utilizando ViewModel e StateFlow para gerenciamento de estado e separação de responsabilidades.
 - Gerenciamento de textos com `strings.xml` — Centralização dos textos do app, facilitando manutenção e futuras traduções
 
 ## Funcionalidades
@@ -72,11 +73,15 @@ Criei o projeto para aplicar na prática conceitos como consumo de API, gerencia
 * Tratamento de estados de carregamento e erro com opção de retry
 * Navegação dinâmica, ajustando TopBar e BottomBar conforme a tela atual
 * Títulos específicos em cada tela para facilitar a orientação do usuário
+* Suporte a temas (`Dark`, `Light` e `System`) com persistência usando DataStore
+* Sincronização com:
+  * Status Bar;
+  * Navigation Bar. 
 
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/7068d074-641b-479f-9337-7b0bdc31ff31
+> https://github.com/user-attachments/assets/720a6315-e07a-48cc-ae7d-b30930db4120
 
 ## Tomadas de Decisões
 
