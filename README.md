@@ -63,6 +63,23 @@ Desenvolvi o projeto para colocar em prática o consumo de APIs, gerenciamento d
 * Exibição de detalhes em BottomSheet para melhor experiência de navegação sem sair da tela principal  
 * Navegação entre diferentes categorias de exploração
 
+#### Estatísticas Globais
+* Total de países, população e área global
+* Destaques:
+  * País mais populoso
+  * Maior país por área
+* Abertura de detalhes via BottomSheet (sem navegação)
+
+#### Ações Rápidas
+* Comparação entre países (em Desenvolvimento)
+* Quiz geográfico (em Desenvolvimento)
+* Acesso rápido aos favoritos
+
+#### Navegação por Novidades (Features)
+* Tela dedicada de estatísticas
+* Tela dedicada de ações (News)
+* Estrutura preparada para expansão de novas funcionalidades
+
 ### Favorites
 * Listagem de países favoritados com persistência local (Room)
 * Remoção por swipe, com opção de desfazer via Snackbar
@@ -85,7 +102,7 @@ Desenvolvi o projeto para colocar em prática o consumo de APIs, gerenciamento d
 ## Demonstração
 
 Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
-> https://github.com/user-attachments/assets/720a6315-e07a-48cc-ae7d-b30930db4120
+> https://github.com/user-attachments/assets/9e4a6441-a460-424f-adda-3446ab282dd8
 
 ## Tomadas de Decisões
 
