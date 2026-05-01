@@ -24,15 +24,15 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.St
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.StatItem
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.util.formatCompactNumber
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
+import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
 
 @Composable
 fun MoreStatisticsScreen(
     exploreViewModel: ExploreViewModel,
     colorCustom: Color
 ) {
-    val state by exploreViewModel.exploreUiState.collectAsState()
-    val success = state as? ExploreUiState.GlobalStatsSucess ?: return
+    val state by exploreViewModel.statsState.collectAsState()
+    val success = state as? StatsUiState.Success ?: return
 
     val totalCountries = success.stats.totalCountries
     val totalPopulation = success.stats.totalPopulation

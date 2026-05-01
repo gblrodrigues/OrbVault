@@ -7,7 +7,7 @@ import androidx.compose.ui.res.stringResource
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.components.CountriesHighlights
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
+import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 
@@ -16,22 +16,20 @@ fun StatisticsScreen(
     exploreViewModel: ExploreViewModel,
     countryDetailsViewModel: CountryDetailsViewModel
 ) {
-    val uiState by exploreViewModel.exploreUiState.collectAsState()
+    val uiState by exploreViewModel.statsState.collectAsState()
     when (val state = uiState) {
-        is ExploreUiState.GlobalStatsSucess -> {
+        is StatsUiState.Success -> {
             CountriesHighlights(
                 exploreViewModel = exploreViewModel,
                 countryDetailsViewModel = countryDetailsViewModel
             )
         }
 
-        is ExploreUiState.Loading -> {
+        is StatsUiState.Loading -> {
             LoadingScreen()
         }
 
-        is ExploreUiState.Success -> {}
-
-        is ExploreUiState.Error -> {
+        is StatsUiState.Error -> {
             val message = if (state.code == null) {
                 stringResource(id = state.messageResId)
             } else {

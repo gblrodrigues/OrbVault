@@ -20,15 +20,15 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.St
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.util.formatCompactNumber
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
+import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
 
 @Composable
 fun CountriesHighlights(
     exploreViewModel: ExploreViewModel,
     countryDetailsViewModel: CountryDetailsViewModel
 ) {
-    val state by exploreViewModel.exploreUiState.collectAsState()
-    val success = state as? ExploreUiState.GlobalStatsSucess ?: return
+    val state by exploreViewModel.statsState.collectAsState()
+    val success = state as? StatsUiState.Success ?: return
 
     val mostPopulous = success.stats.mostPopulous
     val largest = success.stats.largest
