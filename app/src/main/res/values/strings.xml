@@ -8,6 +8,8 @@
     <string name="topbar_populated_countries_title">Populous Countries</string>
     <string name="topbar_largest_countries_title">Largest Countries</string>
     <string name="topbar_random_country_title">Random Country</string>
+    <string name="topbar_news_title">News</string>
+    <string name="topbar_statistics_title">Statistics</string>
     <string name="topbar_principal_title">OrbVault</string>
 
     <!-- LoadingScreen -->
@@ -74,6 +76,10 @@
     <string name="explore_title_top10_populated_contries">Populous countries</string>
     <string name="explore_title_top10_largest_contries">Largest countries</string>
     <string name="explore_title_random_country">Random country</string>
+    <string name="explore_news_title">News</string>
+    <string name="explore_news_more_infos">See all</string>
+    <string name="explore_statistics_title">Quick Stats</string>
+    <string name="explore_statistics_more_infos">See more</string>
 
     <!-- Home -->
     <string name="home_screen_title">Discover a country</string>
@@ -126,6 +132,27 @@
     <string name="populated_country_label_explore">Exploring</string>
     <string name="populated_country_label_explore_top10">Top 10 most populous countries</string>
     <string name="populated_country_label_population">Population</string>
+
+    <!-- News -->
+    <string name="news_label_explore">Exploring</string>
+    <string name="news_label_description">All the news</string>
+    <string name="news_country_region_description">Browse countries by \ncontinent.</string>
+    <string name="news_country_region_label">Countries by Region</string>
+    <string name="news_country_compare_label">Country Compare</string>
+    <string name="news_country_compare_description">Compare data from \nup to 2 countries.</string>
+    <string name="news_quiz_label">Geography Quiz</string>
+    <string name="news_quiz_description">Test your \nknowledge!</string>
+    <string name="news_my_favorites_label">My Favorites</string>
+    <string name="news_my_favorites_description">Save countries to view later.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_label_explore">Exploring</string>
+    <string name="statistics_label_description">Global Key Statistics</string>
+    <string name="statistics_country_label">Countries \nworldwide</string>
+    <string name="statistics_population_label">People \nworldwide</string>
+    <string name="statistics_area_label">Total area \nof countries</string>
+    <string name="statistics_most_populous_label">%1$s, most populous</string>
+    <string name="statistics_most_largest_label">%1$s, largest country</string>
 
     <!-- Weather -->
     <string name="weather_label_feels_like">Feels like</string>

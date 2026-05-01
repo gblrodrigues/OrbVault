@@ -26,4 +26,12 @@ sealed class Routes(
     object RandomCountry : Routes(
         route = "randomcountry"
     )
+
+    object StatisticsList : Routes(
+        route = "statisticslist"
+    )
+
+    object News : Routes(
+        route = "news"
+    )
 }

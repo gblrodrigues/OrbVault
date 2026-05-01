@@ -10,9 +10,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.gblrod.orbvault.ui.countries.presentation.explore.largest.screen.LargestCountriesScreen
+import com.gblrod.orbvault.ui.countries.presentation.explore.news.navigation.newsRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.populated.screen.PopulatedCountriesScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.random.screen.RandomCountryScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.screen.ExploreScreen
+import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.navigation.statisticsRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.favorites.screen.FavoritesScreen
@@ -44,7 +46,8 @@ fun NavigationGraph(
             ExploreScreen(
                 navHostController = navHostController,
                 exploreViewModel = exploreViewModel,
-                countriesViewModel = countriesViewModel
+                countriesViewModel = countriesViewModel,
+                countryDetailsViewModel = countryDetailsViewModel
             )
         }
 
@@ -83,5 +86,13 @@ fun NavigationGraph(
                 countryDetailsViewModel = countryDetailsViewModel
             )
         }
+
+        statisticsRoute(
+            exploreViewModel = exploreViewModel
+        )
+
+        newsRoute(
+            navHostController = navHostController
+        )
     }
 }

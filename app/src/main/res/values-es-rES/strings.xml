@@ -8,6 +8,8 @@
     <string name="topbar_populated_countries_title">Países Más Poblados</string>
     <string name="topbar_largest_countries_title">Países Más Grandes</string>
     <string name="topbar_random_country_title">País Aleatorio</string>
+    <string name="topbar_news_title">Novedades</string>
+    <string name="topbar_statistics_title">Estadística</string>
     <string name="topbar_principal_title">OrbVault</string>
 
     <!-- LoadingScreen -->
@@ -74,6 +76,10 @@
     <string name="explore_title_top10_populated_contries">Países más poblados</string>
     <string name="explore_title_top10_largest_contries">Países más grandes</string>
     <string name="explore_title_random_country">País Aleatorio</string>
+    <string name="explore_news_title">Novedades</string>
+    <string name="explore_news_more_infos">Ver todo</string>
+    <string name="explore_statistics_title">Estadísticas rápidas</string>
+    <string name="explore_statistics_more_infos">Ver más</string>
 
     <!-- Home -->
     <string name="home_screen_title">Descubre un país</string>
@@ -126,6 +132,27 @@
     <string name="populated_country_label_explore">Explorando</string>
     <string name="populated_country_label_explore_top10">Descubriendo los TOP 10 países más poblados</string>
     <string name="populated_country_label_population">Población</string>
+
+    <!-- News -->
+    <string name="news_label_explore">Explorando</string>
+    <string name="news_label_description">Todas las novedades</string>
+    <string name="news_country_region_description">Explora países por \ncontinente.</string>
+    <string name="news_country_region_label">Países por Región</string>
+    <string name="news_country_compare_label">Comparar Países</string>
+    <string name="news_country_compare_description">Compara datos de \nhasta 2 países.</string>
+    <string name="news_quiz_label">Quiz Geográfico</string>
+    <string name="news_quiz_description">¡Pon a prueba tus conocimientos!</string>
+    <string name="news_my_favorites_label">Mis favoritos</string>
+    <string name="news_my_favorites_description">Guarda países para \nverlos más tarde.</string>
+
+    <!-- Statistics -->
+    <string name="statistics_label_explore">Explorando</string>
+    <string name="statistics_label_description">Principales estadísticas del mundo</string>
+    <string name="statistics_country_label">Países \ndel mundo</string>
+    <string name="statistics_population_label">Personas \nen el planeta</string>
+    <string name="statistics_area_label">Área total \nde los países</string>
+    <string name="statistics_most_populous_label">%1$s, más poblado</string>
+    <string name="statistics_most_largest_label">%1$s, más grande</string>
 
     <!-- Weather -->
     <string name="weather_label_feels_like">Sensación térmica</string>
