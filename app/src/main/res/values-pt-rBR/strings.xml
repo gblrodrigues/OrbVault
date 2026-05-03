@@ -66,9 +66,14 @@
     <string name="weather_ui_state_generic_error">Ocorreu um erro inesperado!</string>
 
     <!-- ExploreUiState -->
-    <string name="explore_ui_state_ioexception">Sem acesso a internet. Verifique sua conexão.</string>
+    <string name="explore_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
     <string name="explore_ui_state_httpexception">Erro do servidor: %1$d</string>
     <string name="explore_ui_state_generic_error">Ocorreu um erro inesperado!</string>
+
+    <!-- StatsUiState -->
+    <string name="stats_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
+    <string name="stats_ui_state_httpexception">Erro do servidor: %1$d</string>
+    <string name="stats_ui_state_generic_error">Não foi possível carregar \nas estatísticas.</string>
 
     <!-- Explore -->
     <string name="explore_screen_title">O que explorar hoje?</string>

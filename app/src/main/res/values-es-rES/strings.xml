@@ -70,6 +70,11 @@
     <string name="explore_ui_state_httpexception">Error do servidor: %1$d</string>
     <string name="explore_ui_state_generic_error">¡Ha ocurrido un error inesperado!</string>
 
+    <!-- StatsUiState -->
+    <string name="stats_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
+    <string name="stats_ui_state_httpexception">Error do servidor: %1$d</string>
+    <string name="stats_ui_state_generic_error">No se pudieron cargar \nlas estadísticas.</string>
+
     <!-- Explore -->
     <string name="explore_screen_title">¿Qué explorar hoy?</string>
     <string name="explore_screen_sub_title">Seleccione una de las opciones</string>

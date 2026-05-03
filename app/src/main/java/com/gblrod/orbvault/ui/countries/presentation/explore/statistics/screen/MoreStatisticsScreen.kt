@@ -25,82 +25,104 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.St
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.util.formatCompactNumber
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
+import com.gblrod.orbvault.ui.shared.components.ErrorMessage
+import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 
 @Composable
 fun MoreStatisticsScreen(
     exploreViewModel: ExploreViewModel,
     colorCustom: Color
 ) {
-    val state by exploreViewModel.statsState.collectAsState()
-    val success = state as? StatsUiState.Success ?: return
+    val uiState by exploreViewModel.statsState.collectAsState()
 
-    val totalCountries = success.stats.totalCountries
-    val totalPopulation = success.stats.totalPopulation
-    val totalArea = success.stats.totalArea
+    when (val state = uiState) {
+        is StatsUiState.Loading -> {
+            LoadingScreen()
+        }
 
-    val primaryValue = stringResource(id = R.string.statistics_label_explore)
-    val secondValue = stringResource(id = R.string.statistics_label_description)
+        is StatsUiState.Error -> {
+            val message = if (state.code == null) {
+                stringResource(id = state.messageResId)
+            } else {
+                stringResource(id = state.messageResId, state.code)
+            }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp)
-    ) {
-        Column(
-            modifier = Modifier.padding(vertical = 8.dp)
-        ) {
-            Text(
-                text = primaryValue,
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Text(
-                text = secondValue,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
-                color = colorCustom
+            ErrorMessage(
+                message = message,
+                onRetry = { exploreViewModel.fetchAllCountries() }
             )
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        is StatsUiState.Success -> {
+            val totalCountries = state.stats.totalCountries
+            val totalPopulation = state.stats.totalPopulation
+            val totalArea = state.stats.totalArea
 
-        val statsItems = listOf(
-            StatItem(
-                label = stringResource(id = R.string.statistics_country_label),
-                value = formatCompactNumber(value = totalCountries.toDouble()),
-                icon = StatIcon.Local(resId = R.drawable.logo)
-            ),
-            StatItem(
-                label = stringResource(id = R.string.statistics_population_label),
-                value = formatCompactNumber(value = totalPopulation.toDouble()),
-                icon = StatIcon.Local(resId = R.drawable.logo)
-            ),
-            StatItem(
-                label = stringResource(id = R.string.statistics_area_label),
-                value = formatCompactNumber(value = totalArea),
-                icon = StatIcon.Local(resId = R.drawable.logo)
-            )
-        )
-        Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            statsItems.chunked(size = 2).forEach { rowItems ->
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+            val primaryValue = stringResource(id = R.string.statistics_label_explore)
+            val secondValue = stringResource(id = R.string.statistics_label_description)
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(vertical = 8.dp)
                 ) {
-                    rowItems.forEach { item ->
-                        StatisticsItem(
-                            modifier = Modifier.weight(1f),
-                            image = item.icon,
-                            totalValue = item.value,
-                            descValue = item.label,
-                            onClick = item.onClick
-                        )
-                    }
+                    Text(
+                        text = primaryValue,
+                        fontSize = 30.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = secondValue,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = colorCustom
+                    )
+                }
 
-                    if (rowItems.size == 1) {
-                        Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.height(8.dp))
+
+                val statsItems = listOf(
+                    StatItem(
+                        label = stringResource(id = R.string.statistics_country_label),
+                        value = formatCompactNumber(value = totalCountries.toDouble()),
+                        icon = StatIcon.Local(resId = R.drawable.logo)
+                    ),
+                    StatItem(
+                        label = stringResource(id = R.string.statistics_population_label),
+                        value = formatCompactNumber(value = totalPopulation.toDouble()),
+                        icon = StatIcon.Local(resId = R.drawable.logo)
+                    ),
+                    StatItem(
+                        label = stringResource(id = R.string.statistics_area_label),
+                        value = formatCompactNumber(value = totalArea),
+                        icon = StatIcon.Local(resId = R.drawable.logo)
+                    )
+                )
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    statsItems.chunked(size = 2).forEach { rowItems ->
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            rowItems.forEach { item ->
+                                StatisticsItem(
+                                    modifier = Modifier.weight(1f),
+                                    image = item.icon,
+                                    totalValue = item.value,
+                                    descValue = item.label,
+                                    onClick = item.onClick
+                                )
+                            }
+
+                            if (rowItems.size == 1) {
+                                Spacer(modifier = Modifier.weight(1f))
+                            }
+                        }
                     }
                 }
             }

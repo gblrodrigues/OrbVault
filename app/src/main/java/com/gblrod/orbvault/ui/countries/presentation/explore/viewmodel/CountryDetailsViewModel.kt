@@ -66,7 +66,7 @@ class CountryDetailsViewModel(
 
     fun toggleFavorite(country: CountriesDto) {
         viewModelScope.launch {
-            val isFav = favoriteRepository.isFavorite(code = country.cca3 ?: return@launch)
+            val isFav = favoriteRepository.isFavorite(code = country.cca3)
             val domain = FavoriteCountry(
                 code = country.cca3,
                 name = country.name.common,

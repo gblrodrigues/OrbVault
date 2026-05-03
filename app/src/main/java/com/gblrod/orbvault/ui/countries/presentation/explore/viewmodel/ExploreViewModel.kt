@@ -24,7 +24,9 @@ class ExploreViewModel(
     val statsState: StateFlow<StatsUiState> = _statsState
 
     init {
-        fetchAllCountries()
+        if (_statsState.value !is StatsUiState.Success) {
+            fetchAllCountries()
+        }
     }
 
     fun fetchTopPopulatedCountries() {
@@ -102,13 +104,13 @@ class ExploreViewModel(
 
             } catch (e: HttpException) {
                 _statsState.value = StatsUiState.Error(
-                    messageResId = R.string.explore_ui_state_httpexception,
+                    messageResId = R.string.stats_ui_state_httpexception,
                     code = e.code()
                 )
 
             } catch (e: IOException) {
                 _statsState.value =
-                    StatsUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
+                    StatsUiState.Error(messageResId = R.string.stats_ui_state_ioexception)
             }
         }
     }

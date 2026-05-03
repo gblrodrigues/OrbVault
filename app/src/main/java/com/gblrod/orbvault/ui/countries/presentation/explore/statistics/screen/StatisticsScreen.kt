@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
+import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.components.CountriesHighlights
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
@@ -14,7 +15,8 @@ import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 @Composable
 fun StatisticsScreen(
     exploreViewModel: ExploreViewModel,
-    countryDetailsViewModel: CountryDetailsViewModel
+    countryDetailsViewModel: CountryDetailsViewModel,
+    isCompact: Boolean = false
 ) {
     val uiState by exploreViewModel.statsState.collectAsState()
     when (val state = uiState) {
@@ -30,16 +32,23 @@ fun StatisticsScreen(
         }
 
         is StatsUiState.Error -> {
-            val message = if (state.code == null) {
-                stringResource(id = state.messageResId)
+            if (isCompact) {
+                ErrorMessage(
+                    message = stringResource(id = R.string.stats_ui_state_generic_error),
+                    onRetry = { exploreViewModel.fetchAllCountries() }
+                )
             } else {
-                stringResource(id = state.messageResId, state.code)
-            }
+                val message = if (state.code == null) {
+                    stringResource(id = state.messageResId)
+                } else {
+                    stringResource(id = state.messageResId, state.code)
+                }
 
-            ErrorMessage(
-                message = message,
-                onRetry = { exploreViewModel.fetchAllCountries() }
-            )
+                ErrorMessage(
+                    message = message,
+                    onRetry = { exploreViewModel.fetchAllCountries() }
+                )
+            }
         }
     }
 }

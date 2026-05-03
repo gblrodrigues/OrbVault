@@ -148,7 +148,8 @@ fun ExploreScreen(
         item {
             StatisticsScreen(
                 exploreViewModel = exploreViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
+                countryDetailsViewModel = countryDetailsViewModel,
+                isCompact = true
             )
         }
     }

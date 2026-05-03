@@ -38,7 +38,7 @@ fun NewsItems(
     } else modifier
 
     Card(
-        modifier = clickableModifier.height(160.dp),
+        modifier = clickableModifier.height(140.dp),
         shape = RoundedCornerShape(16.dp),
         border = BorderStroke(
             width = 2.dp,

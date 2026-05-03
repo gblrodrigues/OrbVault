@@ -70,6 +70,11 @@
     <string name="explore_ui_state_httpexception">Server error: %1$d</string>
     <string name="explore_ui_state_generic_error">An unexpected error occurred!</string>
 
+    <!-- StatsUiState -->
+    <string name="stats_ui_state_ioexception">No internet access. \nCheck your connection</string>
+    <string name="stats_ui_state_httpexception">Server error: %1$d</string>
+    <string name="stats_ui_state_generic_error">Unable to load statistics.</string>
+
     <!-- Explore -->
     <string name="explore_screen_title">What to explore today?</string>
     <string name="explore_screen_sub_title">Select one of the options</string>
