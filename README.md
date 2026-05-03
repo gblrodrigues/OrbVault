@@ -70,15 +70,14 @@ Desenvolvi o projeto para colocar em prática o consumo de APIs, gerenciamento d
   * Maior país por área
 * Abertura de detalhes via BottomSheet (sem navegação)
 
-#### Ações Rápidas
+#### Novidades
+* Países por Região (em Desenvolvimento)
+  * Exploração de países organizados por continente
 * Comparação entre países (em Desenvolvimento)
+  * Comparação de dados entre até 2 países
 * Quiz geográfico (em Desenvolvimento)
-* Acesso rápido aos favoritos
-
-#### Navegação por Novidades (Features)
-* Tela dedicada de estatísticas
-* Tela dedicada de ações (News)
-* Estrutura preparada para expansão de novas funcionalidades
+  * Perguntas gerais sobre países
+* Acesso rápido aos países favoritos
 
 ### Favorites
 * Listagem de países favoritados com persistência local (Room)
