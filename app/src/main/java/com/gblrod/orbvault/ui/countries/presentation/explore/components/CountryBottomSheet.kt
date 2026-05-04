@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -19,6 +20,7 @@ import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.components.CardCountryDetails
 import com.gblrod.orbvault.ui.countries.presentation.state.CountriesUiState
+import com.gblrod.orbvault.ui.shared.components.BottomSheetLoading
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,7 +42,7 @@ fun CountryBottomSheet(
             when (val state = countryState) {
 
                 is CountriesUiState.Loading -> {
-                    // LoadingScreen()
+                    BottomSheetLoading()
                 }
 
                 is CountriesUiState.Success -> {
@@ -70,7 +72,8 @@ fun CountryBottomSheet(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = stringResource(id = R.string.neighbors_error)
+                            text = stringResource(id = R.string.neighbors_error),
+                            color = MaterialTheme.colorScheme.error
                         )
                     }
                 }

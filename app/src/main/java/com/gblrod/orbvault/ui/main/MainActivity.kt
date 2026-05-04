@@ -26,6 +26,7 @@ import com.gblrod.orbvault.core.manager.LanguageManager
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
 import com.gblrod.orbvault.navigation.mapRouteToNavigationUiState
+import com.gblrod.orbvault.ui.countries.presentation.explore.components.CountryBottomSheet
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
@@ -61,6 +62,7 @@ class MainActivity : ComponentActivity() {
             val languageViewModel: LanguageViewModel = koinViewModel()
 
             val theme by themeViewModel.theme.collectAsState()
+            val selectedCode by countryDetailsViewModel.selectedCountryCode.collectAsState()
 
             val snackbarHostState = remember { SnackbarHostState() }
 
@@ -131,6 +133,14 @@ class MainActivity : ComponentActivity() {
                                     countryDetailsViewModel = countryDetailsViewModel,
                                     snackbarHostState = snackbarHostState
                                 )
+
+                                if (selectedCode != null) {
+                                    CountryBottomSheet(
+                                        countryDetailsViewModel = countryDetailsViewModel,
+                                        showBottomSheet = true,
+                                        onDismiss = { countryDetailsViewModel.dismissBottomSheet() }
+                                    )
+                                }
                             }
                         }
                     }

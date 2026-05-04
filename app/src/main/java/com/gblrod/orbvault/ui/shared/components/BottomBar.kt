@@ -25,7 +25,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.navigation.bottom.BottomItem
-import com.gblrod.orbvault.ui.theme.NavigationSelectedColor
+import com.gblrod.orbvault.ui.theme.NavigationSelected
 
 @Composable
 fun BottomBar(navHostController: NavHostController) {
@@ -82,10 +82,10 @@ fun BottomBar(navHostController: NavHostController) {
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = NavigationSelectedColor,
+                    selectedIconColor = NavigationSelected,
                     unselectedIconColor = Color.Gray,
                     unselectedTextColor = Color.Gray,
-                    selectedTextColor = NavigationSelectedColor,
+                    selectedTextColor = NavigationSelected,
                     indicatorColor = Color.Transparent
                 )
             )

@@ -88,7 +88,8 @@ fun NavigationGraph(
         }
 
         statisticsRoute(
-            exploreViewModel = exploreViewModel
+            exploreViewModel = exploreViewModel,
+            countryDetailsViewModel = countryDetailsViewModel
         )
 
         newsRoute(

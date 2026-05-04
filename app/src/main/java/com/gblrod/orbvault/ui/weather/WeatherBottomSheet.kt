@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
+import com.gblrod.orbvault.ui.shared.components.BottomSheetLoading
 import com.gblrod.orbvault.ui.weather.components.WeatherContent
 import com.gblrod.orbvault.ui.weather.state.WeatherUiState
 import com.gblrod.orbvault.ui.weather.viewmodel.WeatherViewModel
@@ -39,7 +40,9 @@ fun WeatherBottomSheet(
         when (val state = uiState) {
             is WeatherUiState.Idle -> {}
 
-            is WeatherUiState.Loading -> {}
+            is WeatherUiState.Loading -> {
+                BottomSheetLoading()
+            }
 
             is WeatherUiState.Success -> {
                 WeatherContent(
@@ -59,7 +62,7 @@ fun WeatherBottomSheet(
                 ) {
                     Text(
                         text = stringResource(id = state.message),
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.error
                     )
                 }
             }

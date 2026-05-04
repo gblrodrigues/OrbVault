@@ -19,10 +19,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gblrod.orbvault.R
+import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.components.CountriesHighlights
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.components.StatisticsItem
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.StatIcon
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.StatItem
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.util.formatCompactNumber
+import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
@@ -31,6 +33,7 @@ import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 @Composable
 fun MoreStatisticsScreen(
     exploreViewModel: ExploreViewModel,
+    countryDetailsViewModel: CountryDetailsViewModel,
     colorCustom: Color
 ) {
     val uiState by exploreViewModel.statsState.collectAsState()
@@ -124,6 +127,12 @@ fun MoreStatisticsScreen(
                             }
                         }
                     }
+                    CountriesHighlights(
+                        exploreViewModel = exploreViewModel,
+                        onCountryClick = { code ->
+                            countryDetailsViewModel.onCountrySelected(code)
+                        }
+                    )
                 }
             }
         }

@@ -21,9 +21,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -56,8 +53,6 @@ fun ExploreItems(
 ) {
     val uiState by exploreViewModel.exploreUiState.collectAsState()
     val countries = (uiState as? ExploreUiState.Success)?.countries ?: emptyList()
-    var showSheet by remember { mutableStateOf(false) }
-    var selectedCountry by remember { mutableStateOf<CountriesDto?>(null) }
     val favorites by countryDetailsViewModel.favorites.collectAsState()
 
     LazyColumn(
@@ -92,8 +87,7 @@ fun ExploreItems(
                     .fillMaxWidth()
                     .padding(vertical = 8.dp)
                     .clickable {
-                        selectedCountry = country
-                        showSheet = true
+                        countryDetailsViewModel.onCountrySelected(code = country.cca3)
                         onClick(country)
                     },
                 shape = RoundedCornerShape(16.dp),
@@ -146,16 +140,5 @@ fun ExploreItems(
                 }
             }
         }
-    }
-
-    if (showSheet && selectedCountry != null) {
-        CountryBottomSheet(
-            countryDetailsViewModel = countryDetailsViewModel,
-            showBottomSheet = true,
-            onDismiss = {
-                showSheet = false
-                selectedCountry = null
-            }
-        )
     }
 }

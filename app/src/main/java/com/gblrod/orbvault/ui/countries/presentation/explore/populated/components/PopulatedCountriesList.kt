@@ -7,7 +7,7 @@ import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.ExploreItems
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.theme.PopulatedCountriesColor
+import com.gblrod.orbvault.ui.theme.PopulatedCountries
 
 @Composable
 fun PopulatedCountriesList(
@@ -19,7 +19,7 @@ fun PopulatedCountriesList(
         countryDetailsViewModel = countryDetailsViewModel,
         primaryValue = stringResource(id = R.string.populated_country_label_explore),
         secondValue = stringResource(id = R.string.populated_country_label_explore_top10),
-        colorCustom = PopulatedCountriesColor,
+        colorCustom = PopulatedCountries,
         thirdValue = stringResource(id = R.string.populated_country_label_population),
         fourthValue = { "%,d".format(it.population) },
         labelWidth = 100.dp,

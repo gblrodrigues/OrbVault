@@ -23,7 +23,9 @@ fun StatisticsScreen(
         is StatsUiState.Success -> {
             CountriesHighlights(
                 exploreViewModel = exploreViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
+                onCountryClick = { code ->
+                    countryDetailsViewModel.onCountrySelected(code)
+                }
             )
         }
 

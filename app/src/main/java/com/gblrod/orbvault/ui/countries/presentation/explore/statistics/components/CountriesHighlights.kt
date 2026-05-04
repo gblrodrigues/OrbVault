@@ -7,34 +7,26 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.ui.countries.presentation.explore.components.CountryBottomSheet
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.StatIcon
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.StatItem
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.util.formatCompactNumber
-import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
 
 @Composable
 fun CountriesHighlights(
     exploreViewModel: ExploreViewModel,
-    countryDetailsViewModel: CountryDetailsViewModel
+    onCountryClick: (String) -> Unit,
 ) {
     val state by exploreViewModel.statsState.collectAsState()
     val success = state as? StatsUiState.Success ?: return
 
     val mostPopulous = success.stats.mostPopulous
     val largest = success.stats.largest
-
-    var showSheet by remember { mutableStateOf(false) }
-    var selectedCode by remember { mutableStateOf<String?>(null) }
 
     val statsItems = listOf(
         StatItem(
@@ -50,9 +42,7 @@ fun CountriesHighlights(
                 val code = mostPopulous?.cca3
 
                 if (code != null) {
-                    countryDetailsViewModel.fetchCountryByCode(code = code)
-                    selectedCode = code
-                    showSheet = true
+                    onCountryClick(code)
                 }
             }
         ),
@@ -69,9 +59,7 @@ fun CountriesHighlights(
                 val code = largest?.cca3
 
                 if (code != null) {
-                    countryDetailsViewModel.fetchCountryByCode(code = code)
-                    selectedCode = code
-                    showSheet = true
+                    onCountryClick(code)
                 }
             }
         )
@@ -98,13 +86,5 @@ fun CountriesHighlights(
                 }
             }
         }
-    }
-
-    if (showSheet && selectedCode != null) {
-        CountryBottomSheet(
-            countryDetailsViewModel = countryDetailsViewModel,
-            showBottomSheet = true,
-            onDismiss = { selectedCode = null }
-        )
     }
 }

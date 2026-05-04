@@ -33,7 +33,7 @@
     <string name="bottom_bar_favorites">Favoritos</string>
 
     <!-- Buttons -->
-    <string name="button_retry">Tentar novamente</string>
+    <string name="button_retry">Tentar conectar</string>
     <string name="button_next_random_country">Próximo</string>
     <string name="button_return_random_country">Anterior</string>
     <string name="button_explore_countries">Explorar países"</string>
@@ -55,23 +55,23 @@
     <string name="outlined_text_field_placeholder">Ex: Brasil</string>
 
     <!-- CountriesUiState-->
-    <string name="countries_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
+    <string name="countries_ui_state_ioexception">Sem acesso à internet. \nVerifique sua conexão.</string>
     <string name="countries_ui_state_httpexception">Erro do servidor: %1$d</string>
     <string name="countries_ui_state_generic_error">Ocorreu um erro inesperado!</string>
     <string name="countries_ui_state_not_found">País não encontrado</string>
 
     <!-- WeatherUiState-->
-    <string name="weather_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
+    <string name="weather_ui_state_ioexception">Sem acesso à internet. \nVerifique sua conexão.</string>
     <string name="weather_ui_state_httpexception">Erro do servidor: %1$d</string>
     <string name="weather_ui_state_generic_error">Ocorreu um erro inesperado!</string>
 
     <!-- ExploreUiState -->
-    <string name="explore_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
+    <string name="explore_ui_state_ioexception">Sem acesso à internet. \nVerifique sua conexão.</string>
     <string name="explore_ui_state_httpexception">Erro do servidor: %1$d</string>
     <string name="explore_ui_state_generic_error">Ocorreu um erro inesperado!</string>
 
     <!-- StatsUiState -->
-    <string name="stats_ui_state_ioexception">Sem acesso a internet. \nVerifique sua conexão.</string>
+    <string name="stats_ui_state_ioexception">Sem acesso à internet. \nVerifique sua conexão.</string>
     <string name="stats_ui_state_httpexception">Erro do servidor: %1$d</string>
     <string name="stats_ui_state_generic_error">Não foi possível carregar \nas estatísticas.</string>
 

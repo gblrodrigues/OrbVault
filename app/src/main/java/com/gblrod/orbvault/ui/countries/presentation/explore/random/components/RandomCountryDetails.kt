@@ -20,7 +20,7 @@ import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.components.CardCountryDetails
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
-import com.gblrod.orbvault.ui.theme.CountryRandomColor
+import com.gblrod.orbvault.ui.theme.CountryRandom
 
 @Composable
 fun RandomCountryDetails(
@@ -44,7 +44,7 @@ fun RandomCountryDetails(
             text = stringResource(id = R.string.random_country_label),
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
-            color = CountryRandomColor
+            color = CountryRandom
         )
     }
     Spacer(modifier = Modifier.height(16.dp))

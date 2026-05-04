@@ -29,7 +29,7 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDe
 import com.gblrod.orbvault.ui.countries.presentation.home.components.CountryResults
 import com.gblrod.orbvault.ui.countries.presentation.home.components.SearchBar
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
-import com.gblrod.orbvault.ui.theme.HomeScreenSubTitleColor
+import com.gblrod.orbvault.ui.theme.HomeScreenSubTitle
 
 @Composable
 fun HomeScreen(
@@ -70,7 +70,7 @@ fun HomeScreen(
                     text = stringResource(id = R.string.home_screen_sub_title),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
-                    color = HomeScreenSubTitleColor
+                    color = HomeScreenSubTitle
                 )
             }
         }

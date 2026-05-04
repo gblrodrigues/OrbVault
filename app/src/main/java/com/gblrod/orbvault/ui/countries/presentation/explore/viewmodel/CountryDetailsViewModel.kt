@@ -3,8 +3,8 @@ package com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
+import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.data.countries.repository.CountriesRepository
 import com.gblrod.orbvault.data.countries.repository.FavoriteRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
@@ -24,6 +24,10 @@ class CountryDetailsViewModel(
 
     private val _bordersUiState = MutableStateFlow<BordersUiState>(BordersUiState.Idle)
     val bordersUiState: StateFlow<BordersUiState> = _bordersUiState
+
+    private val _selectedCountryCode = MutableStateFlow<String?>(null)
+    val selectedCountryCode: StateFlow<String?> = _selectedCountryCode
+
     val favorites = favoriteRepository.getFavorites().stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
@@ -86,10 +90,27 @@ class CountryDetailsViewModel(
     }
 
     fun removeFavoriteByCode(code: String) {
-        viewModelScope.launch { favoriteRepository.removeFavorite(code) }
+        viewModelScope.launch {
+            favoriteRepository.removeFavorite(code)
+        }
     }
 
     fun restoreFavorite(country: FavoriteCountry, index: Int) {
-        viewModelScope.launch { favoriteRepository.restoreFavorite(country, index) }
+        viewModelScope.launch {
+            favoriteRepository.restoreFavorite(country, index)
+        }
+    }
+
+    fun onCountrySelected(code: String) {
+        if (_selectedCountryCode.value == code) return
+
+        _selectedCountryCode.value = code
+        fetchCountryByCode(code)
+    }
+
+    fun dismissBottomSheet() {
+        _selectedCountryCode.value = null
+
+        _countryDetailsUiState.value = CountriesUiState.Idle
     }
 }

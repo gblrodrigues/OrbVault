@@ -8,7 +8,7 @@ import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.ExploreItems
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.theme.LargestCountriesColor
+import com.gblrod.orbvault.ui.theme.LargestCountries
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -21,7 +21,7 @@ fun LargestCountriesList(
         countryDetailsViewModel = countryDetailsViewModel,
         primaryValue = stringResource(id = R.string.largest_country_label_explore),
         secondValue = stringResource(id = R.string.largest_country_label_explore_top10),
-        colorCustom = LargestCountriesColor,
+        colorCustom = LargestCountries,
         thirdValue = stringResource(id = R.string.largest_country_label_area),
         fourthValue = { "%,.2f".format(it.area) },
         labelWidth = 50.dp,

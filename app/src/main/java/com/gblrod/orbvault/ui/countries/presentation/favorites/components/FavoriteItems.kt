@@ -46,7 +46,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
-import com.gblrod.orbvault.ui.countries.presentation.explore.components.CountryBottomSheet
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.shared.components.FavoriteButton
 import com.gblrod.orbvault.ui.shared.components.TopList
@@ -62,8 +61,6 @@ fun FavoriteItems(
     snackbarHostState: SnackbarHostState,
     onNavigateHome: () -> Unit
 ) {
-    var showSheet by remember { mutableStateOf(false) }
-    var selectedCode by remember { mutableStateOf<String?>(null) }
     val favorites by viewModel.favorites.collectAsState()
     var pendingRemoval by remember { mutableStateOf<Pair<FavoriteCountry, Int>?>(null) }
 
@@ -175,8 +172,7 @@ fun FavoriteItems(
                     Card(
                         modifier = modifier
                             .clickable {
-                                selectedCode = country.code
-                                showSheet = true
+                                viewModel.onCountrySelected(code = country.code)
                                 onClick(country.code)
                             },
                         shape = RoundedCornerShape(16.dp),
@@ -225,16 +221,5 @@ fun FavoriteItems(
                 }
             }
         }
-    }
-
-    if (showSheet && selectedCode != null) {
-        CountryBottomSheet(
-            countryDetailsViewModel = viewModel,
-            showBottomSheet = true,
-            onDismiss = {
-                showSheet = false
-                selectedCode = null
-            }
-        )
     }
 }

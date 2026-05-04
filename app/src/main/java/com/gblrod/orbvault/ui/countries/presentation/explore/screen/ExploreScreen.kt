@@ -27,7 +27,7 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDe
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.theme.ExploreScreenSubTitleColor
-import com.gblrod.orbvault.ui.theme.LargestCountriesColor
+import com.gblrod.orbvault.ui.theme.LargestCountries
 
 @Composable
 fun ExploreScreen(
@@ -109,7 +109,7 @@ fun ExploreScreen(
                     Text(
                         text = stringResource(id = R.string.explore_news_more_infos),
                         style = MaterialTheme.typography.titleSmall,
-                        color = LargestCountriesColor
+                        color = LargestCountries
                     )
                 }
             }
@@ -139,7 +139,7 @@ fun ExploreScreen(
                     Text(
                         text = stringResource(id = R.string.explore_statistics_more_infos),
                         style = MaterialTheme.typography.titleSmall,
-                        color = LargestCountriesColor
+                        color = LargestCountries
                     )
                 }
             }
