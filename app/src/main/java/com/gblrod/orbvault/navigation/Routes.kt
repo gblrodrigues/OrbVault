@@ -34,4 +34,8 @@ sealed class Routes(
     object News : Routes(
         route = "news"
     )
+
+    object Quiz : Routes(
+        route = "quiz"
+    )
 }

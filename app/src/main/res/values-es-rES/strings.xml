@@ -5,6 +5,7 @@
     <string name="topbar_home_title">Inicio</string>
     <string name="topbar_explore_title">Explorar</string>
     <string name="topbar_favorite_title">Favoritos</string>
+    <string name="topbar_quiz_title">Quiz</string>
     <string name="topbar_populated_countries_title">Países Más Poblados</string>
     <string name="topbar_largest_countries_title">Países Más Grandes</string>
     <string name="topbar_random_country_title">País Aleatorio</string>
@@ -75,6 +76,11 @@
     <string name="stats_ui_state_httpexception">Error do servidor: %1$d</string>
     <string name="stats_ui_state_generic_error">No se pudieron cargar \nlas estadísticas.</string>
 
+    <!-- QuizUiState -->
+    <string name="quiz_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
+    <string name="quiz_ui_state_httpexception">Error do servidor: %1$d</string>
+    <string name="quiz_ui_state_generic_error">Error al cargar \nlas preguntas del quiz.</string>
+
     <!-- Explore -->
     <string name="explore_screen_title">¿Qué explorar hoy?</string>
     <string name="explore_screen_sub_title">Seleccione una de las opciones</string>
@@ -111,6 +117,21 @@
     <string name="favorite_list_details_one">Visualizando %1$d país favorito</string>
     <string name="favorite_list_details">Visualizando %1$d países favoritos</string>
     <string name="cd_favorite_back_button">Favorito Países</string>
+
+    <!-- Quiz -->
+    <string name="quiz_next_question">Siguiente pregunta</string>
+    <string name="quiz_restart_question">Reiniciar</string>
+    <string name="quiz_show_result">Ver resultado</string>
+    <string name="quiz_result_title">¡Felicidades!</string>
+    <string name="quiz_result_sub_title">Has completado el quiz de países</string>
+    <string name="quiz_button_play_again">Jugar de nuevo</string>
+    <string name="quiz_button_return">Volver</string>
+    <string name="quiz_question_area">¿Qué país tiene la mayor superficie?</string>
+    <string name="quiz_question_area_result">%1$s es el país más grande por superficie con %2$s km²</string>
+    <string name="quiz_question_population">¿Qué país tiene la mayor población?</string>
+    <string name="quiz_question_population_result">%1$s es el país más poblado con %2$s habitantes</string>
+    <string name="quiz_question_correct_label">Correcto</string>
+    <string name="quiz_question_incorrect_label">Incorrecto</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Selecciona un tema</string>

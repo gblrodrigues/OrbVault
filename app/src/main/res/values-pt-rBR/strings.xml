@@ -5,6 +5,7 @@
     <string name="topbar_home_title">Início</string>
     <string name="topbar_explore_title">Explorar</string>
     <string name="topbar_favorite_title">Favoritos</string>
+    <string name="topbar_quiz_title">Quiz</string>
     <string name="topbar_populated_countries_title">Países Populosos</string>
     <string name="topbar_largest_countries_title">Maiores Países</string>
     <string name="topbar_random_country_title">País Aleatório</string>
@@ -75,6 +76,11 @@
     <string name="stats_ui_state_httpexception">Erro do servidor: %1$d</string>
     <string name="stats_ui_state_generic_error">Não foi possível carregar \nas estatísticas.</string>
 
+    <!-- QuizUiState -->
+    <string name="quiz_ui_state_ioexception">Sem acesso à internet. \nVerifique sua conexão.</string>
+    <string name="quiz_ui_state_httpexception">Erro do servidor: %1$d</string>
+    <string name="quiz_ui_state_generic_error">Não foi possível carregar \nas perguntas do quiz.</string>
+
     <!-- Explore -->
     <string name="explore_screen_title">O que explorar hoje?</string>
     <string name="explore_screen_sub_title">Selecione uma das opções</string>
@@ -111,6 +117,21 @@
     <string name="favorite_list_details_one">Visualizando %1$d país favoritado</string>
     <string name="favorite_list_details">Visualizando %1$d países favoritados</string>
     <string name="cd_favorite_back_button">Favoritar Países</string>
+    
+    <!-- Quiz -->
+    <string name="quiz_next_question">Próxima pergunta</string>
+    <string name="quiz_restart_question">Reiniciar</string>
+    <string name="quiz_show_result">Ver resultado</string>
+    <string name="quiz_result_title">Parabéns!</string>
+    <string name="quiz_result_sub_title">Você concluiu o quiz de países</string>
+    <string name="quiz_button_play_again">Jogar novamente</string>
+    <string name="quiz_button_return">Voltar</string>
+    <string name="quiz_question_area">Qual país tem a maior área?</string>
+    <string name="quiz_question_area_result">%1$s é o maior país em área com %2$s km²</string>
+    <string name="quiz_question_population">Qual país tem a maior população?</string>
+    <string name="quiz_question_population_result">%1$s é o país mais populoso com %2$s habitantes</string>
+    <string name="quiz_question_correct_label">Correto</string>
+    <string name="quiz_question_incorrect_label">Incorreto</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Escolha um tema</string>

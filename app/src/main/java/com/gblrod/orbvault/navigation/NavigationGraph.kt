@@ -12,6 +12,8 @@ import androidx.navigation.compose.composable
 import com.gblrod.orbvault.ui.countries.presentation.explore.largest.screen.LargestCountriesScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.navigation.newsRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.populated.screen.PopulatedCountriesScreen
+import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.navigation.quizRoute
+import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.random.screen.RandomCountryScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.screen.ExploreScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.navigation.statisticsRoute
@@ -28,6 +30,7 @@ fun NavigationGraph(
     countriesViewModel: CountriesViewModel,
     exploreViewModel: ExploreViewModel,
     countryDetailsViewModel: CountryDetailsViewModel,
+    quizViewModel: QuizViewModel,
     snackbarHostState: SnackbarHostState
 ) {
     NavHost(
@@ -94,6 +97,11 @@ fun NavigationGraph(
 
         newsRoute(
             navHostController = navHostController
+        )
+
+        quizRoute(
+            navHostController = navHostController,
+            quizViewModel = quizViewModel
         )
     }
 }

@@ -84,7 +84,9 @@ fun MoreNewsScreen(
                 label = stringResource(id = R.string.news_quiz_description),
                 value = stringResource(id = R.string.news_quiz_label),
                 icon = Icons.Default.Quiz,
-                onClick = {},
+                onClick = {
+                    navHostController.navigate(route = Routes.Quiz.route)
+                },
                 backgroundColor = PinkActions.copy(alpha = 0.15f),
                 iconColor = PinkActions
             ),
