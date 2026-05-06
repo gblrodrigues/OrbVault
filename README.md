@@ -1,176 +1,176 @@
 # OrbVault
 
-OrbVault é um aplicativo Android para exploração de países e dados geográficos, desenvolvido em Kotlin com Jetpack Compose.
+OrbVault is an Android application for exploring countries and geographic data, developed in Kotlin with Jetpack Compose.
 
-Desenvolvi o projeto para colocar em prática o consumo de APIs, gerenciamento de estado e construção de interfaces declarativas com Jetpack Compose.
+I developed this project to put into practice API consumption, state management, and building declarative interfaces with Jetpack Compose.
 
-- [Tecnologias](#tecnologias-utilizadas)  
-- [Funcionalidades](#funcionalidades)  
-- [Demonstração](#demonstração)  
-- [Tomadas de Decisões](#tomadas-de-decisões)
-- [Maior Desafio](#maior-desafio)
-- [Objetivo](#objetivo-do-projeto)  
-- [Contato](#contato)  
-- [Aviso Legal](#aviso-legal)  
+- [Technologies](#technologies-used)  
+- [Features](#features)  
+- [Demo](#demo)  
+- [Technical Decisions](#technical-decisions)
+- [Biggest Challenge](#biggest-challenge)
+- [Project Goal](#project-goal)  
+- [Contact](#contact)  
+- [Disclaimer](#disclaimer)  
 
-## Tecnologias utilizadas
+## Technologies used
 
-- [Kotlin](https://kotlinlang.org/) — Linguagem utilizada no desenvolvimento (minha preferida 💜)
-- [Jetpack Compose](https://developer.android.com/jetpack/compose) — Criação rápida e simples da interface
-- [Material 3](https://m3.material.io/) — Utilizado para manter consistência visual e boas práticas de UI
-- [Retrofit](https://square.github.io/retrofit/) — Cliente HTTP para consumo da API REST.
-- [Room](https://developer.android.com/training/data-storage/room) — Persistência de dados local utilizada para salvar países favoritados com suporte a consultas via SQLite
-- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) — Persistência de dados local utilizada para salvar preferências do usuário
-- [Koin](https://insert-koin.io/) — Utilizado para gerenciar dependências do app de forma mais organizada e sem complicações.
-- [Coil](https://coil-kt.github.io/coil/compose/) — Carregamento assíncrono de imagens via URL (AsyncImage)
-- [Navigation](https://developer.android.com/jetpack/compose/navigation) — Gerenciamento de navegação entre telas.
-- Arquitetura MVVM — Organização do projeto utilizando ViewModel e StateFlow para gerenciamento de estado e separação de responsabilidades.
-- Gerenciamento de textos com `strings.xml` — Centralização dos textos do app, facilitando manutenção e futuras traduções
+- [Kotlin](https://kotlinlang.org/) — Language used in development (my favorite 💜)
+- [Jetpack Compose](https://developer.android.com/jetpack/compose) — Fast and simple UI creation
+- [Material 3](https://m3.material.io/) — Used to maintain visual consistency and good UI practices
+- [Retrofit](https://square.github.io/retrofit/) — HTTP client for REST API consumption
+- [Room](https://developer.android.com/training/data-storage/room) — Local data persistence used to save favorite countries with support for SQLite queries
+- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) — Local data persistence used to save user preferences
+- [Koin](https://insert-koin.io/) — Used to manage app dependencies in a more organized and simple way
+- [Coil](https://coil-kt.github.io/coil/compose/) — Asynchronous image loading via URL (AsyncImage)
+- [Navigation](https://developer.android.com/jetpack/compose/navigation) — Navigation management between screens
+- MVVM Architecture — Project organization using ViewModel and StateFlow for state management and separation of responsibilities
+- Text management with `strings.xml` — Centralization of app texts, facilitating maintenance and future translations
 
-## Funcionalidades
+## Features
 
-### Países
-* Busca de países pelo nome ou código (cca3)  
-* Exibição de informações detalhadas do país:
-  * Nome comum e oficial  
+### Countries
+* Search for countries by name or code (cca3)  
+* Display of detailed country information:
+  * Common and official name  
   * Capital  
-  * Região e sub-região
-  * Idioma
-  * Moeda  
-  * População formatada  
-  * Fusos horários  
-* Exibição da bandeira do país
-* Ações rápidas do país:
-  * Ver Clima (próx. feature)
-  * Ver no Mapa
-  * Ver Vizinhos  
-* Países Vizinhos
-  * Exibição de países vizinhos (máx. 5)  
-  * Navegação ao clicar em um país vizinho   
+  * Region and subregion  
+  * Language  
+  * Currency  
+  * Formatted population  
+  * Time zones  
+* Display of the country flag  
+* Country quick actions:
+  * View Weather (next feature)
+  * View on Map  
+  * View Neighbors  
+* Neighbor Countries
+  * Display of neighboring countries (max. 5)  
+  * Navigation when clicking on a neighboring country  
 
-### Clima
-* Consulta de clima em tempo real por país
-* Exibição de:
-  * Temperatura atual e sensação térmica
-  * Umidade e vento
-  * Condição climática (céu limpo, chuva, etc.)
-* Integração com API Open-Meteo utilizando arquitetura multi-serviços
+### Weather
+* Real-time weather query by country  
+* Display of:
+  * Current temperature and feels like  
+  * Humidity and wind  
+  * Weather condition (clear sky, rain, etc.)  
+* Integration with Open-Meteo API using multi-service architecture  
 
 ### Explore
-* Top 10 países mais populosos  
-* Top 10 maiores países (por área)  
-* País aleatório com possibilidade de gerar novos resultados
-* Exibição de detalhes em BottomSheet para melhor experiência de navegação sem sair da tela principal  
-* Navegação entre diferentes categorias de exploração
+* Top 10 most populous countries  
+* Top 10 largest countries (by area)  
+* Random country with the possibility of generating new results  
+* Display of details in BottomSheet for a better navigation experience without leaving the main screen  
+* Navigation between different exploration categories  
 
-#### Estatísticas Globais
-* Total de países, população e área global
-* Destaques:
-  * País mais populoso
-  * Maior país por área
-* Abertura de detalhes via BottomSheet (sem navegação)
+#### Global Statistics
+* Total number of countries, population, and global area  
+* Highlights:
+  * Most populous country  
+  * Largest country by area  
+* Opening details via BottomSheet (without navigation)  
 
-#### Novidades
-* Países por Região (em Desenvolvimento)
-  * Exploração de países organizados por continente
-* Comparação entre países (em Desenvolvimento)
-  * Comparação de dados entre até 2 países
-* Quiz geográfico  
-  * Perguntas dinâmicas usando dados reais dos países (área e população)  
-  * Feedback ao responder, indicando a alternativa correta  
-  * Resultado final com a pontuação do usuário  
-* Acesso rápido aos países favoritos
+#### Upcoming
+* Countries by Region (In Development)
+  * Exploration of countries organized by continent  
+* Country comparison (In Development)
+  * Comparison of data between up to 2 countries  
+* Geographic quiz  
+  * Dynamic questions using real country data (area and population)  
+  * Feedback when answering, indicating the correct alternative  
+  * Final result with the user's score  
+* Quick access to favorite countries  
 
 ### Favorites
-* Listagem de países favoritados com persistência local (Room)
-* Remoção por swipe, com opção de desfazer via Snackbar
-* Tela de favoritos vazia com botão para explorar novos países
-* Ordenação dos favoritos mantida automaticamente de forma persistente
+* List of favorited countries with local persistence (Room)  
+* Removal by swipe, with undo option via Snackbar  
+* Empty favorites screen with button to explore new countries  
+* Favorite ordering automatically maintained persistently  
 
-### Gerais
-* Tratamento de estados de carregamento e erro com opção de retry
-* Navegação dinâmica, ajustando TopBar e BottomBar conforme a tela atual
-* Títulos específicos em cada tela para facilitar a orientação do usuário
-* Suporte a temas (`Dark`, `Light` e `System`) com persistência usando DataStore
-* Sincronização com:
-  * Status Bar;
-  * Navigation Bar.
-* Sistema de internacionalização (i18n):
-  * Suporte a múltiplos idiomas (Inglês, Espanhol e Português)
-  * Persistência da escolha do usuário via DataStore
-  * Detecção automática do idioma do dispositivo com fallback para `inglês`
+### General
+* Handling of loading and error states with retry option  
+* Dynamic navigation, adjusting TopBar and BottomBar according to the current screen  
+* Specific titles on each screen to facilitate user orientation  
+* Theme support (`Dark`, `Light` and `System`) with persistence using DataStore  
+* Synchronization with:
+  * Status Bar  
+  * Navigation Bar  
+* Internationalization system (i18n):
+  * Support for multiple languages (English, Spanish and Portuguese)  
+  * Persistence of user choice via DataStore  
+  * Automatic detection of device language with fallback to `English`  
 
-## Demonstração
+## Demo
 
-Abaixo irei disponibilizar um vídeo mostrando como o aplicativo está:  
+Below I will provide a video showing how the application looks:  
 > https://github.com/user-attachments/assets/9e4a6441-a460-424f-adda-3446ab282dd8
 
-## Tomadas de Decisões
+## Technical Decisions
 
 ### Jetpack Compose
-Optei por Jetpack Compose por já ter experiência com a abordagem declarativa, que torna a construção da interface mais organizada. Confesso que não sinto falta do XML ;)
+I chose Jetpack Compose because I already had experience with the declarative approach, which makes UI construction more organized. I honestly don't miss XML ;)
 
-### Arquitetura (MVVM)
-Escolhi estruturar o projeto em MVVM para manter a lógica separada da interface.  
-O uso de ViewModel com StateFlow permite que a interface reaja automaticamente às mudanças de estado.  
+### Architecture (MVVM)
+I chose to structure the project using MVVM to keep the logic separated from the UI.  
+The use of ViewModel with StateFlow allows the UI to automatically react to state changes.  
 
-> O projeto evoluiu para uma separação por domínios (Countries e Weather), reduzindo acoplamento entre features/telas.
+> The project evolved into a domain based separation (Countries and Weather), reducing coupling between features/screens.
 
-### Consumo de API
-Os dados dos países e clima são obtidos por meio de APIs públicas. Isso me permitiu praticar requisições HTTP, tratamento de dados e organização em camadas dentro do projeto.
+### API Consumption
+Country and weather data are obtained through public APIs. This allowed me to practice HTTP requests, data handling, and layer organization within the project.
 
-- API de países (RestCountries) utilizada para listagem, detalhes dos países
-- API de clima (Open-Meteo) utilizada para dados meteorológicos em tempo real por localização
+- Countries API (RestCountries) used for listing and country details  
+- Weather API (Open-Meteo) used for real-time weather data by location  
 
-Apliquei otimizações como:
-* Uso de `fields` para reduzir payload
-* Limitação de idiomas e fusos horários
-* Limitação de vizinhos exibidos (máx. 5)
+I applied optimizations such as:
+* Use of `fields` to reduce payload  
+* Limitation of languages and time zones  
+* Limitation of displayed neighbors (max. 5)  
 
-> A busca de países foi otimizada para suportar busca por nome ou código (CCA3)
+> Country search was optimized to support search by name or code (CCA3)
 
-> 🔗 Link da API (RestCountries): https://restcountries.com/  
-> 🔗 Link da API (Open-Meteo): https://open-meteo.com/
+> 🔗 API Link (RestCountries): https://restcountries.com/  
+> 🔗 API Link (Open-Meteo): https://open-meteo.com/
 
-### Persistência de Dados (Room + DataStore)
-Utilizei Room para dados estruturados (favoritos) e DataStore para preferências do usuário (tema e idioma)
+### Data Persistence (Room + DataStore)
+I used Room for structured data (favorites) and DataStore for user preferences (theme and language)
 
-### Gerenciamento de Estado de UI (UiState)
-Para lidar com os estados da tela (carregando, sucesso e erro), utilizei uma abordagem com sealed class (UiState) junto com StateFlow.
-Com isso, a interface reage automaticamente às mudanças de estado, deixando o código mais organizado e fácil de entender.
+### UI State Management (UiState)
+To handle screen states (loading, success, and error), I used an approach with sealed class (UiState) along with StateFlow.  
+With this, the UI automatically reacts to state changes, making the code more organized and easier to understand.
 
-### Carregamento de Imagens
-Utilizei a biblioteca Coil para carregar imagens das bandeiras via URL de forma assíncrona, garantindo uma experiência mais fluida e melhor desempenho na renderização das imagens.
+### Image Loading
+I used the Coil library to load flag images via URL asynchronously, ensuring a smoother experience and better performance in image rendering.
 
 ### Material 3
-Material 3 foi escolhido para manter um visual moderno e consistente, aproveitando componentes já bem estruturados.
+Material 3 was chosen to maintain a modern and consistent visual design, taking advantage of well-structured components.
 
-### Navegação entre Telas (Navigation)
-Para organizar a navegação entre as telas, utilizei o Navigation. Essa biblioteca facilita muito a definição de rotas e o gerenciamento da navegação.
+### Screen Navigation (Navigation)
+To organize navigation between screens, I used Navigation. This library greatly simplifies route definition and navigation management.
 
-## Maior Desafio
+## Biggest Challenge
 
-Utilizar o **Room** foi um pouco complicado no começo, já que eu tinha mais experiência com DataStore. Tive que aprender entidades, DAOs e migrations, o que me ajudou a entender melhor quando usar banco relacional.  
-> Curti muito as vantagens do Room, com certeza será meu preferencial em projetos futuros
+Using **Room** was a bit complicated at first, since I had more experience with DataStore. I had to learn entities, DAOs, and migrations, which helped me better understand when to use a relational database.  
+> I really liked the advantages of Room, it will definitely be my preference in future projects  
 
-## Objetivo do Projeto
+## Project Goal
 
-Este projeto foi desenvolvido com o objetivo de:
+This project was developed with the goal of:
 
-* Praticar consumo de API REST  
-* Evoluir na construção de interfaces usando Jetpack Compose  
-* Melhorar a organização de código com MVVM  
-* Trabalhar melhor com gerenciamento de estado utilizando ViewModel e StateFlow  
-* Construir um projeto para portfólio  
+* Practicing REST API consumption  
+* Improving UI development using Jetpack Compose  
+* Improving code organization with MVVM  
+* Improving state management using ViewModel and StateFlow  
+* Building a portfolio project  
 
-## Contato
+## Contact
 
 🔗 [LinkedIn](https://www.linkedin.com/in/gblrodrigues/)
 
-## Aviso Legal
+## Disclaimer
 
-Este projeto foi desenvolvido exclusivamente para fins educacionais e de portfólio.
+This project was developed exclusively for educational and portfolio purposes.
 
-Os dados utilizados neste aplicativo são fornecidos por APIs públicas:  
-* Países: https://restcountries.com/
-* Clima: https://open-meteo.com/
+The data used in this application is provided by public APIs:  
+* Countries: https://restcountries.com/  
+* Weather: https://open-meteo.com/
