@@ -2,6 +2,7 @@ package com.gblrod.orbvault.di
 
 import com.gblrod.orbvault.data.countries.remote.api.CountriesAPI
 import com.gblrod.orbvault.data.weather.remote.api.WeatherAPI
+import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
@@ -55,6 +56,13 @@ val appModule = module {
     viewModel {
         ExploreViewModel(
             api = get()
+        )
+    }
+
+    viewModel {
+        QuizViewModel(
+            repository = get(),
+            userPreferencesRepository = get()
         )
     }
 

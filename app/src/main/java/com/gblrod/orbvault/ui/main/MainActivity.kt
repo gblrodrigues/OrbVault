@@ -27,6 +27,7 @@ import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.navigation.drawer.DrawerContent
 import com.gblrod.orbvault.navigation.mapRouteToNavigationUiState
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.CountryBottomSheet
+import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
@@ -53,13 +54,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val scope = rememberCoroutineScope()
-
             val navHostController = rememberNavController()
+
             val countriesViewModel: CountriesViewModel = koinViewModel()
             val exploreViewModel: ExploreViewModel = koinViewModel()
             val countryDetailsViewModel: CountryDetailsViewModel = koinViewModel()
             val themeViewModel: ThemeViewModel = koinViewModel()
             val languageViewModel: LanguageViewModel = koinViewModel()
+            val quizViewModel: QuizViewModel = koinViewModel()
 
             val theme by themeViewModel.theme.collectAsState()
             val selectedCode by countryDetailsViewModel.selectedCountryCode.collectAsState()
@@ -131,6 +133,7 @@ class MainActivity : ComponentActivity() {
                                     countriesViewModel = countriesViewModel,
                                     exploreViewModel = exploreViewModel,
                                     countryDetailsViewModel = countryDetailsViewModel,
+                                    quizViewModel = quizViewModel,
                                     snackbarHostState = snackbarHostState
                                 )
 

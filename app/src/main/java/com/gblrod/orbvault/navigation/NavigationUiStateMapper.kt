@@ -18,6 +18,7 @@ fun mapRouteToNavigationUiState(
     val titleRes = when (route) {
         Routes.Home.route -> R.string.topbar_home_title
         Routes.News.route -> R.string.topbar_news_title
+        Routes.Quiz.route -> R.string.topbar_quiz_title
         Routes.Explore.route -> R.string.topbar_explore_title
         Routes.Favorites.route -> R.string.topbar_favorite_title
         Routes.StatisticsList.route -> R.string.topbar_statistics_title

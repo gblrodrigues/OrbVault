@@ -6,6 +6,7 @@ import com.gblrod.orbvault.data.countries.local.room.migrations.MIGRATION_2_3
 import com.gblrod.orbvault.data.countries.repository.CountriesRepository
 import com.gblrod.orbvault.data.countries.repository.FavoriteRepository
 import com.gblrod.orbvault.data.weather.repository.WeatherRepository
+import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.data.QuizRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -45,6 +46,13 @@ val storageModule = module {
     single {
         FavoriteRepository(
             favoriteCountryDao = get()
+        )
+    }
+
+    // Repository (Quiz)
+    single {
+        QuizRepository(
+            api = get()
         )
     }
 }

@@ -5,6 +5,7 @@
     <string name="topbar_home_title">Home</string>
     <string name="topbar_explore_title">Explore</string>
     <string name="topbar_favorite_title">Favorites</string>
+    <string name="topbar_quiz_title">Quiz</string>
     <string name="topbar_populated_countries_title">Populous Countries</string>
     <string name="topbar_largest_countries_title">Largest Countries</string>
     <string name="topbar_random_country_title">Random Country</string>
@@ -75,6 +76,11 @@
     <string name="stats_ui_state_httpexception">Server error: %1$d</string>
     <string name="stats_ui_state_generic_error">Unable to load statistics.</string>
 
+    <!-- QuizUiState -->
+    <string name="quiz_ui_state_ioexception">No internet access. \nCheck your connection</string>
+    <string name="quiz_ui_state_httpexception">Server error: %1$d</string>
+    <string name="quiz_ui_state_generic_error">Error loading quiz questions.</string>
+
     <!-- Explore -->
     <string name="explore_screen_title">What to explore today?</string>
     <string name="explore_screen_sub_title">Select one of the options</string>
@@ -111,6 +117,25 @@
     <string name="favorite_list_details_one">Viewing %1$d favorited country</string>
     <string name="favorite_list_details">Viewing %1$d favorite countries</string>
     <string name="cd_favorite_back_button">Favorite Countries</string>
+
+    <!-- Quiz -->
+    <string name="quiz_next_question">Next question</string>
+    <string name="quiz_restart_question">Restart</string>
+    <string name="quiz_show_result">View result</string>
+    <string name="quiz_result_title">Congratulations!</string>
+    <string name="quiz_result_sub_title">You completed the countries quiz</string>
+    <string name="quiz_button_play_again">Play again</string>
+    <string name="quiz_button_return">Explore countries</string>
+    <string name="quiz_question_area">Which country has the largest area?</string>
+    <string name="quiz_question_area_result">%1$s is the largest country by area with %2$s km²</string>
+    <string name="quiz_question_population">Which country has the largest population?</string>
+    <string name="quiz_question_population_result">%1$s is the most populous country with %2$s inhabitants</string>
+    <string name="quiz_question_correct_label">Correct</string>
+    <string name="quiz_question_incorrect_label">Incorrect</string>
+    <string name="quiz_best_progress">Best score: %1$d%% (%2$d/%3$d)</string>
+    <string name="quiz_title_result_progress">You score</string>
+    <string name="quiz_result_progress">%1$d%%</string>
+    <string name="quiz_progress">%1$d / %2$d</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Choose a theme</string>

@@ -75,8 +75,10 @@ Desenvolvi o projeto para colocar em prática o consumo de APIs, gerenciamento d
   * Exploração de países organizados por continente
 * Comparação entre países (em Desenvolvimento)
   * Comparação de dados entre até 2 países
-* Quiz geográfico (em Desenvolvimento)
-  * Perguntas gerais sobre países
+* Quiz geográfico  
+  * Perguntas dinâmicas usando dados reais dos países (área e população)  
+  * Feedback ao responder, indicando a alternativa correta  
+  * Resultado final com a pontuação do usuário  
 * Acesso rápido aos países favoritos
 
 ### Favorites
