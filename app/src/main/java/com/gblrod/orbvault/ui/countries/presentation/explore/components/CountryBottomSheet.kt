@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.components.CardCountryDetails
 import com.gblrod.orbvault.ui.countries.presentation.state.CountriesUiState
@@ -40,6 +39,8 @@ fun CountryBottomSheet(
             scrimColor = Color.Transparent
         ) {
             when (val state = countryState) {
+
+                is CountriesUiState.Idle -> {}
 
                 is CountriesUiState.Loading -> {
                     BottomSheetLoading()
@@ -72,13 +73,11 @@ fun CountryBottomSheet(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = stringResource(id = R.string.neighbors_error),
+                            text = stringResource(id = state.messageResId),
                             color = MaterialTheme.colorScheme.error
                         )
                     }
                 }
-
-                else -> {}
             }
         }
     }

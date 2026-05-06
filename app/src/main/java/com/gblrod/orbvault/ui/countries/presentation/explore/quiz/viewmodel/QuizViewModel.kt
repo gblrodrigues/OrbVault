@@ -12,7 +12,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import okio.IOException
+import java.io.IOException
+import retrofit2.HttpException
+import kotlin.coroutines.cancellation.CancellationException
 
 class QuizViewModel(
     private val repository: QuizRepository,
@@ -47,13 +49,20 @@ class QuizViewModel(
                     _quizUiState.value = QuizUiState.Success(questions = questions)
                 }
 
+            } catch (e: HttpException) {
+                _quizUiState.value =
+                    QuizUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = e.code()
+                    )
             } catch (e: IOException) {
                 _quizUiState.value =
-                    QuizUiState.Error(messageResId = R.string.quiz_ui_state_ioexception)
+                    QuizUiState.Error(messageResId = R.string.ui_state_io_exception)
 
             } catch (e: Exception) {
+                if (e is CancellationException) throw e
                 _quizUiState.value =
-                    QuizUiState.Error(messageResId = R.string.quiz_ui_state_httpexception)
+                    QuizUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }

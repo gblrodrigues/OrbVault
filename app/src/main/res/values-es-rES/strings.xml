@@ -37,7 +37,7 @@
     <string name="button_retry">Intentar otra vez</string>
     <string name="button_next_random_country">Siguiente</string>
     <string name="button_return_random_country">Anterior</string>
-    <string name="button_explore_countries">Explorar países"</string>
+    <string name="button_explore_countries">Explorar países</string>
 
     <!-- CountryOptionsMenu -->
     <string name="dropdown_menu_item_weather_title">Ver el Clima</string>
@@ -55,30 +55,12 @@
     <!-- OutlinedTextField -->
     <string name="outlined_text_field_placeholder">Ex: Brasil</string>
 
-    <!-- CountriesUiState-->
-    <string name="countries_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
-    <string name="countries_ui_state_httpexception">Error do servidor: %1$d</string>
-    <string name="countries_ui_state_generic_error">¡Ha ocurrido un error inesperado!</string>
+    <!-- UiState -->
+    <string name="ui_state_io_exception">Sin conexión a Internet. \nVerifica tu conexión.</string>
+    <string name="ui_state_http_exception">Error do servidor: %1$d</string>
+    <string name="ui_state_generic_error">¡Ha ocurrido un error inesperado!</string>
     <string name="countries_ui_state_not_found">País no encontrado</string>
-
-    <!-- WeatherUiState-->
-    <string name="weather_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
-    <string name="weather_ui_state_httpexception">Error do servidor: %1$d</string>
-    <string name="weather_ui_state_generic_error">¡Ha ocurrido un error inesperado!</string>
-
-    <!-- ExploreUiState -->
-    <string name="explore_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
-    <string name="explore_ui_state_httpexception">Error do servidor: %1$d</string>
-    <string name="explore_ui_state_generic_error">¡Ha ocurrido un error inesperado!</string>
-
-    <!-- StatsUiState -->
-    <string name="stats_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
-    <string name="stats_ui_state_httpexception">Error do servidor: %1$d</string>
     <string name="stats_ui_state_generic_error">No se pudieron cargar \nlas estadísticas.</string>
-
-    <!-- QuizUiState -->
-    <string name="quiz_ui_state_ioexception">Sin conexión a Internet. \nVerifica tu conexión.</string>
-    <string name="quiz_ui_state_httpexception">Error do servidor: %1$d</string>
     <string name="quiz_ui_state_generic_error">Error al cargar \nlas preguntas del quiz.</string>
 
     <!-- Explore -->
@@ -109,6 +91,7 @@
     <string name="country_details_label_currencies">Moneda</string>
     <string name="country_details_label_population">Población</string>
     <string name="country_details_label_timezone">Zona Horaria</string>
+    <string name="country_load_error">No se pudo cargar el país</string>
 
     <!-- Favorites -->
     <string name="favorite_list_label">Mi Museo</string>
@@ -192,6 +175,7 @@
     <string name="weather_label_wind">Viento</string>
     <string name="weather_wind_speed">%1$.0f km/h</string>
     <string name="weather_label_updated">Actualizado a las</string>
+    <string name="weather_load_error">No se pudo cargar el clima</string>
 
     <!-- Weather Description -->
     <string name="weather_clear_sky">Cielo despejado</string>

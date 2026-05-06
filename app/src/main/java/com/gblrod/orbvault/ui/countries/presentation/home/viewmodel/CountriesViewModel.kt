@@ -3,8 +3,8 @@ package com.gblrod.orbvault.ui.countries.presentation.home.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.data.countries.mapper.isCountryCode
+import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.data.countries.repository.CountriesRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.CountriesUiState
@@ -14,7 +14,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import okio.IOException
+import java.io.IOException
 import retrofit2.HttpException
 
 class CountriesViewModel(
@@ -62,10 +62,6 @@ class CountriesViewModel(
                         CountriesUiState.Error(R.string.countries_ui_state_not_found)
                 }
 
-            } catch (e: IOException) {
-                _countriesUiState.value =
-                    CountriesUiState.Error(messageResId = R.string.countries_ui_state_ioexception)
-
             } catch (e: HttpException) {
                 if (e.code() == 404) {
                     _countriesUiState.value =
@@ -73,15 +69,19 @@ class CountriesViewModel(
 
                 } else {
                     _countriesUiState.value = CountriesUiState.Error(
-                        messageResId = R.string.countries_ui_state_httpexception,
+                        messageResId = R.string.ui_state_http_exception,
                         code = e.code()
                     )
                 }
 
+            } catch (e: IOException) {
+                _countriesUiState.value =
+                    CountriesUiState.Error(messageResId = R.string.ui_state_io_exception)
+
             } catch (e: Exception) {
                 if (e is CancellationException) throw e
                 _countriesUiState.value =
-                    CountriesUiState.Error(messageResId = R.string.countries_ui_state_generic_error)
+                    CountriesUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -101,13 +101,18 @@ class CountriesViewModel(
 
             } catch (e: HttpException) {
                 _randomCountryUiState.value = RandomCountryUiState.Error(
-                    messageResId = R.string.explore_ui_state_httpexception,
+                    messageResId = R.string.ui_state_http_exception,
                     code = e.code()
                 )
 
             } catch (e: IOException) {
                 _randomCountryUiState.value =
-                    RandomCountryUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
+                    RandomCountryUiState.Error(messageResId = R.string.ui_state_io_exception)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _randomCountryUiState.value =
+                    RandomCountryUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -132,9 +137,20 @@ class CountriesViewModel(
                 val neighbors = repository.getBorders(country = country)
                 _bordersUiState.value = BordersUiState.Success(neighbors = neighbors)
 
-            } catch (e: Exception) {
+            } catch (e: HttpException) {
+                _bordersUiState.value = BordersUiState.Error(
+                    messageResId = R.string.ui_state_http_exception,
+                    code = e.code()
+                )
+
+            } catch (e: IOException) {
                 _bordersUiState.value =
-                    BordersUiState.Error(messageResId = R.string.countries_ui_state_httpexception)
+                    BordersUiState.Error(messageResId = R.string.ui_state_io_exception)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _bordersUiState.value =
+                    BordersUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -155,20 +171,21 @@ class CountriesViewModel(
                         RandomCountryUiState.Error(R.string.countries_ui_state_not_found)
                 }
 
-            } catch (e: IOException) {
-                _randomCountryUiState.value =
-                    RandomCountryUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
-
             } catch (e: HttpException) {
                 _randomCountryUiState.value =
                     RandomCountryUiState.Error(
-                        messageResId = R.string.countries_ui_state_httpexception,
+                        messageResId = R.string.ui_state_http_exception,
                         code = e.code()
                     )
 
-            } catch (e: Exception) {
+            } catch (e: IOException) {
                 _randomCountryUiState.value =
-                    RandomCountryUiState.Error(messageResId = R.string.countries_ui_state_httpexception)
+                    RandomCountryUiState.Error(messageResId = R.string.ui_state_io_exception)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _randomCountryUiState.value =
+                    RandomCountryUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }

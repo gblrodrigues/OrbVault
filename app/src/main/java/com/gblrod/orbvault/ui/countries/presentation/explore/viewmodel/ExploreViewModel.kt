@@ -10,8 +10,9 @@ import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import okio.IOException
+import java.io.IOException
 import retrofit2.HttpException
+import kotlin.coroutines.cancellation.CancellationException
 
 class ExploreViewModel(
     private val api: CountriesAPI
@@ -44,13 +45,18 @@ class ExploreViewModel(
 
             } catch (e: HttpException) {
                 _exploreUiState.value = ExploreUiState.Error(
-                    messageResId = R.string.explore_ui_state_httpexception,
+                    messageResId = R.string.ui_state_http_exception,
                     code = e.code()
                 )
 
             } catch (e: IOException) {
                 _exploreUiState.value =
-                    ExploreUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
+                    ExploreUiState.Error(messageResId = R.string.ui_state_io_exception)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _exploreUiState.value =
+                    ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -71,13 +77,18 @@ class ExploreViewModel(
 
             } catch (e: HttpException) {
                 _exploreUiState.value = ExploreUiState.Error(
-                    messageResId = R.string.explore_ui_state_httpexception,
+                    messageResId = R.string.ui_state_http_exception,
                     code = e.code()
                 )
 
             } catch (e: IOException) {
                 _exploreUiState.value =
-                    ExploreUiState.Error(messageResId = R.string.explore_ui_state_ioexception)
+                    ExploreUiState.Error(messageResId = R.string.ui_state_io_exception)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _exploreUiState.value =
+                    ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -104,13 +115,18 @@ class ExploreViewModel(
 
             } catch (e: HttpException) {
                 _statsState.value = StatsUiState.Error(
-                    messageResId = R.string.stats_ui_state_httpexception,
+                    messageResId = R.string.ui_state_http_exception,
                     code = e.code()
                 )
 
             } catch (e: IOException) {
                 _statsState.value =
-                    StatsUiState.Error(messageResId = R.string.stats_ui_state_ioexception)
+                    StatsUiState.Error(messageResId = R.string.ui_state_io_exception)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _statsState.value =
+                    StatsUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }

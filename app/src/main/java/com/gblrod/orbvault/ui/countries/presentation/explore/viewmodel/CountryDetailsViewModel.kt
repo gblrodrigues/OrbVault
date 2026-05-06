@@ -14,6 +14,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.io.IOException
+import retrofit2.HttpException
+import kotlin.coroutines.cancellation.CancellationException
 
 class CountryDetailsViewModel(
     private val countriesRepository: CountriesRepository,
@@ -48,9 +51,20 @@ class CountryDetailsViewModel(
                     _countryDetailsUiState.value =
                         CountriesUiState.Error(messageResId = R.string.countries_ui_state_not_found)
                 }
-            } catch (e: Exception) {
+            } catch (e: HttpException) {
+                _countryDetailsUiState.value = CountriesUiState.Error(
+                    messageResId = R.string.ui_state_http_exception,
+                    code = e.code()
+                )
+
+            } catch (e: IOException) {
                 _countryDetailsUiState.value =
-                    CountriesUiState.Error(messageResId = R.string.countries_ui_state_ioexception)
+                    CountriesUiState.Error(messageResId = R.string.country_load_error)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _countryDetailsUiState.value =
+                    CountriesUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -61,9 +75,21 @@ class CountryDetailsViewModel(
             try {
                 val neighbors = countriesRepository.getBorders(country = country)
                 _bordersUiState.value = BordersUiState.Success(neighbors = neighbors)
-            } catch (e: Exception) {
+
+            } catch (e: HttpException) {
+                _bordersUiState.value = BordersUiState.Error(
+                    messageResId = R.string.ui_state_http_exception,
+                    code = e.code()
+                )
+
+            } catch (e: IOException) {
                 _bordersUiState.value =
-                    BordersUiState.Error(messageResId = R.string.countries_ui_state_httpexception)
+                    BordersUiState.Error(messageResId = R.string.neighbors_error)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _bordersUiState.value =
+                    BordersUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }

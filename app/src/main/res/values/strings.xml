@@ -37,7 +37,7 @@
     <string name="button_retry">Try to connect</string>
     <string name="button_next_random_country">Next</string>
     <string name="button_return_random_country">Previous</string>
-    <string name="button_explore_countries">Explore Countries"</string>
+    <string name="button_explore_countries">Explore Countries</string>
 
     <!-- CountryOptionsMenu -->
     <string name="dropdown_menu_item_weather_title">View weather</string>
@@ -55,30 +55,12 @@
     <!-- OutlinedTextField -->
     <string name="outlined_text_field_placeholder">Ex: Brasil</string>
 
-    <!-- CountriesUiState-->
-    <string name="countries_ui_state_ioexception">No internet access. \nCheck your connection</string>
-    <string name="countries_ui_state_httpexception">Server error: %1$d</string>
-    <string name="countries_ui_state_generic_error">An unexpected error occurred!</string>
+    <!-- UiState -->
+    <string name="ui_state_io_exception">No internet access. \nCheck your connection</string>
+    <string name="ui_state_http_exception">Server error: %1$d</string>
+    <string name="ui_state_generic_error">An unexpected error occurred!</string>
     <string name="countries_ui_state_not_found">Country not find</string>
-
-    <!-- WeatherUiState-->
-    <string name="weather_ui_state_ioexception">No internet access. \nCheck your connection</string>
-    <string name="weather_ui_state_httpexception">Server error: %1$d</string>
-    <string name="weather_ui_state_generic_error">An unexpected error occurred!</string>
-
-    <!-- ExploreUiState -->
-    <string name="explore_ui_state_ioexception">No internet access. \nCheck your connection</string>
-    <string name="explore_ui_state_httpexception">Server error: %1$d</string>
-    <string name="explore_ui_state_generic_error">An unexpected error occurred!</string>
-
-    <!-- StatsUiState -->
-    <string name="stats_ui_state_ioexception">No internet access. \nCheck your connection</string>
-    <string name="stats_ui_state_httpexception">Server error: %1$d</string>
     <string name="stats_ui_state_generic_error">Unable to load statistics.</string>
-
-    <!-- QuizUiState -->
-    <string name="quiz_ui_state_ioexception">No internet access. \nCheck your connection</string>
-    <string name="quiz_ui_state_httpexception">Server error: %1$d</string>
     <string name="quiz_ui_state_generic_error">Error loading quiz questions.</string>
 
     <!-- Explore -->
@@ -109,6 +91,7 @@
     <string name="country_details_label_currencies">Currency</string>
     <string name="country_details_label_population">Population</string>
     <string name="country_details_label_timezone">Timezone</string>
+    <string name="country_load_error">Failed to load country</string>
 
     <!-- Favorites -->
     <string name="favorite_list_label">My Museum</string>
@@ -192,6 +175,7 @@
     <string name="weather_label_wind">Wind</string>
     <string name="weather_wind_speed">%1$.0f mph</string>
     <string name="weather_label_updated">Updated at</string>
+    <string name="weather_load_error">Failed to load weather</string>
 
     <!-- Weather Description -->
     <string name="weather_clear_sky">Clear sky</string>

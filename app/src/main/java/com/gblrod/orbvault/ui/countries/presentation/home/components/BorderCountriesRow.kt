@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
 
 @Composable
@@ -54,7 +53,7 @@ fun BorderCountriesRow(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(id = R.string.neighbors_error),
+                    text = stringResource(id = bordersState.messageResId),
                     color = MaterialTheme.colorScheme.error
                 )
             }
