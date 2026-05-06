@@ -3,18 +3,31 @@ package com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
+import com.gblrod.orbvault.data.preferences.repository.UserPreferencesRepository
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.data.QuizRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.QuizUiState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import okio.IOException
 
 class QuizViewModel(
-    private val repository: QuizRepository
+    private val repository: QuizRepository,
+    private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
     private val _quizUiState = MutableStateFlow<QuizUiState>(QuizUiState.Idle)
     val quizUiState: StateFlow<QuizUiState> = _quizUiState
+
+    val bestScore = userPreferencesRepository.userPreferences
+        .map { it.bestScore }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = 0
+        )
 
     init {
         loadQuestions()
@@ -28,16 +41,19 @@ class QuizViewModel(
                 val questions = repository.getQuestions()
 
                 if (questions.isEmpty()) {
-                    _quizUiState.value = QuizUiState.Error(messageResId = R.string.quiz_ui_state_generic_error)
+                    _quizUiState.value =
+                        QuizUiState.Error(messageResId = R.string.quiz_ui_state_generic_error)
                 } else {
                     _quizUiState.value = QuizUiState.Success(questions = questions)
                 }
 
             } catch (e: IOException) {
-                _quizUiState.value = QuizUiState.Error(messageResId = R.string.quiz_ui_state_ioexception)
+                _quizUiState.value =
+                    QuizUiState.Error(messageResId = R.string.quiz_ui_state_ioexception)
 
             } catch (e: Exception) {
-                _quizUiState.value = QuizUiState.Error(messageResId = R.string.quiz_ui_state_httpexception)
+                _quizUiState.value =
+                    QuizUiState.Error(messageResId = R.string.quiz_ui_state_httpexception)
             }
         }
     }
@@ -82,6 +98,10 @@ class QuizViewModel(
         val currentState = _quizUiState.value
 
         if (currentState !is QuizUiState.Success) return
+
+        viewModelScope.launch {
+            userPreferencesRepository.saveBestScore(score = currentState.score)
+        }
 
         _quizUiState.value = QuizUiState.Result(
             score = currentState.score,

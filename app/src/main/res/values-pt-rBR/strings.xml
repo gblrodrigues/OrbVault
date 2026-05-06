@@ -125,13 +125,17 @@
     <string name="quiz_result_title">Parabéns!</string>
     <string name="quiz_result_sub_title">Você concluiu o quiz de países</string>
     <string name="quiz_button_play_again">Jogar novamente</string>
-    <string name="quiz_button_return">Voltar</string>
+    <string name="quiz_button_return">Explorar países</string>
     <string name="quiz_question_area">Qual país tem a maior área?</string>
     <string name="quiz_question_area_result">%1$s é o maior país em área com %2$s km²</string>
     <string name="quiz_question_population">Qual país tem a maior população?</string>
     <string name="quiz_question_population_result">%1$s é o país mais populoso com %2$s habitantes</string>
     <string name="quiz_question_correct_label">Correto</string>
     <string name="quiz_question_incorrect_label">Incorreto</string>
+    <string name="quiz_best_progress">Melhor pontuação: %1$d%% (%2$d/%3$d)</string>
+    <string name="quiz_title_result_progress">Sua pontuação</string>
+    <string name="quiz_result_progress">%1$d%%</string>
+    <string name="quiz_progress">%1$d / %2$d</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Escolha um tema</string>

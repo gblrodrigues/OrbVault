@@ -61,7 +61,8 @@ val appModule = module {
 
     viewModel {
         QuizViewModel(
-            repository = get()
+            repository = get(),
+            userPreferencesRepository = get()
         )
     }
 

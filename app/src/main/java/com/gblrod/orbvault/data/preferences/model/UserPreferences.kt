@@ -5,5 +5,6 @@ import com.gblrod.orbvault.ui.theme.ThemeOptions
 
 data class UserPreferences(
     val theme: ThemeOptions = ThemeOptions.SYSTEM,
-    val language: LanguageOptions? = null
+    val language: LanguageOptions? = null,
+    val bestScore: Int = 0
 )
