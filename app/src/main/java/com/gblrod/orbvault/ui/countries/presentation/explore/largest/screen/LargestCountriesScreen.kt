@@ -1,6 +1,7 @@
 package com.gblrod.orbvault.ui.countries.presentation.explore.largest.screen
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
@@ -16,7 +17,13 @@ fun LargestCountriesScreen(
     exploreViewModel: ExploreViewModel,
     countryDetailsViewModel: CountryDetailsViewModel
 ) {
-    val uiState by exploreViewModel.exploreUiState.collectAsState()
+
+    LaunchedEffect(Unit) {
+        exploreViewModel.fetchTopLargestCountries()
+    }
+
+    val uiState by exploreViewModel.largestCountriesState.collectAsState()
+    val favorites by countryDetailsViewModel.favorites.collectAsState()
 
     when (val state = uiState) {
 
@@ -28,8 +35,9 @@ fun LargestCountriesScreen(
 
         is ExploreUiState.Success -> {
             LargestCountriesList(
-                exploreViewModel = exploreViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
+                countryDetailsViewModel = countryDetailsViewModel,
+                countries = state.countries,
+                favorites = favorites
             )
         }
 

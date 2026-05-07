@@ -7,7 +7,8 @@ sealed class ExploreUiState {
     object Loading : ExploreUiState()
 
     data class Success(
-        val countries: List<CountriesDto>
+        val countries: List<CountriesDto>,
+        val totalCountries: Int
     ) : ExploreUiState()
 
     data class GlobalStatsSucess(

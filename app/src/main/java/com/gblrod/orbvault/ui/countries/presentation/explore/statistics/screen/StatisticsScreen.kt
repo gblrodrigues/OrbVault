@@ -37,7 +37,7 @@ fun StatisticsScreen(
             if (isCompact) {
                 ErrorMessage(
                     message = stringResource(id = R.string.stats_ui_state_generic_error),
-                    onRetry = { exploreViewModel.fetchAllCountries() }
+                    onRetry = { exploreViewModel.fetchCountriesStats() }
                 )
             } else {
                 val message = if (state.code == null) {
@@ -48,7 +48,7 @@ fun StatisticsScreen(
 
                 ErrorMessage(
                     message = message,
-                    onRetry = { exploreViewModel.fetchAllCountries() }
+                    onRetry = { exploreViewModel.fetchCountriesStats() }
                 )
             }
         }

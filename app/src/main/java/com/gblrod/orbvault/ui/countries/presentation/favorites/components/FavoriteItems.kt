@@ -1,23 +1,15 @@
 package com.gblrod.orbvault.ui.countries.presentation.favorites.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DeleteSweep
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
@@ -25,7 +17,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,15 +31,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
+import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
-import com.gblrod.orbvault.ui.shared.components.FavoriteButton
-import com.gblrod.orbvault.ui.shared.components.TopList
+import com.gblrod.orbvault.ui.shared.components.CountryCard
 
 @Composable
 fun FavoriteItems(
@@ -100,22 +88,12 @@ fun FavoriteItems(
                 .padding(horizontal = 16.dp)
         ) {
             item {
-                Column(
+                ScreenHeader(
+                    primaryValue = primaryValue,
+                    secondValue = secondValue,
+                    colorCustom = colorCustom,
                     modifier = Modifier.padding(vertical = 8.dp)
-                ) {
-                    Text(
-                        text = primaryValue,
-                        fontSize = 30.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                    Text(
-                        text = secondValue,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = colorCustom
-                    )
-                }
+                )
             }
 
             items(
@@ -169,55 +147,23 @@ fun FavoriteItems(
                     },
                     enableDismissFromStartToEnd = false
                 ) {
-                    Card(
+                    CountryCard(
+                        flag = country.flagUrl,
+                        nameCommon = country.name,
+                        nameOfficial = country.official,
+                        isFavorite = true,
+                        onClick = {
+                            viewModel.onCountrySelected(code = country.code)
+                            onClick(country.code)
+                        },
+                        onFavoriteClick = {
+                            val index = favorites.indexOfFirst { it.code == country.code }
+
+                            pendingRemoval = country to index
+                            viewModel.removeFavoriteByCode(country.code)
+                        },
                         modifier = modifier
-                            .clickable {
-                                viewModel.onCountrySelected(code = country.code)
-                                onClick(country.code)
-                            },
-                        shape = RoundedCornerShape(16.dp),
-                        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(16.dp)
-                        ) {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically,
-                            ) {
-                                AsyncImage(
-                                    model = country.flagUrl,
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .size(72.dp)
-                                        .clip(shape = RoundedCornerShape(16.dp))
-                                )
-
-                                Spacer(modifier = Modifier.width(16.dp))
-
-                                Column(
-                                    modifier = Modifier.weight(1f)
-                                ) {
-                                    TopList(
-                                        country = country.name,
-                                        official = country.official
-                                    )
-                                }
-
-                                FavoriteButton(
-                                    isFavorite = true,
-                                    modifier = Modifier.align(Alignment.Top),
-                                    onClick = {
-                                        val index =
-                                            favorites.indexOfFirst { it.code == country.code }
-
-                                        pendingRemoval = country to index
-                                        viewModel.removeFavoriteByCode(country.code)
-                                    }
-                                )
-                            }
-                        }
-                    }
+                    )
                 }
             }
         }

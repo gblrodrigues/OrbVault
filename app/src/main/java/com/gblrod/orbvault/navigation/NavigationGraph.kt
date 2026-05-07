@@ -9,6 +9,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.gblrod.orbvault.ui.countries.presentation.explore.all.screen.AllCountriesScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.largest.screen.LargestCountriesScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.navigation.newsRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.populated.screen.PopulatedCountriesScreen
@@ -49,7 +50,6 @@ fun NavigationGraph(
             ExploreScreen(
                 navHostController = navHostController,
                 exploreViewModel = exploreViewModel,
-                countriesViewModel = countriesViewModel,
                 countryDetailsViewModel = countryDetailsViewModel
             )
         }
@@ -78,6 +78,13 @@ fun NavigationGraph(
 
         composable(route = Routes.LargestCountries.route) {
             LargestCountriesScreen(
+                exploreViewModel = exploreViewModel,
+                countryDetailsViewModel = countryDetailsViewModel
+            )
+        }
+
+        composable(route = Routes.AllCountries.route) {
+            AllCountriesScreen(
                 exploreViewModel = exploreViewModel,
                 countryDetailsViewModel = countryDetailsViewModel
             )

@@ -1,11 +1,11 @@
-package com.gblrod.orbvault.ui.countries.presentation.explore.populated.screen
+package com.gblrod.orbvault.ui.countries.presentation.explore.all.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
-import com.gblrod.orbvault.ui.countries.presentation.explore.populated.components.PopulatedCountriesList
+import com.gblrod.orbvault.ui.countries.presentation.explore.all.components.AllCountriesList
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
@@ -13,32 +13,21 @@ import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 
 @Composable
-fun PopulatedCountriesScreen(
+fun AllCountriesScreen(
     exploreViewModel: ExploreViewModel,
     countryDetailsViewModel: CountryDetailsViewModel
 ) {
 
     LaunchedEffect(Unit) {
-        exploreViewModel.fetchTopPopulatedCountries()
+        exploreViewModel.fetchAllCountries()
     }
 
-    val uiState by exploreViewModel.topPopulatedState.collectAsState()
-    val favorites by countryDetailsViewModel.favorites.collectAsState()
+    val uiState by exploreViewModel.allCountriesState.collectAsState()
 
-    when (val state = uiState) {
-
-        is ExploreUiState.GlobalStatsSucess -> {}
+    when(val state = uiState) {
 
         is ExploreUiState.Loading -> {
             LoadingScreen()
-        }
-
-        is ExploreUiState.Success -> {
-            PopulatedCountriesList(
-                countries = state.countries,
-                favorites = favorites,
-                countryDetailsViewModel = countryDetailsViewModel
-            )
         }
 
         is ExploreUiState.Error -> {
@@ -50,8 +39,18 @@ fun PopulatedCountriesScreen(
 
             ErrorMessage(
                 message = message,
-                onRetry = { exploreViewModel.fetchTopPopulatedCountries() }
+                onRetry = { exploreViewModel.fetchAllCountries() }
             )
         }
+
+        is ExploreUiState.Success -> {
+            AllCountriesList(
+                exploreViewModel = exploreViewModel,
+                countryDetailsViewModel = countryDetailsViewModel,
+                countriesSize = state.totalCountries
+            )
+        }
+
+        is ExploreUiState.GlobalStatsSucess -> {}
     }
 }

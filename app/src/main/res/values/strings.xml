@@ -68,11 +68,11 @@
     <string name="explore_screen_sub_title">Select one of the options</string>
     <string name="explore_title_top10_populated_contries">Populous countries</string>
     <string name="explore_title_top10_largest_contries">Largest countries</string>
+    <string name="explore_title_all_countries">All Countries</string>
     <string name="explore_title_random_country">Random country</string>
     <string name="explore_news_title">News</string>
-    <string name="explore_news_more_infos">See all</string>
+    <string name="explore_show_all_items">View all</string>
     <string name="explore_statistics_title">Quick Stats</string>
-    <string name="explore_statistics_more_infos">See more</string>
 
     <!-- Home -->
     <string name="home_screen_title">Discover a country</string>
@@ -145,6 +145,10 @@
     <string name="populated_country_label_explore">Exploring</string>
     <string name="populated_country_label_explore_top10">Top 10 most populous countries</string>
     <string name="populated_country_label_population">Population</string>
+
+    <!-- AllCountries -->
+    <string name="all_countries_label_explore">Exploring</string>
+    <string name="all_countries_label">All the %1$d countries</string>
 
     <!-- News -->
     <string name="news_label_explore">Exploring</string>

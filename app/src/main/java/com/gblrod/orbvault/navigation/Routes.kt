@@ -38,4 +38,8 @@ sealed class Routes(
     object Quiz : Routes(
         route = "quiz"
     )
+
+    object AllCountries : Routes(
+        route = "allcountries"
+    )
 }

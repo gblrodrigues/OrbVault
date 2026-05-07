@@ -68,11 +68,11 @@
     <string name="explore_screen_sub_title">Seleccione una de las opciones</string>
     <string name="explore_title_top10_populated_contries">Países más poblados</string>
     <string name="explore_title_top10_largest_contries">Países más grandes</string>
+    <string name="explore_title_all_countries">Todos los Países</string>
     <string name="explore_title_random_country">País Aleatorio</string>
     <string name="explore_news_title">Novedades</string>
-    <string name="explore_news_more_infos">Ver todo</string>
+    <string name="explore_show_all_items">Exibir todo</string>
     <string name="explore_statistics_title">Estadísticas rápidas</string>
-    <string name="explore_statistics_more_infos">Ver más</string>
 
     <!-- Home -->
     <string name="home_screen_title">Descubre un país</string>
@@ -145,6 +145,10 @@
     <string name="populated_country_label_explore">Explorando</string>
     <string name="populated_country_label_explore_top10">Descubriendo los TOP 10 países más poblados</string>
     <string name="populated_country_label_population">Población</string>
+
+    <!-- AllCountries -->
+    <string name="all_countries_label_explore">Explorando</string>
+    <string name="all_countries_label">Todos los %1$d países</string>
 
     <!-- News -->
     <string name="news_label_explore">Explorando</string>

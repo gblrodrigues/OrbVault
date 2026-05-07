@@ -31,12 +31,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizActionButton
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizFeedbackCard
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizOptionCard
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizResultCard
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.QuizUiState
+import com.gblrod.orbvault.ui.shared.components.ActionButton
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 import com.gblrod.orbvault.ui.theme.ButtonNext
@@ -175,34 +175,41 @@ fun QuizScreen(
                 }
                 Spacer(modifier = Modifier.height(16.dp))
 
-                if (state.answered) {
-                    if (currentQuestion < questionSize) {
-                        QuizActionButton(
-                            text = stringResource(id = R.string.quiz_next_question),
-                            onClick = { quizViewModel.nextQuestion() },
-                            color = ButtonNext,
-                            icon = Icons.AutoMirrored.Filled.ArrowForward,
-                            iconAtEnd = true
-                        )
-                    } else {
-                        QuizActionButton(
-                            text = stringResource(id = R.string.quiz_show_result),
-                            onClick = {
-                                quizViewModel.finish()
-                            },
-                            color = ButtonResult,
-                            icon = Icons.Default.Poll
+                Column(
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
+                    if (state.answered) {
+                        if (currentQuestion < questionSize) {
+                            ActionButton(
+                                text = stringResource(id = R.string.quiz_next_question),
+                                onClick = {
+                                    quizViewModel.nextQuestion()
+                                },
+                                color = ButtonNext,
+                                icon = Icons.AutoMirrored.Filled.ArrowForward,
+                                iconAtEnd = true
+                            )
+                        } else {
+                            ActionButton(
+                                text = stringResource(id = R.string.quiz_show_result),
+                                onClick = {
+                                    quizViewModel.finish()
+                                },
+                                color = ButtonResult,
+                                icon = Icons.Default.Poll
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(4.dp))
+                    }
+
+                    if (quizStarted) {
+                        ActionButton(
+                            text = stringResource(id = R.string.quiz_restart_question),
+                            onClick = { quizViewModel.restart() },
+                            color = ButtonRestart,
+                            icon = Icons.Default.Restore
                         )
                     }
-                    Spacer(modifier = Modifier.height(4.dp))
-                }
-                if (quizStarted) {
-                    QuizActionButton(
-                        text = stringResource(id = R.string.quiz_restart_question),
-                        onClick = { quizViewModel.restart() },
-                        color = ButtonRestart,
-                        icon = Icons.Default.Restore
-                    )
                 }
             }
         }

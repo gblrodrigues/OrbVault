@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
@@ -24,11 +25,15 @@ fun InfoRow(
             text = "$label: ",
             color = MaterialTheme.colorScheme.onSurface,
             fontWeight = FontWeight.SemiBold,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
             modifier = Modifier.width(labelWidth)
         )
 
         Text(
             text = value,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
             color = MaterialTheme.colorScheme.inverseSurface
         )
     }

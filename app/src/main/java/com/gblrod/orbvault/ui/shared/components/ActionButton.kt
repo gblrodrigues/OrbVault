@@ -1,7 +1,8 @@
-package com.gblrod.orbvault.ui.countries.presentation.explore.random.components
+package com.gblrod.orbvault.ui.shared.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +13,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,33 +23,23 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ButtonCountryRandomDetails(
+fun ActionButton(
     modifier: Modifier = Modifier,
-    value: String,
+    text: String,
     icon: ImageVector,
     onClick: () -> Unit,
-    horizontalArrangement: Arrangement.Horizontal,
-    colors: Color,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.Center,
+    contentPadding: PaddingValues = PaddingValues(horizontal = 16.dp),
     previewReturnCountry: Boolean = true,
-    iconAtEnd: Boolean = false
+    iconAtEnd: Boolean = false,
+    color: Color,
+    border: BorderStroke? = null
 ) {
-    Button(
-        onClick = onClick,
-        enabled = previewReturnCountry,
-        shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(
-            width = 2.dp,
-            color = MaterialTheme.colorScheme.onSurface
-        ),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = colors
-        ),
-        modifier = modifier
-    ) {
+    val buttonContent: @Composable () -> Unit = {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp),
+                .padding(paddingValues = contentPadding),
             horizontalArrangement = horizontalArrangement,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -62,7 +54,7 @@ fun ButtonCountryRandomDetails(
             }
 
             Text(
-                text = value,
+                text = text,
                 color = MaterialTheme.colorScheme.onSurface
             )
 
@@ -75,6 +67,29 @@ fun ButtonCountryRandomDetails(
                     tint = MaterialTheme.colorScheme.onSurface
                 )
             }
+        }
+    }
+    if (border != null) {
+        OutlinedButton(
+            onClick = onClick,
+            modifier = modifier,
+            enabled = previewReturnCountry,
+            shape = RoundedCornerShape(16.dp),
+            border = border,
+            colors = ButtonDefaults.buttonColors(containerColor = color),
+            content = {
+                buttonContent()
+            }
+        )
+    } else {
+        Button(
+            onClick = onClick,
+            modifier = modifier,
+            enabled = previewReturnCountry,
+            shape = RoundedCornerShape(16.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = color)
+        ) {
+            buttonContent()
         }
     }
 }

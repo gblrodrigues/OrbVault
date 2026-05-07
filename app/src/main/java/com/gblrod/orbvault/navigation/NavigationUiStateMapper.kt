@@ -22,6 +22,7 @@ fun mapRouteToNavigationUiState(
         Routes.Explore.route -> R.string.topbar_explore_title
         Routes.Favorites.route -> R.string.topbar_favorite_title
         Routes.StatisticsList.route -> R.string.topbar_statistics_title
+        Routes.AllCountries.route -> R.string.explore_title_all_countries
         Routes.RandomCountry.route -> R.string.topbar_random_country_title
         Routes.LargestCountries.route -> R.string.topbar_largest_countries_title
         Routes.PopulatedCountries.route -> R.string.topbar_populated_countries_title

@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,10 +18,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
-import com.gblrod.orbvault.ui.theme.ButtonNext
+import com.gblrod.orbvault.ui.shared.components.ActionButton
 import com.gblrod.orbvault.ui.theme.ButtonRestart
 import com.gblrod.orbvault.ui.theme.QuizCardCorrectQuestion
 import com.gblrod.orbvault.ui.theme.QuizIntermediateQuestions
@@ -116,21 +118,29 @@ fun QuizResultCard(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            QuizActionButton(
-                text = stringResource(id = R.string.quiz_button_play_again),
-                onClick = onRestart,
-                color = ButtonRestart,
-                icon = Icons.Default.Refresh
-            )
+            Column(
+                modifier = Modifier.padding(horizontal = 16.dp)
+            ) {
+                ActionButton(
+                    text = stringResource(id = R.string.quiz_button_play_again),
+                    onClick = onRestart,
+                    color = ButtonRestart,
+                    icon = Icons.Default.Refresh
+                )
 
-            Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(4.dp))
 
-            QuizActionButton(
-                text = stringResource(id = R.string.quiz_button_return),
-                onClick = onExit,
-                color = ButtonNext,
-                icon = Icons.Default.Explore
-            )
+                ActionButton(
+                    text = stringResource(id = R.string.quiz_button_return),
+                    onClick = onExit,
+                    color = Color.Transparent,
+                    icon = Icons.Default.Explore,
+                    border = BorderStroke(
+                        width = 2.dp,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                )
+            }
         }
     }
 }
