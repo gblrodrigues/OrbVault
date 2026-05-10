@@ -14,7 +14,7 @@ import com.gblrod.orbvault.ui.theme.YellowActions
 fun FavoritesScreen(
     countryDetailsViewModel: CountryDetailsViewModel,
     snackbarHostState: SnackbarHostState,
-    onNavigateHome: () -> Unit
+    onNavigateExplore: () -> Unit
 ) {
     val favorites by countryDetailsViewModel.favorites.collectAsState()
     val secondValue = when {
@@ -41,8 +41,6 @@ fun FavoritesScreen(
             }
         },
         snackbarHostState = snackbarHostState,
-        onNavigateHome = {
-            onNavigateHome()
-        }
+        onNavigateExplore = { onNavigateExplore() }
     )
 }

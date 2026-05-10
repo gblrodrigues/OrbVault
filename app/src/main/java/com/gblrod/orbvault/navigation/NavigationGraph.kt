@@ -58,7 +58,7 @@ fun NavigationGraph(
             FavoritesScreen(
                 countryDetailsViewModel = countryDetailsViewModel,
                 snackbarHostState = snackbarHostState,
-                onNavigateHome = {
+                onNavigateExplore = {
                     navHostController.navigate(route = Routes.Explore.route) {
                         popUpTo(navHostController.graph.findStartDestination().id) {
                             inclusive = false
