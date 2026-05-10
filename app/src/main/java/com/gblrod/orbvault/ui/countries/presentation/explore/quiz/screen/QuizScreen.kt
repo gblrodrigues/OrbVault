@@ -53,12 +53,9 @@ fun QuizScreen(
                 score = state.score,
                 total = state.total,
                 bestScore = bestScore,
-                onRestart = {
-                    quizViewModel.restart()
-                },
-                onExit = {
-                    navHostController.popBackStack()
-                }
+                onRestart = { quizViewModel.restart() },
+                onExit = { navHostController.popBackStack() },
+                quizViewModel = quizViewModel
             )
         }
 

@@ -34,7 +34,7 @@ val PinkActions = Color(0xFFA604EE)
 val OrangeActions = Color(0xFFF38E00)
 
 val QuizCorrectBackground = Color(0xFF67A22A)
-val QuizCardCorrectQuestion = Color(0xFF13CE31)
+val QuizCardCorrectQuestion = Color(0xFF11AD38)
 val QuizCorrectText = Color(0xFF7FE769)
 val QuizIncorrectBackground = Color(0xFFC0311F)
 val QuizIncorrectText = Color(0xFFFF6B6B)

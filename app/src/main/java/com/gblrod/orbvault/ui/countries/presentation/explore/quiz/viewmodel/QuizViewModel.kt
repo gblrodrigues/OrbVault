@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.io.IOException
 import retrofit2.HttpException
+import java.io.IOException
 import kotlin.coroutines.cancellation.CancellationException
 
 class QuizViewModel(
@@ -116,5 +116,11 @@ class QuizViewModel(
             score = currentState.score,
             total = currentState.questions.size
         )
+    }
+
+    fun resetBestScore() {
+        viewModelScope.launch {
+            userPreferencesRepository.resetScore()
+        }
     }
 }

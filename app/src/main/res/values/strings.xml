@@ -119,6 +119,10 @@
     <string name="quiz_title_result_progress">You score</string>
     <string name="quiz_result_progress">%1$d%%</string>
     <string name="quiz_progress">Question %1$d of %2$d</string>
+    <string name="quiz_alert_dialog_title">Reset progress</string>
+    <string name="quiz_alert_dialog_description">Do you want to reset your current best score of %1$d%%?</string>
+    <string name="quiz_alert_dialog_confirm">Reset</string>
+    <string name="quiz_alert_dialog_dismiss">Cancel</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Choose a theme</string>

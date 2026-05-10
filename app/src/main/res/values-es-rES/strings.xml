@@ -119,6 +119,10 @@
     <string name="quiz_title_result_progress">Tu puntuación</string>
     <string name="quiz_result_progress">%1$d%%</string>
     <string name="quiz_progress">Pregunta %1$d de %2$d</string>
+    <string name="quiz_alert_dialog_title">Restablecer progreso</string>
+    <string name="quiz_alert_dialog_description">¿Deseas restablecer tu mejor puntuación actual de %1$d%%?</string>
+    <string name="quiz_alert_dialog_confirm">Restablecer</string>
+    <string name="quiz_alert_dialog_dismiss">Cancel</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Selecciona un tema</string>
