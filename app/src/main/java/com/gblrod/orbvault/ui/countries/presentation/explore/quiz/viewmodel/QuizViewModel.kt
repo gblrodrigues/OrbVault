@@ -23,6 +23,7 @@ class QuizViewModel(
     private val _quizUiState = MutableStateFlow<QuizUiState>(QuizUiState.Idle)
     val quizUiState: StateFlow<QuizUiState> = _quizUiState
 
+    private var lastBestScore: Int? = null
     val bestScore = userPreferencesRepository.userPreferences
         .map { it.bestScore }
         .stateIn(
@@ -118,9 +119,18 @@ class QuizViewModel(
         )
     }
 
-    fun resetBestScore() {
+    fun resetBestScore(currentScore: Int? = null) {
         viewModelScope.launch {
+            lastBestScore = currentScore
             userPreferencesRepository.resetScore()
+        }
+    }
+    fun undoResetBestScore() {
+        viewModelScope.launch {
+            lastBestScore?.let {
+                userPreferencesRepository.restoreBestScore(it)
+                lastBestScore = null
+            }
         }
     }
 }

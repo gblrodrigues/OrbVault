@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.ui.countries.presentation.explore.quiz.navigation
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -9,12 +10,14 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.Quiz
 
 fun NavGraphBuilder.quizRoute(
     navHostController: NavHostController,
-    quizViewModel: QuizViewModel
+    quizViewModel: QuizViewModel,
+    snackbarHostState: SnackbarHostState
 ) {
     composable(route = Routes.Quiz.route) {
         QuizScreen(
             navHostController = navHostController,
-            quizViewModel = quizViewModel
+            quizViewModel = quizViewModel,
+            snackbarHostState = snackbarHostState
         )
     }
 }

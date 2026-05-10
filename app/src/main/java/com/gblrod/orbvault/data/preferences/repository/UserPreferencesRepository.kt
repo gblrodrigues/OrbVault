@@ -61,4 +61,10 @@ class UserPreferencesRepository(
             prefs[best_score] = 0
         }
     }
+
+    suspend fun restoreBestScore(score: Int) {
+        dataStore.edit { prefs ->
+            prefs[best_score] = score
+        }
+    }
 }

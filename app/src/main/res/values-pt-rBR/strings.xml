@@ -201,7 +201,8 @@
 
     <!-- SnackBar -->
     <string name="snackbar_country_message_removed">%1$s removido dos favoritos</string>
-    <string name="snackbar_country_actionLabel">Desfazer</string>
+    <string name="snackbar_action_label">Desfazer</string>
+    <string name="snackbar_quiz_message_reseted">Melhor pontuação resetado</string>
 
     <!-- News Features -->
     <string name="new_feature_coming_soon">Em breve</string>
