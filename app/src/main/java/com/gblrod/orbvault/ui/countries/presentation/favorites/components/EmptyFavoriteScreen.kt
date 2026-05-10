@@ -31,7 +31,7 @@ import com.gblrod.orbvault.ui.theme.ButtonExploreCountries
 @Composable
 fun EmptyFavoriteScreen(
     modifier: Modifier = Modifier,
-    onNavigateHome: () -> Unit
+    onNavigateExplore: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -67,9 +67,7 @@ fun EmptyFavoriteScreen(
         Spacer(modifier = Modifier.height(12.dp))
 
         Button(
-            onClick = {
-                onNavigateHome()
-            },
+            onClick = { onNavigateExplore() },
             shape = RoundedCornerShape(16.dp),
             border = BorderStroke(
                 width = 2.dp,

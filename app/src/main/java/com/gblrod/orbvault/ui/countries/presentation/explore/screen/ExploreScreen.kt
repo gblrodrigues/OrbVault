@@ -105,7 +105,7 @@ fun ExploreScreen(
             StatisticsScreen(
                 exploreViewModel = exploreViewModel,
                 countryDetailsViewModel = countryDetailsViewModel,
-                isCompact = true
+                showDetailedError = false
             )
         }
     }

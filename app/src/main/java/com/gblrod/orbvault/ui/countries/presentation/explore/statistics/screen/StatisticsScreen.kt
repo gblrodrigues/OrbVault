@@ -3,9 +3,8 @@ package com.gblrod.orbvault.ui.countries.presentation.explore.statistics.screen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.res.stringResource
-import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.components.CountriesHighlights
+import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.extensions.getErrorMessage
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
@@ -16,7 +15,7 @@ import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 fun StatisticsScreen(
     exploreViewModel: ExploreViewModel,
     countryDetailsViewModel: CountryDetailsViewModel,
-    isCompact: Boolean = false
+    showDetailedError: Boolean = true
 ) {
     val uiState by exploreViewModel.statsState.collectAsState()
     when (val state = uiState) {
@@ -34,23 +33,11 @@ fun StatisticsScreen(
         }
 
         is StatsUiState.Error -> {
-            if (isCompact) {
-                ErrorMessage(
-                    message = stringResource(id = R.string.stats_ui_state_generic_error),
-                    onRetry = { exploreViewModel.fetchCountriesStats() }
-                )
-            } else {
-                val message = if (state.code == null) {
-                    stringResource(id = state.messageResId)
-                } else {
-                    stringResource(id = state.messageResId, state.code)
-                }
 
-                ErrorMessage(
-                    message = message,
-                    onRetry = { exploreViewModel.fetchCountriesStats() }
-                )
-            }
+            ErrorMessage(
+                message = state.getErrorMessage(showDetailedError = showDetailedError),
+                onRetry = { exploreViewModel.fetchCountriesStats() }
+            )
         }
     }
 }

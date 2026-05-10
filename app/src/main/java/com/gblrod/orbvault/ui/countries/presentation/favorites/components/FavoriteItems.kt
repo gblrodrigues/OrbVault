@@ -47,7 +47,7 @@ fun FavoriteItems(
     colorCustom: Color,
     onClick: (String?) -> Unit,
     snackbarHostState: SnackbarHostState,
-    onNavigateHome: () -> Unit
+    onNavigateExplore: () -> Unit
 ) {
     val favorites by viewModel.favorites.collectAsState()
     var pendingRemoval by remember { mutableStateOf<Pair<FavoriteCountry, Int>?>(null) }
@@ -77,9 +77,7 @@ fun FavoriteItems(
 
     if (favorites.isEmpty()) {
         EmptyFavoriteScreen(
-            onNavigateHome = {
-                onNavigateHome()
-            }
+            onNavigateExplore = { onNavigateExplore() }
         )
     } else {
         LazyColumn(
