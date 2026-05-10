@@ -108,7 +108,8 @@ fun NavigationGraph(
 
         quizRoute(
             navHostController = navHostController,
-            quizViewModel = quizViewModel
+            quizViewModel = quizViewModel,
+            snackbarHostState = snackbarHostState
         )
     }
 }

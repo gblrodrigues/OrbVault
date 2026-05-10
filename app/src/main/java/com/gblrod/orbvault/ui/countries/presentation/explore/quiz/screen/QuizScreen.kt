@@ -3,6 +3,7 @@ package com.gblrod.orbvault.ui.countries.presentation.explore.quiz.screen
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -23,7 +24,8 @@ import com.gblrod.orbvault.ui.shared.components.LoadingScreen
 @Composable
 fun QuizScreen(
     navHostController: NavHostController,
-    quizViewModel: QuizViewModel
+    quizViewModel: QuizViewModel,
+    snackbarHostState: SnackbarHostState
 ) {
     val uiState by quizViewModel.quizUiState.collectAsState()
     val bestScore by quizViewModel.bestScore.collectAsState()
@@ -53,12 +55,10 @@ fun QuizScreen(
                 score = state.score,
                 total = state.total,
                 bestScore = bestScore,
-                onRestart = {
-                    quizViewModel.restart()
-                },
-                onExit = {
-                    navHostController.popBackStack()
-                }
+                onRestart = { quizViewModel.restart() },
+                onExit = { navHostController.popBackStack() },
+                quizViewModel = quizViewModel,
+                snackbarHostState = snackbarHostState
             )
         }
 

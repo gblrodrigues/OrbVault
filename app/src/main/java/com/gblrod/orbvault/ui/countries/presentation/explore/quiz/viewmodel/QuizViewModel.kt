@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.io.IOException
 import retrofit2.HttpException
+import java.io.IOException
 import kotlin.coroutines.cancellation.CancellationException
 
 class QuizViewModel(
@@ -23,6 +23,7 @@ class QuizViewModel(
     private val _quizUiState = MutableStateFlow<QuizUiState>(QuizUiState.Idle)
     val quizUiState: StateFlow<QuizUiState> = _quizUiState
 
+    private var lastBestScore: Int? = null
     val bestScore = userPreferencesRepository.userPreferences
         .map { it.bestScore }
         .stateIn(
@@ -116,5 +117,20 @@ class QuizViewModel(
             score = currentState.score,
             total = currentState.questions.size
         )
+    }
+
+    fun resetBestScore(currentScore: Int? = null) {
+        viewModelScope.launch {
+            lastBestScore = currentScore
+            userPreferencesRepository.resetScore()
+        }
+    }
+    fun undoResetBestScore() {
+        viewModelScope.launch {
+            lastBestScore?.let {
+                userPreferencesRepository.restoreBestScore(it)
+                lastBestScore = null
+            }
+        }
     }
 }

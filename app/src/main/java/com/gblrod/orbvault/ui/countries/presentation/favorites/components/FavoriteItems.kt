@@ -52,7 +52,7 @@ fun FavoriteItems(
     val favorites by viewModel.favorites.collectAsState()
     var pendingRemoval by remember { mutableStateOf<Pair<FavoriteCountry, Int>?>(null) }
 
-    val snackbarActionLabel = stringResource(id = R.string.snackbar_country_actionLabel)
+    val snackbarActionLabel = stringResource(id = R.string.snackbar_action_label)
     val snackbarMessage = pendingRemoval?.let {
         stringResource(id = R.string.snackbar_country_message_removed, it.first.name)
     }

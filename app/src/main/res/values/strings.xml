@@ -119,6 +119,10 @@
     <string name="quiz_title_result_progress">You score</string>
     <string name="quiz_result_progress">%1$d%%</string>
     <string name="quiz_progress">Question %1$d of %2$d</string>
+    <string name="quiz_alert_dialog_title">Reset progress</string>
+    <string name="quiz_alert_dialog_description">Do you want to reset your current best score of %1$d%%?</string>
+    <string name="quiz_alert_dialog_confirm">Reset</string>
+    <string name="quiz_alert_dialog_dismiss">Cancel</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Choose a theme</string>
@@ -197,7 +201,8 @@
 
     <!-- SnackBar -->
     <string name="snackbar_country_message_removed">%1$s removed from favorites</string>
-    <string name="snackbar_country_actionLabel">Undo</string>
+    <string name="snackbar_action_label">Undo</string>
+    <string name="snackbar_quiz_message_reseted">Best score reseted</string>
 
     <!-- News Features -->
     <string name="new_feature_coming_soon">Coming Soon</string>
