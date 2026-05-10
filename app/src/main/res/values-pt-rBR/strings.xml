@@ -100,7 +100,7 @@
     <string name="favorite_list_details_one">Visualizando %1$d país favoritado</string>
     <string name="favorite_list_details">Visualizando %1$d países favoritados</string>
     <string name="cd_favorite_back_button">Favoritar Países</string>
-    
+
     <!-- Quiz -->
     <string name="quiz_next_question">Próxima pergunta</string>
     <string name="quiz_restart_question">Reiniciar</string>
@@ -119,6 +119,10 @@
     <string name="quiz_title_result_progress">Sua pontuação</string>
     <string name="quiz_result_progress">%1$d%%</string>
     <string name="quiz_progress">Pergunta %1$d de %2$d</string>
+    <string name="quiz_alert_dialog_title">Resetar progresso</string>
+    <string name="quiz_alert_dialog_description">Deseja resetar a sua melhor pontuação atual de %1$d%%?</string>
+    <string name="quiz_alert_dialog_confirm">Resetar</string>
+    <string name="quiz_alert_dialog_dismiss">Cancelar</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Escolha um tema</string>
@@ -197,7 +201,8 @@
 
     <!-- SnackBar -->
     <string name="snackbar_country_message_removed">%1$s removido dos favoritos</string>
-    <string name="snackbar_country_actionLabel">Desfazer</string>
+    <string name="snackbar_action_label">Desfazer</string>
+    <string name="snackbar_quiz_message_reseted">Melhor pontuação resetado</string>
 
     <!-- News Features -->
     <string name="new_feature_coming_soon">Em breve</string>

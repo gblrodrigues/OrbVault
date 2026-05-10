@@ -119,6 +119,10 @@
     <string name="quiz_title_result_progress">Tu puntuación</string>
     <string name="quiz_result_progress">%1$d%%</string>
     <string name="quiz_progress">Pregunta %1$d de %2$d</string>
+    <string name="quiz_alert_dialog_title">Restablecer progreso</string>
+    <string name="quiz_alert_dialog_description">¿Deseas restablecer tu mejor puntuación actual de %1$d%%?</string>
+    <string name="quiz_alert_dialog_confirm">Restablecer</string>
+    <string name="quiz_alert_dialog_dismiss">Cancel</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Selecciona un tema</string>
@@ -197,7 +201,8 @@
 
     <!-- SnackBar -->
     <string name="snackbar_country_message_removed">%1$s eliminado de favoritos</string>
-    <string name="snackbar_country_actionLabel">Deshacer</string>
+    <string name="snackbar_action_label">Deshacer</string>
+    <string name="snackbar_quiz_message_reseted">Mejor puntuación redefinido</string>
 
     <!-- News Features -->
     <string name="new_feature_coming_soon">Próximamente</string>
