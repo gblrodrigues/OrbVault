@@ -6,7 +6,7 @@ I developed this project to put into practice API consumption, state management,
 
 - [Technologies](#technologies-used)  
 - [Features](#features)  
-- [Demo](#demo)  
+- [Preview](#preview)  
 - [Technical Decisions](#technical-decisions)
 - [Biggest Challenge](#biggest-challenge)
 - [Project Goal](#project-goal)  
@@ -57,8 +57,9 @@ I developed this project to put into practice API consumption, state management,
 * Integration with Open-Meteo API using multi-service architecture  
 
 ### Explore
-* Top 10 most populous countries  
-* Top 10 largest countries (by area)  
+* Top 10 most populous countries (by population)
+* Top 10 largest countries (by area)
+* Complete countries catalog with lazy pagination
 * Random country with the possibility of generating new results  
 * Display of details in BottomSheet for a better navigation experience without leaving the main screen  
 * Navigation between different exploration categories  
@@ -70,7 +71,7 @@ I developed this project to put into practice API consumption, state management,
   * Largest country by area  
 * Opening details via BottomSheet (without navigation)  
 
-#### Upcoming
+#### Upcoming (Explore)
 * Countries by Region (In Development)
   * Exploration of countries organized by continent  
 * Country comparison (In Development)
@@ -78,7 +79,8 @@ I developed this project to put into practice API consumption, state management,
 * Geographic quiz  
   * Dynamic questions using real country data (area and population)  
   * Feedback when answering, indicating the correct alternative  
-  * Final result with the user's score  
+  * Final result with the user's score
+  * Best score with persistence using DataStore
 * Quick access to favorite countries  
 
 ### Favorites
@@ -100,10 +102,19 @@ I developed this project to put into practice API consumption, state management,
   * Persistence of user choice via DataStore  
   * Automatic detection of device language with fallback to `English`  
 
-## Demo
+## Preview
+### Main Screens
+<img src="https://github.com/user-attachments/assets/0656b22f-e89c-4276-891c-b2f0997960c8" width="250"/>
+<img src="https://github.com/user-attachments/assets/12dc5a28-77a9-400d-b704-06bf9ed99354" width="250"/>
+<img src="https://github.com/user-attachments/assets/20d353b2-8fcc-49f2-9eec-68dcbb87ad8e" width="250"/>
+
+### Quiz
+<img src="https://github.com/user-attachments/assets/d2616df3-545e-421b-b42d-a3cb3d16d6cd" width="250"/>
+<img src="https://github.com/user-attachments/assets/9db43b7b-faa1-4428-9f9c-c8eabb7dbc5d" width="250"/>
+<img src="https://github.com/user-attachments/assets/81210455-64af-40e1-bd6c-f55131da84cb" width="250"/>
 
 Below I will provide a video showing how the application looks:  
-> https://github.com/user-attachments/assets/9e4a6441-a460-424f-adda-3446ab282dd8
+> https://github.com/user-attachments/assets/e68c7a3b-53a9-4cbe-b6e0-b7bc2283094d
 
 ## Technical Decisions
 
@@ -133,7 +144,7 @@ I applied optimizations such as:
 > 🔗 API Link (Open-Meteo): https://open-meteo.com/
 
 ### Data Persistence (Room + DataStore)
-I used Room for structured data (favorites) and DataStore for user preferences (theme and language)
+I used Room for structured data (favorites) and DataStore for user preferences (theme, language and quiz `bestScore`)
 
 ### UI State Management (UiState)
 To handle screen states (loading, success, and error), I used an approach with sealed class (UiState) along with StateFlow.  
