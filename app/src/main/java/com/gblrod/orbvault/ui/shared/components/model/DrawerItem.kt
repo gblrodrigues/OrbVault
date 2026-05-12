@@ -1,8 +1,8 @@
-package com.gblrod.orbvault.navigation.drawer
+package com.gblrod.orbvault.ui.shared.components.model
 
 import androidx.compose.ui.graphics.vector.ImageVector
 
-class DrawerItem(
+data class DrawerItem(
     val label: String,
     val icon: ImageVector,
     val route: String

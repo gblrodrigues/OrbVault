@@ -36,7 +36,7 @@ import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
 import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
-import com.gblrod.orbvault.ui.shared.components.CountryCard
+import com.gblrod.orbvault.ui.shared.components.country.CountryCard
 
 @Composable
 fun FavoriteItems(

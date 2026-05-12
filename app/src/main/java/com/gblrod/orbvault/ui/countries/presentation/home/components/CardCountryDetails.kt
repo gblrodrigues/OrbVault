@@ -43,8 +43,8 @@ import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.countries.actions.MapOpener
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
-import com.gblrod.orbvault.ui.shared.components.CountryOptionsMenu
-import com.gblrod.orbvault.ui.shared.components.FavoriteButton
+import com.gblrod.orbvault.ui.shared.components.country.CountryOptionsMenu
+import com.gblrod.orbvault.ui.shared.components.country.FavoriteButton
 import com.gblrod.orbvault.ui.shared.components.InfoRow
 import com.gblrod.orbvault.ui.shared.components.TopList
 import com.gblrod.orbvault.ui.weather.WeatherBottomSheet
@@ -232,9 +232,7 @@ fun CardCountryDetails(
             country = country,
             weatherViewModel = weatherViewModel,
             countryDetailsViewModel = countryDetailsViewModel,
-            onDismiss = {
-                showWeatherSheet = false
-            }
+            onDismiss = { showWeatherSheet = false }
         )
     }
 }

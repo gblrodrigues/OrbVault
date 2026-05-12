@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.shared.components
+package com.gblrod.orbvault.ui.shared.components.country
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.gblrod.orbvault.ui.shared.components.TopList
 
 @Composable
 fun CountryCard(
