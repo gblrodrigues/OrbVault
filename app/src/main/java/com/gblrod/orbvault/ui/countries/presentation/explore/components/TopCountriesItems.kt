@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
 import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
-import com.gblrod.orbvault.ui.shared.components.CountryCard
+import com.gblrod.orbvault.ui.shared.components.country.CountryCard
 import com.gblrod.orbvault.ui.shared.components.InfoRow
 import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 

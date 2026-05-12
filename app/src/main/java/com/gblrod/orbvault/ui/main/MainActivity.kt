@@ -24,7 +24,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gblrod.orbvault.core.manager.LanguageManager
 import com.gblrod.orbvault.navigation.NavigationGraph
-import com.gblrod.orbvault.navigation.drawer.DrawerContent
+import com.gblrod.orbvault.ui.shared.components.drawer.DrawerContent
 import com.gblrod.orbvault.navigation.mapRouteToNavigationUiState
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.CountryBottomSheet
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
@@ -32,7 +32,7 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDe
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.language.viewmodel.LanguageViewModel
-import com.gblrod.orbvault.ui.shared.components.BottomBar
+import com.gblrod.orbvault.ui.shared.components.bottom.BottomBar
 import com.gblrod.orbvault.ui.shared.components.TopBar
 import com.gblrod.orbvault.ui.theme.ThemeConfigDefault
 import com.gblrod.orbvault.ui.theme.viewmodel.ThemeViewModel

@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.shared.components
+package com.gblrod.orbvault.ui.shared.components.country
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star

@@ -1,5 +1,7 @@
-package com.gblrod.orbvault.navigation.drawer
+package com.gblrod.orbvault.ui.shared.components.drawer
 
+import android.app.Activity
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -39,9 +42,12 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.R
+import com.gblrod.orbvault.core.manager.LanguageManager
 import com.gblrod.orbvault.core.utils.orDeviceDefault
 import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.ui.language.viewmodel.LanguageViewModel
+import com.gblrod.orbvault.ui.shared.components.model.DrawerItem
+import com.gblrod.orbvault.ui.shared.components.model.DrawerPreferenceItem
 import com.gblrod.orbvault.ui.theme.ThemeOptions
 import com.gblrod.orbvault.ui.theme.viewmodel.ThemeViewModel
 
@@ -55,9 +61,13 @@ fun DrawerContent(
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
     var showThemeDialog by remember { mutableStateOf(false) }
     var showLanguageDialog by remember { mutableStateOf(false) }
+
     val theme = themeViewModel.theme.collectAsState().value ?: ThemeOptions.SYSTEM
     val language = languageViewModel.language.collectAsState().value
+
     val effectiveLanguage = language.orDeviceDefault()
+    val activity = LocalActivity.current as Activity
+    val context = LocalContext.current
 
     val items = listOf(
         DrawerItem(
@@ -161,83 +171,45 @@ fun DrawerContent(
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
-        NavigationDrawerItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Palette,
-                    contentDescription = stringResource(id = R.string.drawer_item_themes_cd),
-                    tint = MaterialTheme.colorScheme.onSurface
-                )
-            },
-            label = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.drawer_item_themes),
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                    Text(
-                        text = stringResource(id = theme.label),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-            },
-            selected = false,
-            onClick = {
-                showThemeDialog = true
-            },
-            shape = RoundedCornerShape(16.dp)
+        DrawerPreferenceItem(
+            title = stringResource(id = R.string.drawer_item_themes),
+            label =  stringResource(id = theme.label),
+            icon = Icons.Default.Palette,
+            contentDescription = stringResource(id = R.string.drawer_item_themes_cd),
+            onClick = { showThemeDialog = true }
         )
+
         if (showThemeDialog) {
             ThemeMenu(
-                themeViewModel = themeViewModel,
-                onDismiss = {
-                    showThemeDialog = false
-                }
+                selectedTheme = theme,
+                onThemeSelected = { theme ->
+                    themeViewModel.setTheme(theme = theme)
+                },
+                onDismiss = { showThemeDialog = false }
             )
         }
 
-        NavigationDrawerItem(
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.Language,
-                    contentDescription = stringResource(id = R.string.drawer_item_languages_cd),
-                    tint = MaterialTheme.colorScheme.onSurface
-                )
-            },
-            label = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.drawer_item_languages),
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                    Text(
-                        text = stringResource(id = effectiveLanguage.label),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                }
-            },
-            selected = false,
-            onClick = {
-                showLanguageDialog = true
-            },
-            shape = RoundedCornerShape(16.dp)
+        DrawerPreferenceItem(
+            title = stringResource(id = R.string.drawer_item_languages),
+            label =  stringResource(id = effectiveLanguage.label),
+            icon = Icons.Default.Language,
+            contentDescription = stringResource(id = R.string.drawer_item_languages_cd),
+            onClick = { showLanguageDialog = true }
         )
+
         if (showLanguageDialog) {
             LanguageMenu(
-                languageViewModel = languageViewModel,
-                onDismiss = {
-                    showLanguageDialog = false
-                }
+                selectedLanguage = effectiveLanguage,
+                onLanguageSelected = { language ->
+                    languageViewModel.setLanguage(language)
+
+                    LanguageManager.persistLanguage(
+                        context = context,
+                        language = language
+                    )
+                    activity.recreate()
+                },
+                onDismiss = { showLanguageDialog = false }
             )
         }
     }
