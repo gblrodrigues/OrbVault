@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.shared.components
+package com.gblrod.orbvault.ui.shared.components.bottom
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.height
@@ -23,7 +23,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.Routes
-import com.gblrod.orbvault.navigation.bottom.BottomItem
+import com.gblrod.orbvault.ui.shared.components.model.BottomItem
 import com.gblrod.orbvault.ui.theme.NavigationSelected
 
 @Composable

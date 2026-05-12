@@ -20,7 +20,7 @@ import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
-import com.gblrod.orbvault.ui.shared.components.CountryCard
+import com.gblrod.orbvault.ui.shared.components.country.CountryCard
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
