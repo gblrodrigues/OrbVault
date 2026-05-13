@@ -13,8 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizActions
-import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizQuestionCard
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizProgress
+import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizQuestionCard
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.components.QuizResultCard
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.QuizUiState
@@ -46,7 +46,7 @@ fun QuizScreen(
 
             ErrorMessage(
                 message = message,
-                onRetry = { quizViewModel.restart() }
+                onRetry = { quizViewModel.retry() }
             )
         }
 

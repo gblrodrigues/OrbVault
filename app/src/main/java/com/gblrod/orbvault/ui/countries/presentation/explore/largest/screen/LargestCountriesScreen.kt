@@ -50,7 +50,7 @@ fun LargestCountriesScreen(
 
             ErrorMessage(
                 message = message,
-                onRetry = { exploreViewModel.fetchTopLargestCountries() }
+                onRetry = { exploreViewModel.allRetry() }
             )
         }
     }

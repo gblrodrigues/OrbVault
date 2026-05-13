@@ -50,7 +50,7 @@ fun PopulatedCountriesScreen(
 
             ErrorMessage(
                 message = message,
-                onRetry = { exploreViewModel.fetchTopPopulatedCountries() }
+                onRetry = { exploreViewModel.allRetry() }
             )
         }
     }
