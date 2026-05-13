@@ -39,7 +39,7 @@ fun AllCountriesScreen(
 
             ErrorMessage(
                 message = message,
-                onRetry = { exploreViewModel.fetchAllCountries() }
+                onRetry = { exploreViewModel.allRetry() }
             )
         }
 

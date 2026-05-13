@@ -91,7 +91,7 @@ fun HomeScreen(
                 countryQuery = countryQuery,
                 onQueryChange = { newQuery -> countryQuery = newQuery },
                 bordersState = bordersState,
-                onRetry = { countriesViewModel.fetchCountry(countryQuery) },
+                onRetry = { countriesViewModel.retryLastRequest() },
                 onFetchBorders = { borders ->
                     countryDetailsViewModel.fetchBorders(country = borders)
                 },

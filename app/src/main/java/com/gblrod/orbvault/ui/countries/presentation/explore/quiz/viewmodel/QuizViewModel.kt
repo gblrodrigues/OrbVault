@@ -119,6 +119,10 @@ class QuizViewModel(
         )
     }
 
+    fun retry() {
+        loadQuestions()
+    }
+
     fun resetBestScore(currentScore: Int? = null) {
         viewModelScope.launch {
             lastBestScore = currentScore

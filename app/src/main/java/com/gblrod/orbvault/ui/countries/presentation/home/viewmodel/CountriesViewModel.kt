@@ -37,8 +37,14 @@ class CountriesViewModel(
     private val _previewReturnCountry = MutableStateFlow(false)
     val previewReturnCountry: StateFlow<Boolean> = _previewReturnCountry
 
+    private var lastRequest: (() -> Unit)? = null
+
     fun fetchCountry(country: String?) {
         if (country.isNullOrBlank()) return
+
+        lastRequest = {
+            fetchCountry(country)
+        }
 
         job?.cancel()
 
@@ -87,6 +93,10 @@ class CountriesViewModel(
     }
 
     fun fetchRandomCountry() {
+        lastRequest = {
+            fetchRandomCountry()
+        }
+
         viewModelScope.launch {
             _randomCountryUiState.value = RandomCountryUiState.Loading
 
@@ -130,6 +140,10 @@ class CountriesViewModel(
     }
 
     fun fetchBorders(country: CountriesDto) {
+        lastRequest = {
+            fetchBorders(country)
+        }
+
         viewModelScope.launch {
             _bordersUiState.value = BordersUiState.Loading
 
@@ -156,6 +170,10 @@ class CountriesViewModel(
     }
 
     fun fetchCountryForRandom(code: String) {
+        lastRequest = {
+            fetchCountryForRandom(code)
+        }
+
         viewModelScope.launch {
             _randomCountryUiState.value = RandomCountryUiState.Loading
             _bordersUiState.value = BordersUiState.Idle
@@ -188,6 +206,14 @@ class CountriesViewModel(
                     RandomCountryUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
+    }
+
+    fun retryLastRequest() {
+        _countriesUiState.value = CountriesUiState.Loading
+        _randomCountryUiState.value = RandomCountryUiState.Loading
+        _bordersUiState.value = BordersUiState.Idle
+
+        lastRequest?.invoke()
     }
 
     fun clearCountry() {
