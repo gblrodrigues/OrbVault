@@ -36,7 +36,7 @@ fun StatisticsScreen(
 
             ErrorMessage(
                 message = state.getErrorMessage(showDetailedError = showDetailedError),
-                onRetry = { exploreViewModel.fetchCountriesStats() }
+                onRetry = { exploreViewModel.allRetry() }
             )
         }
     }
