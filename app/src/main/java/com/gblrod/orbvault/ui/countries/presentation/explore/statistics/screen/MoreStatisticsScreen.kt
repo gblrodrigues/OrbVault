@@ -49,7 +49,7 @@ fun MoreStatisticsScreen(
 
             ErrorMessage(
                 message = message,
-                onRetry = { exploreViewModel.fetchCountriesStats() }
+                onRetry = { exploreViewModel.allRetry() }
             )
         }
 

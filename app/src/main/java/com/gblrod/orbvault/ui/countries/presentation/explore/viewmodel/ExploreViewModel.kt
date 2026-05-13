@@ -225,4 +225,11 @@ class ExploreViewModel(
             }
         }
     }
+
+    fun allRetry() {
+        fetchAllCountries()
+        fetchTopLargestCountries()
+        fetchCountriesStats()
+        fetchTopPopulatedCountries()
+    }
 }
