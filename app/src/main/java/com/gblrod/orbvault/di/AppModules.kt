@@ -49,7 +49,8 @@ val appModule = module {
     viewModel {
         CountryDetailsViewModel(
             countriesRepository = get(),
-            favoriteRepository = get()
+            favoriteRepository = get(),
+            recentCountryRepository = get()
         )
     }
 

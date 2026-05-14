@@ -2,9 +2,10 @@ package com.gblrod.orbvault.di
 
 import androidx.room.Room
 import com.gblrod.orbvault.data.countries.local.room.db.OrbVaultDataBase
-import com.gblrod.orbvault.data.countries.local.room.migrations.MIGRATION_2_3
+import com.gblrod.orbvault.data.countries.local.room.migrations.MIGRATION_3_4
 import com.gblrod.orbvault.data.countries.repository.CountriesRepository
 import com.gblrod.orbvault.data.countries.repository.FavoriteRepository
+import com.gblrod.orbvault.data.countries.repository.RecentCountryRepository
 import com.gblrod.orbvault.data.weather.repository.WeatherRepository
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.data.QuizRepository
 import org.koin.android.ext.koin.androidContext
@@ -33,19 +34,31 @@ val storageModule = module {
             klass = OrbVaultDataBase::class.java,
             name = "OrbVault.db"
         )
-            .addMigrations(MIGRATION_2_3)
+            .addMigrations(MIGRATION_3_4)
             .build()
     }
 
-    // Dao
+    // Dao (Favorites)
     single {
         get<OrbVaultDataBase>().favoriteCountryDao()
+    }
+
+    // Dao (Recent Countries)
+    single {
+        get<OrbVaultDataBase>().recentCountryDao()
     }
 
     // Repository (Favorites)
     single {
         FavoriteRepository(
             favoriteCountryDao = get()
+        )
+    }
+
+    // Repository (Recent Countries)
+    single {
+        RecentCountryRepository(
+            recentCountryDao = get()
         )
     }
 
