@@ -81,6 +81,9 @@
     <string name="neighbors_error">Error loading neighboring countries</string>
     <string name="neighbors_one_label">Neighbor</string>
     <string name="neighbors_more_label">Neighbors</string>
+    <string name="home_search_recent_country_title">Recently visited (%1$d)</string>
+    <string name="home_search_recent_country_show_all">Show all</string>
+    <string name="home_search_recent_country_show_default">Show less</string>
 
     <!-- CountryDetails -->
     <string name="country_details_label_capital">Capital</string>
