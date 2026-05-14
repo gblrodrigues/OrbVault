@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
+import com.gblrod.orbvault.data.countries.local.room.model.RecentCountry
 import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.data.countries.repository.CountriesRepository
 import com.gblrod.orbvault.data.countries.repository.FavoriteRepository
+import com.gblrod.orbvault.data.countries.repository.RecentCountryRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.CountriesUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,13 +16,14 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.io.IOException
 import retrofit2.HttpException
+import java.io.IOException
 import kotlin.coroutines.cancellation.CancellationException
 
 class CountryDetailsViewModel(
     private val countriesRepository: CountriesRepository,
-    private val favoriteRepository: FavoriteRepository
+    private val favoriteRepository: FavoriteRepository,
+    private val recentCountryRepository: RecentCountryRepository
 ) : ViewModel() {
     private val _countryDetailsUiState = MutableStateFlow<CountriesUiState>(CountriesUiState.Idle)
     val countryDetailsUiState: StateFlow<CountriesUiState> = _countryDetailsUiState
@@ -37,6 +40,12 @@ class CountryDetailsViewModel(
         initialValue = emptyList()
     )
 
+    val recentCountries = recentCountryRepository.getRecentCountries().stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = emptyList()
+    )
+
     fun fetchCountryByCode(code: String?) {
         viewModelScope.launch {
             _countryDetailsUiState.value =
@@ -45,6 +54,8 @@ class CountryDetailsViewModel(
             try {
                 val result = countriesRepository.fetchCountryByCode(code)
                 if (result != null) {
+                    saveRecentCountry(result)
+
                     _countryDetailsUiState.value =
                         CountriesUiState.Success(country = result, code = result)
                 } else {
@@ -132,6 +143,21 @@ class CountryDetailsViewModel(
 
         _selectedCountryCode.value = code
         fetchCountryByCode(code)
+    }
+
+    private suspend fun saveRecentCountry(
+        country: CountriesDto
+    ) {
+        recentCountryRepository.insertCountry(
+            RecentCountry(
+                code = country.cca3,
+                name = country.name.common,
+                official = country.name.official,
+                capital = country.capital?.firstOrNull(),
+                region = country.region,
+                flagUrl = country.flags.png
+            )
+        )
     }
 
     fun dismissBottomSheet() {
