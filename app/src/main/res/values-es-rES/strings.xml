@@ -81,6 +81,9 @@
     <string name="neighbors_error">Error al cargar países vecinos</string>
     <string name="neighbors_one_label">Vicino</string>
     <string name="neighbors_more_label">Vicinos</string>
+    <string name="home_search_recent_country_title">Visitado recientemente (%1$d)</string>
+    <string name="home_search_recent_country_show_all">Exibir todo</string>
+    <string name="home_search_recent_country_show_default">Exibir menos</string>
 
     <!-- CountryDetails -->
     <string name="country_details_label_capital">Capital</string>
