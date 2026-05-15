@@ -58,7 +58,7 @@ fun MoreStatisticsScreen(
             val totalPopulation = state.stats.totalPopulation
             val totalArea = state.stats.totalArea
 
-            val primaryValue = stringResource(id = R.string.statistics_label_explore)
+            val primaryValue = stringResource(id = R.string.common_label_explore)
             val secondValue = stringResource(id = R.string.statistics_label_description)
 
             Column(

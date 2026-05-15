@@ -37,7 +37,6 @@
     <string name="button_retry">Try to connect</string>
     <string name="button_next_random_country">Next</string>
     <string name="button_return_random_country">Previous</string>
-    <string name="button_explore_countries">Explore Countries</string>
 
     <!-- CountryOptionsMenu -->
     <string name="dropdown_menu_item_weather_title">View weather</string>
@@ -66,8 +65,8 @@
     <!-- Explore -->
     <string name="explore_screen_title">What to explore today?</string>
     <string name="explore_screen_sub_title">Select one of the options</string>
-    <string name="explore_title_top10_populated_contries">Populous countries</string>
-    <string name="explore_title_top10_largest_contries">Largest countries</string>
+    <string name="explore_title_top10_populated_countries">Populous countries</string>
+    <string name="explore_title_top10_largest_countries">Largest countries</string>
     <string name="explore_title_all_countries">All Countries</string>
     <string name="explore_title_random_country">Random country</string>
     <string name="explore_news_title">News</string>
@@ -111,7 +110,6 @@
     <string name="quiz_result_title">Congratulations!</string>
     <string name="quiz_result_sub_title">You completed the countries quiz</string>
     <string name="quiz_button_play_again">Play again</string>
-    <string name="quiz_button_return">Explore countries</string>
     <string name="quiz_question_area">Which country has the largest area?</string>
     <string name="quiz_question_area_result">%1$s is the largest country by area with %2$s km²</string>
     <string name="quiz_question_population">Which country has the largest population?</string>
@@ -124,41 +122,31 @@
     <string name="quiz_progress">Question %1$d of %2$d</string>
     <string name="quiz_alert_dialog_title">Reset progress</string>
     <string name="quiz_alert_dialog_description">Do you want to reset your current best score of %1$d%%?</string>
-    <string name="quiz_alert_dialog_confirm">Reset</string>
-    <string name="quiz_alert_dialog_dismiss">Cancel</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Choose a theme</string>
-    <string name="theme_dialog_confirm">Apply</string>
-    <string name="theme_dialog_dismiss">Cancel</string>
     <string name="theme_darkmode">Dark</string>
     <string name="theme_lightmode">Light</string>
     <string name="theme_system">System</string>
 
     <!-- Language -->
     <string name="language_dialog_title">Choose a language</string>
-    <string name="language_dialog_confirm">Apply</string>
-    <string name="language_dialog_dismiss">Cancel</string>
     <string name="language_english_label">English (United States)</string>
     <string name="language_portuguese_br_label">Português (Brasil)</string>
     <string name="language_espanhol_label">Español (España)</string>
 
     <!-- LargestCountries -->
-    <string name="largest_country_label_explore">Exploring</string>
     <string name="largest_country_label_explore_top10">Top 10 largest countries by area</string>
     <string name="largest_country_label_area">Area</string>
 
     <!-- PopulatedCountries -->
-    <string name="populated_country_label_explore">Exploring</string>
     <string name="populated_country_label_explore_top10">Top 10 most populous countries</string>
     <string name="populated_country_label_population">Population</string>
 
     <!-- AllCountries -->
-    <string name="all_countries_label_explore">Exploring</string>
     <string name="all_countries_label">All the %1$d countries</string>
 
     <!-- News -->
-    <string name="news_label_explore">Exploring</string>
     <string name="news_label_description">All the news</string>
     <string name="news_country_region_description">Browse countries by \ncontinent.</string>
     <string name="news_country_region_label">Countries by Region</string>
@@ -170,7 +158,6 @@
     <string name="news_my_favorites_description">Save countries to view later.</string>
 
     <!-- Statistics -->
-    <string name="statistics_label_explore">Exploring</string>
     <string name="statistics_label_description">Global Key Statistics</string>
     <string name="statistics_country_label">Countries \nworldwide</string>
     <string name="statistics_population_label">People \nworldwide</string>
@@ -199,13 +186,20 @@
     <string name="weather_unknown">Unknown</string>
 
     <!-- RandomCountry -->
-    <string name="random_country_label_explore">Exploring</string>
     <string name="random_country_label">Exploring a random country</string>
 
     <!-- SnackBar -->
     <string name="snackbar_country_message_removed">%1$s removed from favorites</string>
     <string name="snackbar_action_label">Undo</string>
-    <string name="snackbar_quiz_message_reseted">Best score reseted</string>
+    <string name="snackbar_quiz_message_reset">Best score reseted</string>
+
+    <!-- Explore Messages -->
+    <string name="common_label_explore">Explording</string>
+    <string name="action_explore_countries">Explore countries</string>
+
+    <!-- AlertDialog -->
+    <string name="dialog_action_confirm">Confirm</string>
+    <string name="dialog_action_dismiss">Cancel</string>
 
     <!-- News Features -->
     <string name="new_feature_coming_soon">Coming Soon</string>
