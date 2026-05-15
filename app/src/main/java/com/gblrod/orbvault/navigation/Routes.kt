@@ -42,4 +42,8 @@ sealed class Routes(
     object AllCountries : Routes(
         route = "allcountries"
     )
+
+    object Search : Routes(
+        route = "search"
+    )
 }

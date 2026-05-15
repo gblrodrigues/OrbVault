@@ -15,6 +15,16 @@ fun mapRouteToNavigationUiState(
     val isPrincipalScreen = route in principalScreens
     val showBackButton = !isPrincipalScreen
 
+    if (route == Routes.Search.route) {
+        return NavigationUiState(
+            titleRes = R.string.app_name,
+            showTopBar = false,
+            showBottomBar = false,
+            showDrawerIcon = false,
+            showBackButton = false
+        )
+    }
+
     val titleRes = when (route) {
         Routes.Home.route -> R.string.topbar_home_title
         Routes.News.route -> R.string.topbar_news_title
