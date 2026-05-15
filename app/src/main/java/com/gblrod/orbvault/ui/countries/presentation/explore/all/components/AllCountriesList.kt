@@ -16,7 +16,7 @@ fun AllCountriesList(
     AllCountriesItems(
         exploreViewModel = exploreViewModel,
         countryDetailsViewModel = countryDetailsViewModel,
-        primaryValue = stringResource(id = R.string.all_countries_label_explore),
+        primaryValue = stringResource(id = R.string.common_label_explore),
         secondValue = stringResource(
             id = R.string.all_countries_label,
             countriesSize),

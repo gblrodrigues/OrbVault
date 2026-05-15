@@ -38,7 +38,7 @@ fun QuizResultCard(
     snackbarHostState: SnackbarHostState
 ) {
     val snackbarAction = stringResource(id = R.string.snackbar_action_label)
-    val snackbarQuizMessage = stringResource(id = R.string.snackbar_quiz_message_reseted)
+    val snackbarQuizMessage = stringResource(id = R.string.snackbar_quiz_message_reset)
     val scope = rememberCoroutineScope()
 
     Column(
@@ -101,7 +101,7 @@ fun QuizResultCard(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 ActionButton(
-                    text = stringResource(id = R.string.quiz_button_return),
+                    text = stringResource(id = R.string.action_explore_countries),
                     onClick = onExit,
                     color = Color.Transparent,
                     icon = Icons.Default.Explore,

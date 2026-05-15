@@ -31,7 +31,7 @@ fun RandomCountryDetails(
     val hasPreview by countriesViewModel.previewReturnCountry.collectAsState()
 
     ScreenHeader(
-        primaryValue = stringResource(id = R.string.random_country_label_explore),
+        primaryValue = stringResource(id = R.string.common_label_explore),
         secondValue = stringResource(id = R.string.random_country_label),
         colorCustom = CountryRandom
     )

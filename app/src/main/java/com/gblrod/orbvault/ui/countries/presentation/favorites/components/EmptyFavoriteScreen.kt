@@ -86,7 +86,7 @@ fun EmptyFavoriteScreen(
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = stringResource(id = R.string.button_explore_countries),
+                text = stringResource(id = R.string.action_explore_countries),
                 color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 14.sp,
                 textAlign = TextAlign.Center,
