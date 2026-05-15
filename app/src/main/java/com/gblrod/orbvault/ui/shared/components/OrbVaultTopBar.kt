@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -20,10 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.NavigationUiState
+import com.gblrod.orbvault.navigation.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(
+fun OrbVaultTopBar(
     onOpenDrawer: () -> Unit,
     navHostController: NavHostController,
     navigationUiState: NavigationUiState
@@ -70,6 +72,18 @@ fun TopBar(
                         )
                     }
                 }
+            }
+        },
+        actions = {
+            IconButton(
+                onClick = { navHostController.navigate(route = Routes.Search.route) }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.size(28.dp)
+                )
             }
         }
     )

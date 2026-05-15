@@ -66,7 +66,7 @@ fun LanguageMenu(
             onLanguageSelected(currentSelection)
             onDismiss()
         },
-        confirmText = stringResource(id = R.string.language_dialog_confirm),
-        dismissText = stringResource(id = R.string.language_dialog_dismiss)
+        confirmText = stringResource(id = R.string.dialog_action_confirm),
+        dismissText = stringResource(id = R.string.dialog_action_dismiss)
     )
 }

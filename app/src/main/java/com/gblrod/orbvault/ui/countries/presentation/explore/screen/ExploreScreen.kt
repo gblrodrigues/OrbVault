@@ -41,7 +41,7 @@ fun ExploreScreen(
 
         item {
             CardExploreDetails(
-                title = stringResource(id = R.string.explore_title_top10_populated_contries).uppercase(),
+                title = stringResource(id = R.string.explore_title_top10_populated_countries).uppercase(),
                 background = R.drawable.explore_item_background,
                 onClick = {
                     navHostController.navigate(route = Routes.PopulatedCountries.route)
@@ -51,7 +51,7 @@ fun ExploreScreen(
 
         item {
             CardExploreDetails(
-                title = stringResource(id = R.string.explore_title_top10_largest_contries).uppercase(),
+                title = stringResource(id = R.string.explore_title_top10_largest_countries).uppercase(),
                 background = R.drawable.explore_item_background,
                 onClick = {
                     navHostController.navigate(route = Routes.LargestCountries.route)

@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,6 +20,7 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.navigati
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.favorites.screen.FavoritesScreen
+import com.gblrod.orbvault.ui.countries.presentation.home.components.SearchScreen
 import com.gblrod.orbvault.ui.countries.presentation.home.screen.HomeScreen
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
 
@@ -41,8 +41,7 @@ fun NavigationGraph(
     ) {
         composable(route = Routes.Home.route) {
             HomeScreen(
-                countriesViewModel = countriesViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
+                onClick = { navHostController.navigate(Routes.Search.route) }
             )
         }
 
@@ -59,12 +58,7 @@ fun NavigationGraph(
                 countryDetailsViewModel = countryDetailsViewModel,
                 snackbarHostState = snackbarHostState,
                 onNavigateExplore = {
-                    navHostController.navigate(route = Routes.Explore.route) {
-                        popUpTo(navHostController.graph.findStartDestination().id) {
-                            inclusive = false
-                        }
-                        launchSingleTop = true
-                    }
+                    navHostController.navigateToBottomBar(route = Routes.Explore.route)
                 }
             )
         }
@@ -94,6 +88,14 @@ fun NavigationGraph(
             RandomCountryScreen(
                 countriesViewModel = countriesViewModel,
                 countryDetailsViewModel = countryDetailsViewModel
+            )
+        }
+
+        composable(route = Routes.Search.route) {
+            SearchScreen(
+                countryDetailsViewModel = countryDetailsViewModel,
+                countriesViewModel = countriesViewModel,
+                onBack = { navHostController.popBackStack() }
             )
         }
 

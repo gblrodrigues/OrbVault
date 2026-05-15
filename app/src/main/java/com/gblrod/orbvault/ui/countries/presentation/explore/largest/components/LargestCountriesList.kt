@@ -22,7 +22,7 @@ fun LargestCountriesList(
         countries = countries,
         favorites = favorites,
         countryDetailsViewModel = countryDetailsViewModel,
-        primaryValue = stringResource(id = R.string.largest_country_label_explore),
+        primaryValue = stringResource(id = R.string.common_label_explore),
         secondValue = stringResource(id = R.string.largest_country_label_explore_top10),
         colorCustom = LargestCountries,
         thirdValue = stringResource(id = R.string.largest_country_label_area),

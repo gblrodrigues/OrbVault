@@ -32,8 +32,8 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDe
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
 import com.gblrod.orbvault.ui.language.viewmodel.LanguageViewModel
-import com.gblrod.orbvault.ui.shared.components.bottom.BottomBar
-import com.gblrod.orbvault.ui.shared.components.TopBar
+import com.gblrod.orbvault.ui.shared.components.bottom.OrbVaultBottomBar
+import com.gblrod.orbvault.ui.shared.components.OrbVaultTopBar
 import com.gblrod.orbvault.ui.theme.ThemeConfigDefault
 import com.gblrod.orbvault.ui.theme.viewmodel.ThemeViewModel
 import kotlinx.coroutines.launch
@@ -101,7 +101,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxSize(),
                             topBar = {
                                 if (navigationUiState.showTopBar) {
-                                    TopBar(
+                                    OrbVaultTopBar(
                                         onOpenDrawer = {
                                             scope.launch {
                                                 if (drawerState.isClosed) drawerState.open()
@@ -115,7 +115,7 @@ class MainActivity : ComponentActivity() {
                             },
                             bottomBar = {
                                 if (navigationUiState.showBottomBar) {
-                                    BottomBar(navHostController = navHostController)
+                                    OrbVaultBottomBar(navHostController = navHostController)
                                 }
                             },
                             snackbarHost = {
