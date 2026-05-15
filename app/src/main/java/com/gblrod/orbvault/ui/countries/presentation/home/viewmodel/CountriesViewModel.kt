@@ -14,8 +14,8 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.io.IOException
 import retrofit2.HttpException
+import java.io.IOException
 
 class CountriesViewModel(
     private val repository: CountriesRepository
@@ -36,6 +36,9 @@ class CountriesViewModel(
     private var currentCountry: CountriesDto? = null
     private val _previewReturnCountry = MutableStateFlow(false)
     val previewReturnCountry: StateFlow<Boolean> = _previewReturnCountry
+
+    private val _countryQuery = MutableStateFlow("")
+    val countryQuery: StateFlow<String> = _countryQuery
 
     private var lastRequest: (() -> Unit)? = null
 
@@ -206,6 +209,15 @@ class CountriesViewModel(
                     RandomCountryUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
+    }
+
+    fun onCountryQueryChange(query: String) {
+        _countryQuery.value = query
+    }
+
+    fun clearSearch() {
+        _countryQuery.value = ""
+        _countriesUiState.value = CountriesUiState.Idle
     }
 
     fun retryLastRequest() {
