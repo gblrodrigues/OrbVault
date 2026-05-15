@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.Routes
+import com.gblrod.orbvault.navigation.navigateToBottomBar
 import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.components.NewsItems
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.model.NewItem
@@ -82,7 +83,7 @@ fun MoreNewsScreen(
                 value = stringResource(id = R.string.news_my_favorites_label),
                 icon = Icons.Default.FavoriteBorder,
                 onClick = {
-                    navHostController.navigate(route = Routes.Favorites.route)
+                    navHostController.navigateToBottomBar(route = Routes.Favorites.route)
                 },
                 backgroundColor = YellowActions.copy(alpha = 0.15f),
                 iconColor = YellowActions
