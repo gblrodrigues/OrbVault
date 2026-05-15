@@ -34,7 +34,7 @@ fun MoreNewsScreen(
     navHostController: NavHostController,
     colorCustom: Color
 ) {
-    val primaryValue = stringResource(id = R.string.news_label_explore)
+    val primaryValue = stringResource(id = R.string.common_label_explore)
     val secondValue = stringResource(id = R.string.news_label_description)
 
     Column(

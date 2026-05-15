@@ -31,7 +31,7 @@ fun QuizResetScore(
             onResetBestScore()
             onDismiss()
         },
-        confirmText = stringResource(id = R.string.quiz_alert_dialog_confirm),
-        dismissText = stringResource(id = R.string.quiz_alert_dialog_dismiss)
+        confirmText = stringResource(id = R.string.dialog_action_confirm),
+        dismissText = stringResource(id = R.string.dialog_action_dismiss)
     )
 }

@@ -66,7 +66,7 @@ fun ThemeMenu(
             onThemeSelected(currentSelection)
             onDismiss()
         },
-        confirmText = stringResource(id = R.string.theme_dialog_confirm),
-        dismissText = stringResource(id = R.string.theme_dialog_dismiss)
+        confirmText = stringResource(id = R.string.dialog_action_confirm),
+        dismissText = stringResource(id = R.string.dialog_action_dismiss)
     )
 }
