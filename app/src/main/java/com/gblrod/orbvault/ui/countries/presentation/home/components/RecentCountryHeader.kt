@@ -42,27 +42,25 @@ fun RecentCountryHeader(
             style = MaterialTheme.typography.titleMedium
         )
 
-        if (showRecentCountrySize >= 3) {
-            Row(
-                modifier = Modifier.clickable { onClick() },
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = if (showAll)
-                        stringResource(id = showLessItems) else stringResource(
-                        id = showAllItems
-                    ),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+        Row(
+            modifier = Modifier.clickable { onClick() },
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = if (showAll)
+                    stringResource(id = showLessItems) else stringResource(
+                    id = showAllItems
+                ),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
 
-                Icon(
-                    imageVector = if (showAll)
-                        Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
-                    contentDescription = null,
-                    tint = LargestCountries
-                )
-            }
+            Icon(
+                imageVector = if (showAll)
+                    Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                contentDescription = null,
+                tint = LargestCountries
+            )
         }
     }
     Spacer(modifier = Modifier.height(4.dp))

@@ -42,27 +42,25 @@ fun ExpandedContent(
             .padding(horizontal = 16.dp)
             .animateContentSize()
     ) {
-        if (recentCountries.isNotEmpty()) {
-            RecentCountryHeader(
-                title = R.string.home_search_recent_country_title,
-                showAllItems = R.string.home_search_recent_country_show_all,
-                showLessItems = R.string.home_search_recent_country_show_default,
-                showRecentCountrySize = visibleCountries.size,
-                showAll = showAll,
-                onClick = {
-                    focus.clearFocus(force = true)
-                    keyboardController?.hide()
-                    showAll = !showAll
-                }
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-
-            visibleCountries.forEach { country ->
-                RecentCountryItem(
-                    country = country,
-                    onClick = { onCountryClick(country.code) }
-                )
+        RecentCountryHeader(
+            title = R.string.home_search_recent_country_title,
+            showAllItems = R.string.home_search_recent_country_show_all,
+            showLessItems = R.string.home_search_recent_country_show_default,
+            showRecentCountrySize = visibleCountries.size,
+            showAll = showAll,
+            onClick = {
+                focus.clearFocus(force = true)
+                keyboardController?.hide()
+                showAll = !showAll
             }
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+
+        visibleCountries.forEach { country ->
+            RecentCountryItem(
+                country = country,
+                onClick = { onCountryClick(country.code) }
+            )
         }
     }
 }
