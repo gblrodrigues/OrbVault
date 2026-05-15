@@ -15,10 +15,13 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gblrod.orbvault.R
@@ -27,8 +30,10 @@ import com.gblrod.orbvault.ui.shared.components.model.BottomItem
 import com.gblrod.orbvault.ui.theme.NavigationSelected
 
 @Composable
-fun BottomBar(navHostController: NavHostController) {
-    val currentRoute = navHostController.currentBackStackEntryAsState().value?.destination?.route
+fun OrbVaultBottomBar(navHostController: NavHostController) {
+    val navBackStackEntry by navHostController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+
     val items = listOf(
         BottomItem(
             label = stringResource(id = R.string.bottom_bar_home),
@@ -59,7 +64,9 @@ fun BottomBar(navHostController: NavHostController) {
     ) {
         items.forEach { item ->
             NavigationBarItem(
-                selected = currentRoute == item.route,
+                selected = currentDestination?.hierarchy?.any {
+                    it.route == item.route
+                } == true,
                 label = {
                     Text(
                         text = item.label
@@ -73,10 +80,11 @@ fun BottomBar(navHostController: NavHostController) {
                 },
                 onClick = {
                     navHostController.navigate(item.route) {
-                        popUpTo(navHostController.graph.startDestinationId) {
-                            inclusive = false
-                        }
                         launchSingleTop = true
+                        restoreState = true
+                        popUpTo(navHostController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(
