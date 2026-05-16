@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.ui.theme.QuizCardCorrectQuestion
-import com.gblrod.orbvault.ui.theme.QuizIncorrectText
+import com.gblrod.orbvault.ui.theme.FeedbackWarning
 
 @Composable
 fun QuizOptionCard(
@@ -25,7 +25,7 @@ fun QuizOptionCard(
     val backgroundResult = when {
         !isAnswered -> MaterialTheme.colorScheme.surfaceVariant
         isCorrect -> QuizCardCorrectQuestion
-        isSelected -> QuizIncorrectText
+        isSelected -> FeedbackWarning
         else -> MaterialTheme.colorScheme.surfaceVariant
     }
     Card(
