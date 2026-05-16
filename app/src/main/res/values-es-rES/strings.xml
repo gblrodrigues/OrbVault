@@ -104,9 +104,12 @@
     <string name="cd_favorite_back_button">Favorito Países</string>
 
     <!-- Quiz -->
-    <string name="quiz_next_question">Siguiente pregunta</string>
+    <string name="quiz_timer_title">Tiempo restante</string>
+    <string name="quiz_timer_expired">Tiempo agotado</string>
+    <string name="quiz_timer">%1$ds</string>
+    <string name="quiz_next_question">Siguiente</string>
     <string name="quiz_restart_question">Reiniciar</string>
-    <string name="quiz_show_result">Ver resultado</string>
+    <string name="quiz_show_result">Finalizar</string>
     <string name="quiz_result_title">¡Felicidades!</string>
     <string name="quiz_result_sub_title">Has completado el quiz de países</string>
     <string name="quiz_button_play_again">Jugar de nuevo</string>

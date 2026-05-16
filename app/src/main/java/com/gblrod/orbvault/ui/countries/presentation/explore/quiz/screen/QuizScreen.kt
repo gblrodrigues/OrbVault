@@ -86,7 +86,10 @@ fun QuizScreen(
                     selectedOption = state.selectedOption,
                     onSelectedOption = { index ->
                         quizViewModel.selectOption(index)
-                    }
+                    },
+                    remainingTime = state.remainingTime,
+                    totalTime = state.totalTime,
+                    isExpired = state.timeExpired
                 )
 
                 QuizActions(
