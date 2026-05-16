@@ -4,8 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.preferences.repository.UserPreferencesRepository
+import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.config.QuizDefaults.QUIZ_TIMER_DURATION
+import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.config.QuizDefaults.QUIZ_TIMER_INTERVAL
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.data.QuizRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.QuizUiState
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -23,6 +27,7 @@ class QuizViewModel(
     private val _quizUiState = MutableStateFlow<QuizUiState>(QuizUiState.Idle)
     val quizUiState: StateFlow<QuizUiState> = _quizUiState
 
+    private var timerJob: Job? = null
     private var lastBestScore: Int? = null
     val bestScore = userPreferencesRepository.userPreferences
         .map { it.bestScore }
@@ -48,6 +53,7 @@ class QuizViewModel(
                         QuizUiState.Error(messageResId = R.string.quiz_ui_state_generic_error)
                 } else {
                     _quizUiState.value = QuizUiState.Success(questions = questions)
+                    startQuestionTimer()
                 }
 
             } catch (e: HttpException) {
@@ -77,8 +83,11 @@ class QuizViewModel(
             _quizUiState.value = currentState.copy(
                 currentQuestion = currentState.currentQuestion + 1,
                 selectedOption = null,
-                answered = false
+                answered = false,
+                timeExpired = false,
+                remainingTime = QUIZ_TIMER_DURATION,
             )
+            startQuestionTimer()
         } else {
             finish()
         }
@@ -93,14 +102,56 @@ class QuizViewModel(
         val question = currentState.questions[currentState.currentQuestion]
         val isCorrect = index == question.optionCorrect
 
+        timerJob?.cancel()
         _quizUiState.value = currentState.copy(
             selectedOption = index,
             answered = true,
+            timeExpired = false,
             score = if (isCorrect) currentState.score + 1 else currentState.score
         )
     }
 
+    fun onTimeExpired() {
+        val currentState = _quizUiState.value
+
+        if (currentState !is QuizUiState.Success) return
+
+        _quizUiState.value = currentState.copy(
+            answered = true,
+            timeExpired = true
+        )
+    }
+
+    fun startQuestionTimer() {
+        timerJob?.cancel()
+
+        timerJob = viewModelScope.launch {
+            while (true) {
+                delay(QUIZ_TIMER_INTERVAL)
+
+                val currentState = _quizUiState.value
+
+                when {
+                    currentState !is QuizUiState.Success -> break
+                    currentState.answered -> break
+                    currentState.remainingTime > 0 -> {
+                        _quizUiState.value = currentState.copy(
+                            remainingTime = currentState.remainingTime - 1
+                        )
+                    }
+
+                    else -> {
+                        onTimeExpired()
+                        break
+                    }
+                }
+            }
+        }
+    }
+
     fun restart() {
+        timerJob?.cancel()
+        _quizUiState.value = QuizUiState.Loading
         loadQuestions()
     }
 
@@ -113,6 +164,7 @@ class QuizViewModel(
             userPreferencesRepository.saveBestScore(score = currentState.score)
         }
 
+        timerJob?.cancel()
         _quizUiState.value = QuizUiState.Result(
             score = currentState.score,
             total = currentState.questions.size
@@ -120,6 +172,7 @@ class QuizViewModel(
     }
 
     fun retry() {
+        timerJob?.cancel()
         loadQuestions()
     }
 
@@ -129,6 +182,7 @@ class QuizViewModel(
             userPreferencesRepository.resetScore()
         }
     }
+
     fun undoResetBestScore() {
         viewModelScope.launch {
             lastBestScore?.let {
