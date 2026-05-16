@@ -30,7 +30,8 @@ I developed this project to put into practice API consumption, state management,
 ## Features
 
 ### Countries
-* Search for countries by name or code (cca3)  
+* Search for countries by name or code (cca3)
+  * Quick access to recently visited countries (max. 5)
 * Display of detailed country information:
   * Common and official name  
   * Capital  
@@ -59,7 +60,7 @@ I developed this project to put into practice API consumption, state management,
 ### Explore
 * Top 10 most populous countries (by population)
 * Top 10 largest countries (by area)
-* Complete countries catalog with lazy pagination
+* Browse all countries catalog with lazy pagination
 * Random country with the possibility of generating new results  
 * Display of details in BottomSheet for a better navigation experience without leaving the main screen  
 * Navigation between different exploration categories  
@@ -78,7 +79,9 @@ I developed this project to put into practice API consumption, state management,
   * Comparison of data between up to 2 countries  
 * Geographic quiz  
   * Dynamic questions using real country data (area and population)  
-  * Feedback when answering, indicating the correct alternative  
+  * Feedback for correct, incorrect, and expired answers 
+  * Timed questions with a 15-second countdown  
+  * Timeout state for unanswered questions  
   * Final result with the user's score
   * Best score with persistence using DataStore
 * Quick access to favorite countries  
@@ -104,17 +107,19 @@ I developed this project to put into practice API consumption, state management,
 
 ## Preview
 ### Main Screens
-<img src="https://github.com/user-attachments/assets/0656b22f-e89c-4276-891c-b2f0997960c8" width="250"/>
-<img src="https://github.com/user-attachments/assets/12dc5a28-77a9-400d-b704-06bf9ed99354" width="250"/>
-<img src="https://github.com/user-attachments/assets/20d353b2-8fcc-49f2-9eec-68dcbb87ad8e" width="250"/>
+<img src="https://github.com/user-attachments/assets/43d0f603-b51a-4ca2-a049-890440b2d7e6" width="240"/>
+<img src="https://github.com/user-attachments/assets/391be294-c7be-4445-acfc-9f1da4b3bfe9" width="240"/>
+<img src="https://github.com/user-attachments/assets/a7c4bb4f-2fad-411b-8d7e-c30ba8bdc116" width="240"/>
+<img src="https://github.com/user-attachments/assets/d99c91b3-ac65-4e22-b479-6ffa56ccd7f5" width="240"/>
 
 ### Quiz
-<img src="https://github.com/user-attachments/assets/d2616df3-545e-421b-b42d-a3cb3d16d6cd" width="250"/>
-<img src="https://github.com/user-attachments/assets/9db43b7b-faa1-4428-9f9c-c8eabb7dbc5d" width="250"/>
-<img src="https://github.com/user-attachments/assets/81210455-64af-40e1-bd6c-f55131da84cb" width="250"/>
+<img src="https://github.com/user-attachments/assets/22fce133-c07c-4940-83c5-734b25129dc5" width="240"/>
+<img src="https://github.com/user-attachments/assets/6132a331-d435-4f79-8da0-d378780a775b" width="240"/>
+<img src="https://github.com/user-attachments/assets/04a45ab2-ee58-45c0-9f19-3242f2f62ff9" width="240"/>
+<img src="https://github.com/user-attachments/assets/323d12da-ee27-41e2-9a53-6a6139cc7a72" width="240"/>
 
 Below I will provide a video showing how the application looks:  
-> https://github.com/user-attachments/assets/e68c7a3b-53a9-4cbe-b6e0-b7bc2283094d
+> https://github.com/user-attachments/assets/48a7068d-cf5c-4e0f-af6e-d5540b95c5fc
 
 ## Technical Decisions
 
