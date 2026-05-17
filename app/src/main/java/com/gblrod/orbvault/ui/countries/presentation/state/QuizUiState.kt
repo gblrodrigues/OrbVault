@@ -17,7 +17,8 @@ sealed class QuizUiState {
         val score: Int = QUIZ_SCORE,
         val remainingTime: Int = QUIZ_TIMER_DURATION,
         val totalTime: Int = QUIZ_TIMER_DURATION,
-        val timeExpired: Boolean = false
+        val timeExpired: Boolean = false,
+        val quizStarted: Boolean = false
     ) : QuizUiState()
 
     data class Error(
