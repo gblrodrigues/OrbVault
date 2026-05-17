@@ -34,7 +34,7 @@
     <string name="bottom_bar_favorites">Favorites</string>
 
     <!-- Buttons -->
-    <string name="button_retry">Try to connect</string>
+    <string name="button_retry">Try again</string>
     <string name="button_next_random_country">Next</string>
     <string name="button_return_random_country">Previous</string>
 

@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -66,7 +68,20 @@ fun QuizScreen(
             val question = state.questions[state.currentQuestion]
             val questionSize = state.questions.size
             val currentQuestion = state.currentQuestion + 1
-            val quizStarted = currentQuestion > 1 || state.answered
+
+            DisposableEffect(state.currentQuestion) {
+                quizViewModel.resumeTimer()
+
+                onDispose {
+                    quizViewModel.pauseTimer()
+                }
+            }
+
+            LaunchedEffect(state.quizStarted) {
+                if (!state.quizStarted) {
+                    quizViewModel.startQuiz()
+                }
+            }
 
             Column(
                 modifier = Modifier
@@ -95,7 +110,7 @@ fun QuizScreen(
                 QuizActions(
                     currentQuestion = currentQuestion,
                     questionSize = questionSize,
-                    quizStarted = quizStarted,
+                    quizStarted = state.quizStarted,
                     answered = state.answered,
                     onNextQuestion = { quizViewModel.nextQuestion() },
                     onRestart = { quizViewModel.restart() },
