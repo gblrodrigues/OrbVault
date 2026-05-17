@@ -39,6 +39,7 @@ val OrangeActions = Color(0xFFF38E00)
 
 val QuizCorrectBackground = Color(0xFF67A22A)
 val QuizCardCorrectQuestion = Color(0xFF11AD38)
+val QuizIncorrectText = Color(0xFF8B0000)
 val QuizCorrectText = Color(0xFF7FE769)
 val QuizIntermediateQuestions = Color(0xFFEEC200)
 val QuizProgressIndicator = Color(0xFF04D30A)
