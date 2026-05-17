@@ -107,16 +107,16 @@ I developed this project to put into practice API consumption, state management,
 
 ## Preview
 ### Main Screens
-<img src="https://github.com/user-attachments/assets/43d0f603-b51a-4ca2-a049-890440b2d7e6" width="240"/>
-<img src="https://github.com/user-attachments/assets/391be294-c7be-4445-acfc-9f1da4b3bfe9" width="240"/>
-<img src="https://github.com/user-attachments/assets/a7c4bb4f-2fad-411b-8d7e-c30ba8bdc116" width="240"/>
-<img src="https://github.com/user-attachments/assets/d99c91b3-ac65-4e22-b479-6ffa56ccd7f5" width="240"/>
+<img src="https://github.com/user-attachments/assets/43d0f603-b51a-4ca2-a049-890440b2d7e6" width="250"/>
+<img src="https://github.com/user-attachments/assets/391be294-c7be-4445-acfc-9f1da4b3bfe9" width="250"/>
+<img src="https://github.com/user-attachments/assets/a7c4bb4f-2fad-411b-8d7e-c30ba8bdc116" width="250"/>
+<img src="https://github.com/user-attachments/assets/d99c91b3-ac65-4e22-b479-6ffa56ccd7f5" width="250"/>
 
 ### Quiz
-<img src="https://github.com/user-attachments/assets/22fce133-c07c-4940-83c5-734b25129dc5" width="240"/>
-<img src="https://github.com/user-attachments/assets/6132a331-d435-4f79-8da0-d378780a775b" width="240"/>
-<img src="https://github.com/user-attachments/assets/04a45ab2-ee58-45c0-9f19-3242f2f62ff9" width="240"/>
-<img src="https://github.com/user-attachments/assets/323d12da-ee27-41e2-9a53-6a6139cc7a72" width="240"/>
+<img src="https://github.com/user-attachments/assets/64759578-d250-4725-baf5-e83a2c60f241" width="250"/>
+<img src="https://github.com/user-attachments/assets/6f14ccef-8f77-4c73-9e35-148599a9ce0f" width="250"/>
+<img src="https://github.com/user-attachments/assets/8f06abca-a5d7-4fa5-8b3a-f5825cdb7c1a" width="250"/>
+<img src="https://github.com/user-attachments/assets/e8674467-c7d4-4fba-98c6-ad5e338bde08" width="250"/>
 
 Below I will provide a video showing how the application looks:  
 > https://github.com/user-attachments/assets/48a7068d-cf5c-4e0f-af6e-d5540b95c5fc
