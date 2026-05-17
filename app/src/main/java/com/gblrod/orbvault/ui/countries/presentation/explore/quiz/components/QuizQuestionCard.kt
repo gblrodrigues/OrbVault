@@ -71,21 +71,23 @@ fun QuizQuestionCard(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Icon(
-                    imageVector = if (timeExpired) Icons.Default.HourglassEmpty else Icons.Default.HourglassDisabled,
+                    imageVector =
+                        if (!timeExpired) Icons.Default.HourglassEmpty
+                        else Icons.Default.HourglassDisabled,
                     contentDescription = null,
                     tint = colorTimer
                 )
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = if (timeExpired) stringResource(
+                    text = if (!timeExpired) stringResource(
                         id = R.string.quiz_timer_title) else stringResource(
                         id = R.string.quiz_timer_expired),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
 
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
                     text = stringResource(id = R.string.quiz_timer, remainingTime),

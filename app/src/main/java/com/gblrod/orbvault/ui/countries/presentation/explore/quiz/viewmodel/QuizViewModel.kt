@@ -52,8 +52,10 @@ class QuizViewModel(
                     _quizUiState.value =
                         QuizUiState.Error(messageResId = R.string.quiz_ui_state_generic_error)
                 } else {
-                    _quizUiState.value = QuizUiState.Success(questions = questions)
-                    startQuestionTimer()
+                    _quizUiState.value = QuizUiState.Success(
+                        questions = questions,
+                        quizStarted = false
+                    )
                 }
 
             } catch (e: HttpException) {
@@ -102,7 +104,7 @@ class QuizViewModel(
         val question = currentState.questions[currentState.currentQuestion]
         val isCorrect = index == question.optionCorrect
 
-        timerJob?.cancel()
+        stopTimer()
         _quizUiState.value = currentState.copy(
             selectedOption = index,
             answered = true,
@@ -111,10 +113,40 @@ class QuizViewModel(
         )
     }
 
+    fun startQuiz() {
+        val currentState = _quizUiState.value
+
+        if (currentState !is QuizUiState.Success) return
+        if (currentState.quizStarted) return
+
+        _quizUiState.value = currentState.copy(
+            quizStarted = true
+        )
+
+        startQuestionTimer()
+    }
+
+    fun pauseTimer() {
+        stopTimer()
+    }
+
+    fun resumeTimer() {
+        val currentState = _quizUiState.value
+
+        when {
+            currentState !is QuizUiState.Success -> return
+            currentState.answered -> return
+            timerJob?.isActive == true -> return
+        }
+        startQuestionTimer()
+    }
+
     fun onTimeExpired() {
         val currentState = _quizUiState.value
 
         if (currentState !is QuizUiState.Success) return
+
+        stopTimer()
 
         _quizUiState.value = currentState.copy(
             answered = true,
@@ -122,8 +154,13 @@ class QuizViewModel(
         )
     }
 
-    fun startQuestionTimer() {
+    fun stopTimer() {
         timerJob?.cancel()
+        timerJob = null
+    }
+
+    private fun startQuestionTimer() {
+        stopTimer()
 
         timerJob = viewModelScope.launch {
             while (true) {
@@ -150,7 +187,7 @@ class QuizViewModel(
     }
 
     fun restart() {
-        timerJob?.cancel()
+        stopTimer()
         _quizUiState.value = QuizUiState.Loading
         loadQuestions()
     }
@@ -164,7 +201,7 @@ class QuizViewModel(
             userPreferencesRepository.saveBestScore(score = currentState.score)
         }
 
-        timerJob?.cancel()
+        stopTimer()
         _quizUiState.value = QuizUiState.Result(
             score = currentState.score,
             total = currentState.questions.size
@@ -172,7 +209,7 @@ class QuizViewModel(
     }
 
     fun retry() {
-        timerJob?.cancel()
+        stopTimer()
         loadQuestions()
     }
 
