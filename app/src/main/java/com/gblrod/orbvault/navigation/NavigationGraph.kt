@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.gblrod.orbvault.ui.countries.presentation.explore.all.screen.AllCountriesScreen
+import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.navigation.comparisonRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.largest.screen.LargestCountriesScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.navigation.newsRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.populated.screen.PopulatedCountriesScreen
@@ -104,14 +105,14 @@ fun NavigationGraph(
             countryDetailsViewModel = countryDetailsViewModel
         )
 
-        newsRoute(
-            navHostController = navHostController
-        )
+        newsRoute(navHostController = navHostController)
 
         quizRoute(
             navHostController = navHostController,
             quizViewModel = quizViewModel,
             snackbarHostState = snackbarHostState
         )
+
+        comparisonRoute(exploreViewModel = exploreViewModel)
     }
 }
