@@ -75,8 +75,11 @@ I developed this project to put into practice API consumption, state management,
 #### Upcoming (Explore)
 * Countries by Region (In Development)
   * Exploration of countries organized by continent  
-* Country comparison (In Development)
-  * Comparison of data between up to 2 countries  
+* Country comparison
+  * Compare two countries side by side
+  * Visual highlights for key metrics (population, area, borders, currency, region)
+  * Winner indicators per category
+  * Ability to remove and reset selected countries
 * Geographic quiz  
   * Dynamic questions using real country data (area and population)  
   * Feedback for correct, incorrect, and expired answers 
@@ -119,7 +122,7 @@ I developed this project to put into practice API consumption, state management,
 <img src="https://github.com/user-attachments/assets/e8674467-c7d4-4fba-98c6-ad5e338bde08" width="250"/>
 
 Below I will provide a video showing how the application looks:  
-> https://github.com/user-attachments/assets/48a7068d-cf5c-4e0f-af6e-d5540b95c5fc
+> https://github.com/user-attachments/assets/3ddfe584-8c06-4245-ba28-fdfbac6f93ab
 
 ## Technical Decisions
 
