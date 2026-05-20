@@ -2,6 +2,7 @@ package com.gblrod.orbvault.ui.countries.presentation.explore.comparison.compone
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,7 +35,8 @@ import com.gblrod.orbvault.ui.theme.BlueActions
 @Composable
 fun ComparisonCountryCard(
     country: CountriesDto?,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onRemoveCountry: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -41,47 +44,67 @@ fun ComparisonCountryCard(
             .height(150.dp)
             .clickable { onClick() }
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Box(
+            modifier = Modifier.fillMaxSize()
         ) {
             if (country == null) {
-                IconButton(
-                    onClick = { onClick() },
-                    shape = CircleShape,
-                    colors = IconButtonDefaults.iconButtonColors(
-                        containerColor = BlueActions
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    IconButton(
+                        onClick = { onClick() },
+                        shape = CircleShape,
+                        colors = IconButtonDefaults.iconButtonColors(
+                            containerColor = BlueActions
+                        )
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = null
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(4.dp))
+
+                    Text(
+                        text = stringResource(id = R.string.comparison_select),
+                        color = MaterialTheme.colorScheme.onSurface
                     )
+                }
+
+            } else {
+                IconButton(
+                    onClick = { onRemoveCountry() },
+                    modifier = Modifier.align(Alignment.TopEnd)
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Add,
+                        imageVector = Icons.Default.Clear,
                         contentDescription = null
                     )
                 }
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    AsyncImage(
+                        model = country.flags.png,
+                        contentDescription = country.name.common,
+                        modifier = Modifier
+                            .size(56.dp)
+                            .clip(shape = RoundedCornerShape(16.dp))
+                    )
 
-                Text(
-                    text = stringResource(id = R.string.comparison_select),
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+                    Spacer(modifier = Modifier.height(8.dp))
 
-            } else {
-                AsyncImage(
-                    model = country.flags.png,
-                    contentDescription = country.name.common,
-                    modifier = Modifier
-                        .size(56.dp)
-                        .clip(shape = RoundedCornerShape(16.dp))
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Text(
-                    text = country.name.common,
-                    textAlign = TextAlign.Center
-                )
+                    Text(
+                        text = country.name.common,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
         }
     }

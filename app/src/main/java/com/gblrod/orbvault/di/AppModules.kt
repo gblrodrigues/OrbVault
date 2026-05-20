@@ -69,7 +69,9 @@ val appModule = module {
     }
 
     viewModel {
-        ComparisonViewModel()
+        ComparisonViewModel(
+            repository = get()
+        )
     }
 
     // ViewModel (Weather)

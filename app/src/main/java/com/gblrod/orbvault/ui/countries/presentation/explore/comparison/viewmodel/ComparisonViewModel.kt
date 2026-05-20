@@ -1,14 +1,19 @@
 package com.gblrod.orbvault.ui.countries.presentation.explore.comparison.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
+import com.gblrod.orbvault.data.countries.repository.CountriesRepository
 import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.model.CardType
 import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.state.ComparisonUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class ComparisonViewModel : ViewModel() {
+class ComparisonViewModel(
+    private val repository: CountriesRepository
+) : ViewModel() {
     private val _comparisonState = MutableStateFlow(ComparisonUiState())
     val comparisonState: StateFlow<ComparisonUiState> = _comparisonState
 
@@ -22,33 +27,27 @@ class ComparisonViewModel : ViewModel() {
     }
 
     fun selectCountry(country: CountriesDto) {
-        val currentState = _comparisonState.value
+        viewModelScope.launch {
+            val fullCountry = repository.fetchCountryByCode(country.cca3)
 
-        val isSameCountry = when (currentState.selectedCard) {
-            CardType.PRIMARY -> currentState.secondaryCountry?.cca3 == country.cca3
-            CardType.SECONDARY -> currentState.primaryCountry?.cca3 == country.cca3
-            null -> false
-        }
+            _comparisonState.update {
+                when (it.selectedCard) {
+                    CardType.PRIMARY -> {
+                        it.copy(
+                            primaryCountry = fullCountry,
+                            showBottomSheet = false
+                        )
+                    }
 
-        if (isSameCountry) return
+                    CardType.SECONDARY -> {
+                        it.copy(
+                            secondaryCountry = fullCountry,
+                            showBottomSheet = false
+                        )
+                    }
 
-        _comparisonState.update {
-            when (it.selectedCard) {
-                CardType.PRIMARY -> {
-                    it.copy(
-                        primaryCountry = country,
-                        showBottomSheet = false
-                    )
+                    null -> it
                 }
-
-                CardType.SECONDARY -> {
-                    it.copy(
-                        secondaryCountry = country,
-                        showBottomSheet = false
-                    )
-                }
-
-                null -> it
             }
         }
     }
@@ -56,6 +55,20 @@ class ComparisonViewModel : ViewModel() {
     fun dismissBottomSheet() {
         _comparisonState.update {
             it.copy(showBottomSheet = false)
+        }
+    }
+
+    fun removeCountry(cardType: CardType) {
+        _comparisonState.update {
+            when (cardType) {
+                CardType.PRIMARY -> {
+                    it.copy(primaryCountry = null)
+                }
+
+                CardType.SECONDARY -> {
+                    it.copy(secondaryCountry = null)
+                }
+            }
         }
     }
 

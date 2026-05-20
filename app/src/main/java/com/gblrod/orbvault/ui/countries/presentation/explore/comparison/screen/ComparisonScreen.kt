@@ -83,7 +83,8 @@ fun ComparisonScreen(
         ) {
             ComparisonCountryCard(
                 country = primaryCountry,
-                onClick = { comparisonViewModel.onCardSelected(CardType.PRIMARY) }
+                onClick = { comparisonViewModel.onCardSelected(CardType.PRIMARY) },
+                onRemoveCountry = { comparisonViewModel.removeCountry(CardType.PRIMARY) }
             )
 
             Text(
@@ -93,7 +94,8 @@ fun ComparisonScreen(
 
             ComparisonCountryCard(
                 country = secondaryCountry,
-                onClick = { comparisonViewModel.onCardSelected(CardType.SECONDARY) }
+                onClick = { comparisonViewModel.onCardSelected(CardType.SECONDARY) },
+                onRemoveCountry = { comparisonViewModel.removeCountry(CardType.SECONDARY) }
             )
         }
         Spacer(modifier = Modifier.height(16.dp))

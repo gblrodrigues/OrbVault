@@ -1,5 +1,6 @@
 package com.gblrod.orbvault.ui.countries.presentation.explore.comparison.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
+import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.utils.getWinner
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.util.formatCompactNumber
 
 @Composable
@@ -58,13 +60,31 @@ fun ComparisonResult(
         ComparisonInfoRow(
             label = stringResource(id = R.string.country_details_label_population),
             primaryValue = formatCompactNumber(primaryCountry.population.toDouble()),
-            secondaryValue = formatCompactNumber(secondaryCountry.population.toDouble())
+            secondaryValue = formatCompactNumber(secondaryCountry.population.toDouble()),
+            winner = getWinner(
+                primaryValue = primaryCountry.population.toDouble(),
+                secondaryValue = secondaryCountry.population.toDouble()
+            )
         )
 
         ComparisonInfoRow(
             label = stringResource(id = R.string.country_details_label_area),
-            primaryValue = "%,.2f".format(primaryCountry.area),
-            secondaryValue = "%,.2f".format(secondaryCountry.area)
+            primaryValue = formatCompactNumber(primaryCountry.area ?: 0.0),
+            secondaryValue = formatCompactNumber(secondaryCountry.area ?: 0.0),
+            winner = getWinner(
+                primaryValue = primaryCountry.area ?: 0.0,
+                secondaryValue = secondaryCountry.area ?: 0.0
+            )
+        )
+
+        ComparisonInfoRow(
+            label = stringResource(id = R.string.neighbors_more_label),
+            primaryValue = "${primaryCountry.borders?.size ?: 0}",
+            secondaryValue = "${secondaryCountry.borders?.size ?: 0}",
+            winner = getWinner(
+                primaryValue = primaryCountry.borders?.size?.toDouble() ?: 0.0,
+                secondaryValue = secondaryCountry.borders?.size?.toDouble() ?: 0.0
+            )
         )
 
         ComparisonInfoRow(
