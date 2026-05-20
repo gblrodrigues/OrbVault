@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.countries.remote.api.CountriesAPI
-import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.AllStats
 import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
@@ -36,14 +35,6 @@ class ExploreViewModel(
         MutableStateFlow<ExploreUiState>(value = ExploreUiState.Loading)
 
     val allCountriesState: StateFlow<ExploreUiState> = _allCountriesState
-
-    private var allCountriesCache: List<CountriesDto> = emptyList()
-
-    private val _isLoadingMore = MutableStateFlow(value = false)
-    val isLoadingMore: StateFlow<Boolean> = _isLoadingMore
-
-    private var currentPage = 1
-    private val pageSize = 25
 
     init {
         if (_statsState.value !is StatsUiState.Success) {
@@ -128,17 +119,13 @@ class ExploreViewModel(
             try {
                 val countries = api.getAllCountries()
 
-                allCountriesCache = countries
+                val filteredCountries = countries
                     .filter { it.independent == true }
                     .sortedBy { it.name.common }
 
-                currentPage = 1
-
-                val firstPage = allCountriesCache.take(n = pageSize)
-
                 _allCountriesState.value = ExploreUiState.Success(
-                    countries = firstPage,
-                    totalCountries = allCountriesCache.size
+                    countries = filteredCountries,
+                    totalCountries = filteredCountries.size
                 )
 
             } catch (e: HttpException) {
@@ -156,35 +143,6 @@ class ExploreViewModel(
                 _allCountriesState.value =
                     ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
-        }
-    }
-
-    fun loadMoreCountries() {
-        viewModelScope.launch {
-            if (_isLoadingMore.value) return@launch
-
-            val currentState = _allCountriesState.value
-            if (currentState !is ExploreUiState.Success) return@launch
-
-            _isLoadingMore.value = true
-
-            val nextPage = currentPage + 1
-            val newItems = allCountriesCache.take(n = nextPage * pageSize)
-
-            if (newItems.size == currentState.countries.size) {
-                _isLoadingMore.value = false
-                return@launch
-            }
-
-            currentPage = nextPage
-
-            _allCountriesState.value =
-                ExploreUiState.Success(
-                    countries = newItems,
-                    totalCountries = allCountriesCache.size
-                )
-
-            _isLoadingMore.value = false
         }
     }
 

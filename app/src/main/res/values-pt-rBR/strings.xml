@@ -6,6 +6,7 @@
     <string name="topbar_explore_title">Explorar</string>
     <string name="topbar_favorite_title">Favoritos</string>
     <string name="topbar_quiz_title">Quiz</string>
+    <string name="topbar_comparison_title">Comparar Países</string>
     <string name="topbar_populated_countries_title">Países Populosos</string>
     <string name="topbar_largest_countries_title">Maiores Países</string>
     <string name="topbar_random_country_title">País Aleatório</string>
@@ -91,6 +92,7 @@
     <string name="country_details_label_language">Idioma</string>
     <string name="country_details_label_languages">Idiomas</string>
     <string name="country_details_label_currencies">Moeda</string>
+    <string name="country_details_label_area">Área</string>
     <string name="country_details_label_population">População</string>
     <string name="country_details_label_timezone">Fuso Horário</string>
     <string name="country_load_error">Não foi possível carregar o país</string>
@@ -125,6 +127,15 @@
     <string name="quiz_progress">Pergunta %1$d de %2$d</string>
     <string name="quiz_alert_dialog_title">Resetar progresso</string>
     <string name="quiz_alert_dialog_description">Deseja resetar a sua melhor pontuação atual de %1$d%%?</string>
+
+    <!-- Comparison Countries -->
+    <string name="comparison_description">Selecione dois países para comparar suas principais informações.</string>
+    <string name="comparison_select">Selecionar</string>
+    <string name="comparison_vs">VS.</string>
+    <string name="comparison_label">Comparação</string>
+    <string name="comparison_selection">Escolha dois países acima \npara ver a comparação.</string>
+    <string name="comparison_alert_dialog_title">Limpar seleção</string>
+    <string name="comparison_alert_dialog_description">Deseja limpar todos os campos?</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Escolha um tema</string>
