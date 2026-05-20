@@ -129,11 +129,13 @@
     <string name="quiz_alert_dialog_description">¿Deseas restablecer tu mejor puntuación actual de %1$d%%?</string>
 
     <!-- Comparison Countries -->
-    <string name="country_comparison_description">Seleccione dos países para comparar su información principal.</string>
-    <string name="country_comparison_select">Seleccionar</string>
-    <string name="country_comparison_vs">VS.</string>
-    <string name="country_comparison_label">Comparación</string>
-    <string name="country_comparison_selection">Elija dos países arriba \npara ver la comparación.</string>
+    <string name="comparison_description">Seleccione dos países para comparar su información principal.</string>
+    <string name="comparison_select">Seleccionar</string>
+    <string name="comparison_vs">VS.</string>
+    <string name="comparison_label">Comparación</string>
+    <string name="comparison_selection">Elija dos países arriba \npara ver la comparación.</string>
+    <string name="comparison_alert_dialog_title">Limpiar selección</string>
+    <string name="comparison_alert_dialog_description">¿Desea limpiar todos los campos?</string>
 
     <!-- Theme -->
     <string name="theme_dialog_title">Selecciona un tema</string>

@@ -63,7 +63,7 @@ fun ComparisonCountryCard(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = stringResource(id = R.string.country_comparison_select),
+                    text = stringResource(id = R.string.comparison_select),
                     color = MaterialTheme.colorScheme.onSurface
                 )
 

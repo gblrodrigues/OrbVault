@@ -36,7 +36,7 @@ fun ComparisonResult(
             ComparisonHeader(primaryCountry)
 
             Text(
-                text = stringResource(id = R.string.country_comparison_vs),
+                text = stringResource(id = R.string.comparison_vs),
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleMedium
             )

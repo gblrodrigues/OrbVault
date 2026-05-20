@@ -26,6 +26,7 @@ import com.gblrod.orbvault.core.manager.LanguageManager
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.ui.shared.components.drawer.DrawerContent
 import com.gblrod.orbvault.navigation.mapRouteToNavigationUiState
+import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.viewmodel.ComparisonViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.CountryBottomSheet
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
@@ -62,6 +63,7 @@ class MainActivity : ComponentActivity() {
             val themeViewModel: ThemeViewModel = koinViewModel()
             val languageViewModel: LanguageViewModel = koinViewModel()
             val quizViewModel: QuizViewModel = koinViewModel()
+            val comparisonViewModel: ComparisonViewModel = koinViewModel()
 
             val theme by themeViewModel.theme.collectAsState()
             val selectedCode by countryDetailsViewModel.selectedCountryCode.collectAsState()
@@ -134,6 +136,7 @@ class MainActivity : ComponentActivity() {
                                     exploreViewModel = exploreViewModel,
                                     countryDetailsViewModel = countryDetailsViewModel,
                                     quizViewModel = quizViewModel,
+                                    comparisonViewModel = comparisonViewModel,
                                     snackbarHostState = snackbarHostState
                                 )
 

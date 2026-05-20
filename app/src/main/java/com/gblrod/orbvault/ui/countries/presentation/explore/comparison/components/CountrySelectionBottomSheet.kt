@@ -24,12 +24,9 @@ fun CountrySelectionBottomSheet(
             items = countries,
             key = { country -> country.cca3 }
         ) { country ->
-
             CountrySelectionItem(
                 country = country,
-                onClick = {
-                    onSelectedCountry(country)
-                }
+                onClick = { onSelectedCountry(country) }
             )
         }
     }

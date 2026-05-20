@@ -37,7 +37,7 @@ fun EmptyComparisonState() {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = stringResource(id = R.string.country_comparison_selection),
+            text = stringResource(id = R.string.comparison_selection),
             color = MaterialTheme.colorScheme.onSurface
         )
     }
