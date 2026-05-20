@@ -64,7 +64,7 @@ fun MoreNewsScreen(
                 label = stringResource(id = R.string.news_country_compare_description),
                 value = stringResource(id = R.string.news_country_compare_label),
                 icon = Icons.Default.BarChart,
-                onClick = {},
+                onClick = { navHostController.navigateToBottomBar(route = Routes.Comparison.route) },
                 backgroundColor = BlueActions.copy(alpha = 0.15f),
                 iconColor = BlueActions
             ),

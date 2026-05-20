@@ -46,4 +46,8 @@ sealed class Routes(
     object Search : Routes(
         route = "search"
     )
+
+    object Comparison : Routes(
+        route = "comparison"
+    )
 }
