@@ -1,7 +1,6 @@
 package com.gblrod.orbvault.ui.countries.presentation.home.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -91,7 +90,6 @@ fun OrbVaultSearchBar(
         ),
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
             .focusRequester(focusRequester)
     )
 }

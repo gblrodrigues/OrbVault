@@ -23,18 +23,18 @@ class ExploreViewModel(
 
     private val _topPopulatedState =
         MutableStateFlow<ExploreUiState>(value = ExploreUiState.Loading)
-
     val topPopulatedState: StateFlow<ExploreUiState> = _topPopulatedState
 
     private val _largestCountriesState =
         MutableStateFlow<ExploreUiState>(value = ExploreUiState.Loading)
-
     val largestCountriesState: StateFlow<ExploreUiState> = _largestCountriesState
 
     private val _allCountriesState =
         MutableStateFlow<ExploreUiState>(value = ExploreUiState.Loading)
-
     val allCountriesState: StateFlow<ExploreUiState> = _allCountriesState
+
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery: StateFlow<String> = _searchQuery
 
     init {
         if (_statsState.value !is StatsUiState.Success) {
@@ -182,6 +182,14 @@ class ExploreViewModel(
                     StatsUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
+    }
+
+    fun onSearchQueryChanged(query: String) {
+        _searchQuery.value = query
+    }
+
+    fun clearSearch() {
+        _searchQuery.value = ""
     }
 
     fun allRetry() {

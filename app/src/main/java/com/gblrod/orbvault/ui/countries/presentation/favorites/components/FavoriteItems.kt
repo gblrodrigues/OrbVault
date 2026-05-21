@@ -1,6 +1,7 @@
 package com.gblrod.orbvault.ui.countries.presentation.favorites.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,6 +11,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DeleteSweep
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
@@ -30,13 +32,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.countries.local.room.model.FavoriteCountry
 import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
+import com.gblrod.orbvault.ui.countries.presentation.home.components.OrbVaultSearchBar
 import com.gblrod.orbvault.ui.shared.components.country.CountryCard
+import com.gblrod.orbvault.ui.shared.extensions.matchesQuery
 
 @Composable
 fun FavoriteItems(
@@ -49,12 +56,22 @@ fun FavoriteItems(
     snackbarHostState: SnackbarHostState,
     onNavigateExplore: () -> Unit
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focus = LocalFocusManager.current
+
     val favorites by viewModel.favorites.collectAsState()
+    val searchQuery by viewModel.searchQuery.collectAsState()
     var pendingRemoval by remember { mutableStateOf<Pair<FavoriteCountry, Int>?>(null) }
 
     val snackbarActionLabel = stringResource(id = R.string.snackbar_action_label)
     val snackbarMessage = pendingRemoval?.let {
         stringResource(id = R.string.snackbar_country_message_removed, it.first.name)
+    }
+
+    val filteredCountries = remember(key1 = favorites, key2 = searchQuery) {
+        favorites.filter { country ->
+            country.matchesQuery(searchQuery)
+        }
     }
 
     LaunchedEffect(key1 = pendingRemoval?.first?.code) {
@@ -84,6 +101,14 @@ fun FavoriteItems(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onTap = {
+                            focus.clearFocus(force = true)
+                            keyboardController?.hide()
+                        }
+                    )
+                }
         ) {
             item {
                 ScreenHeader(
@@ -94,8 +119,25 @@ fun FavoriteItems(
                 )
             }
 
+            item {
+                OrbVaultSearchBar(
+                    query = searchQuery,
+                    onQueryChanged = { query ->
+                        viewModel.onSearchQueryChanged(query)
+                    },
+                    onClearSearch = { viewModel.clearSearch() },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = null
+                        )
+                    },
+                    modifier = Modifier.padding(vertical = 8.dp)
+                )
+            }
+
             items(
-                items = favorites,
+                items = filteredCountries,
                 key = { it.code }
             ) { country ->
 
