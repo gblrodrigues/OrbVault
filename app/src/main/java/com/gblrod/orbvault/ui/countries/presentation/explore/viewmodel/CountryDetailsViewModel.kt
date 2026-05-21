@@ -34,6 +34,9 @@ class CountryDetailsViewModel(
     private val _selectedCountryCode = MutableStateFlow<String?>(null)
     val selectedCountryCode: StateFlow<String?> = _selectedCountryCode
 
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery: StateFlow<String> = _searchQuery
+
     val favorites = favoriteRepository.getFavorites().stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
@@ -124,6 +127,14 @@ class CountryDetailsViewModel(
                 favoriteRepository.addFavorite(country = domain, index = currentList)
             }
         }
+    }
+
+    fun onSearchQueryChanged(query: String) {
+        _searchQuery.value = query
+    }
+
+    fun clearSearch() {
+        _searchQuery.value = ""
     }
 
     fun removeFavoriteByCode(code: String) {

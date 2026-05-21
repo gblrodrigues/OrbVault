@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.model.CardType
 import com.gblrod.orbvault.ui.countries.presentation.home.components.OrbVaultSearchBar
+import com.gblrod.orbvault.ui.shared.extensions.matchesQuery
 
 @Composable
 fun CountrySelectionBottomSheet(
@@ -37,10 +38,7 @@ fun CountrySelectionBottomSheet(
 
     val filteredCountries = remember(key1 = countries, key2 = searchQuery) {
         countries.filter { country ->
-            country.name.common.contains(
-                other = searchQuery,
-                ignoreCase = true
-            )
+            country.matchesQuery(searchQuery)
         }
     }
 
@@ -75,7 +73,7 @@ fun CountrySelectionBottomSheet(
             items = filteredCountries,
             key = { country -> country.cca3 }
         ) { country ->
-            val selectedCountry = when(selectedCard) {
+            val selectedCountry = when (selectedCard) {
                 CardType.PRIMARY -> primaryCountry
                 CardType.SECONDARY -> secondaryCountry
                 null -> null
