@@ -113,7 +113,7 @@ I developed this project to put into practice API consumption, state management,
 <img src="https://github.com/user-attachments/assets/43d0f603-b51a-4ca2-a049-890440b2d7e6" width="250"/>
 <img src="https://github.com/user-attachments/assets/391be294-c7be-4445-acfc-9f1da4b3bfe9" width="250"/>
 <img src="https://github.com/user-attachments/assets/a7c4bb4f-2fad-411b-8d7e-c30ba8bdc116" width="250"/>
-<img src="https://github.com/user-attachments/assets/c3e0b6ea-b12b-4e4a-8d58-b86f4de39a7d" width="250"/>
+<img src="https://github.com/user-attachments/assets/d99c91b3-ac65-4e22-b479-6ffa56ccd7f5" width="250"/>
 
 ### Quiz
 <img src="https://github.com/user-attachments/assets/64759578-d250-4725-baf5-e83a2c60f241" width="250"/>
@@ -122,7 +122,7 @@ I developed this project to put into practice API consumption, state management,
 <img src="https://github.com/user-attachments/assets/e8674467-c7d4-4fba-98c6-ad5e338bde08" width="250"/>
 
 Below I will provide a video showing how the application looks:  
-> https://github.com/user-attachments/assets/90ac4253-8cb4-4900-87dc-0eb9a165f529
+> https://github.com/user-attachments/assets/3ddfe584-8c06-4245-ba28-fdfbac6f93ab
 
 ## Technical Decisions
 
