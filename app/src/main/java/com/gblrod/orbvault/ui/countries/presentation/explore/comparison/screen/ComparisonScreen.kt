@@ -152,7 +152,15 @@ fun ComparisonScreen(
                         countries = state.countries,
                         onSelectedCountry = { country ->
                             comparisonViewModel.selectCountry(country)
-                        }
+                        },
+                        searchQuery = comparisonUiState.searchQuery,
+                        onClearSearch = { comparisonViewModel.clearSearch() },
+                        onSearchQueryChanged = { country ->
+                            comparisonViewModel.onSearchQueryChanged(country)
+                        },
+                        primaryCountry = comparisonUiState.primaryCountry,
+                        secondaryCountry = comparisonUiState.secondaryCountry,
+                        selectedCard = comparisonUiState.selectedCard
                     )
                 }
 

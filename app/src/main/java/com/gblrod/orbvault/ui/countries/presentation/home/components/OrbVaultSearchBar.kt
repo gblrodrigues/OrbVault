@@ -6,7 +6,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,29 +29,30 @@ import com.gblrod.orbvault.ui.theme.BlueActions
 
 @Composable
 fun OrbVaultSearchBar(
-    countryQuery: String,
-    onCountryQuery: (String) -> Unit,
-    onSearch: () -> Unit,
-    onBack: () -> Unit,
+    query: String,
+    onQueryChanged: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    placeholder: String = stringResource(R.string.outlined_text_field_placeholder),
+    maxChar: Int = 32,
+    leadingIcon: (@Composable (() -> Unit))? = null,
+    onSearch: (() -> Unit)? = null,
     onClearSearch: () -> Unit
 ) {
-    val maxChar = 32
-
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
 
     val focusRequester = remember { FocusRequester() }
 
     OutlinedTextField(
-        value = countryQuery,
+        value = query,
         onValueChange = {
             if (it.length <= maxChar) {
-                onCountryQuery(it)
+                onQueryChanged(it)
             }
         },
         placeholder = {
             Text(
-                text = stringResource(id = R.string.outlined_text_field_placeholder),
+                text = placeholder,
                 color = MaterialTheme.colorScheme.onSurface
             )
         },
@@ -65,22 +65,12 @@ fun OrbVaultSearchBar(
                 focusRequester.freeFocus()
                 focusManager.clearFocus(force = true)
                 keyboardController?.hide()
-                onSearch()
+                onSearch?.invoke()
             },
         ),
-        leadingIcon = {
-            IconButton(
-                onClick = { onBack() }
-            ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurface
-                )
-            }
-        },
+        leadingIcon = leadingIcon,
         trailingIcon = {
-            if (countryQuery.isNotBlank()) {
+            if (query.isNotBlank()) {
                 IconButton(
                     onClick = { onClearSearch() }
                 ) {
@@ -99,7 +89,7 @@ fun OrbVaultSearchBar(
             focusedLabelColor = MaterialTheme.colorScheme.onSurface,
             focusedIndicatorColor = BlueActions,
         ),
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
             .focusRequester(focusRequester)
