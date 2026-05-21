@@ -1,6 +1,6 @@
 package com.gblrod.orbvault.ui.countries.presentation.explore.comparison.components
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,19 +19,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
+import com.gblrod.orbvault.ui.theme.BlueActions
 
 @Composable
 fun CountrySelectionItem(
     country: CountriesDto,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onCountrySelected: Boolean,
+    isDisabled: Boolean
 ) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick() },
-        elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = 4.dp
-        )
+        modifier = Modifier.fillMaxWidth(),
+        onClick = { onClick() },
+        enabled = !isDisabled,
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 6.dp),
+        border = if (onCountrySelected) BorderStroke(
+            width = 2.dp,
+            color = BlueActions
+        ) else null
     ) {
         Row(
             modifier = Modifier
@@ -44,7 +49,7 @@ fun CountrySelectionItem(
                 contentDescription = country.name.common,
                 modifier = Modifier
                     .size(48.dp)
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(shape = RoundedCornerShape(16.dp))
             )
 
             Spacer(modifier = Modifier.width(12.dp))

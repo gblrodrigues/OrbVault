@@ -7,5 +7,6 @@ data class ComparisonUiState(
     val primaryCountry: CountriesDto? = null,
     val secondaryCountry: CountriesDto? = null,
     val selectedCard: CardType? = null,
-    val showBottomSheet: Boolean = false
+    val showBottomSheet: Boolean = false,
+    val searchQuery: String = ""
 )

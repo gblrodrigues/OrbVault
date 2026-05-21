@@ -27,22 +27,33 @@ class ComparisonViewModel(
     }
 
     fun selectCountry(country: CountriesDto) {
+        val currentState = _comparisonState.value
+
+        val isSameCountry = when (currentState.selectedCard) {
+            CardType.PRIMARY -> currentState.secondaryCountry?.cca3 == country.cca3
+            CardType.SECONDARY -> currentState.primaryCountry?.cca3 == country.cca3
+            null -> false
+        }
+
+        if (isSameCountry) return
+
         viewModelScope.launch {
             val fullCountry = repository.fetchCountryByCode(country.cca3)
-
             _comparisonState.update {
                 when (it.selectedCard) {
                     CardType.PRIMARY -> {
                         it.copy(
                             primaryCountry = fullCountry,
-                            showBottomSheet = false
+                            showBottomSheet = false,
+                            searchQuery = ""
                         )
                     }
 
                     CardType.SECONDARY -> {
                         it.copy(
                             secondaryCountry = fullCountry,
-                            showBottomSheet = false
+                            showBottomSheet = false,
+                            searchQuery = ""
                         )
                     }
 
@@ -52,9 +63,26 @@ class ComparisonViewModel(
         }
     }
 
+    fun onSearchQueryChanged(query: String) {
+        _comparisonState.update {
+            it.copy(searchQuery = query)
+        }
+    }
+
+    fun clearSearch() {
+        _comparisonState.update {
+            it.copy(
+                searchQuery = ""
+            )
+        }
+    }
+
     fun dismissBottomSheet() {
         _comparisonState.update {
-            it.copy(showBottomSheet = false)
+            it.copy(
+                showBottomSheet = false,
+                searchQuery = ""
+            )
         }
     }
 
