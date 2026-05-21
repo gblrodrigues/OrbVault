@@ -6,7 +6,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -51,8 +56,8 @@ fun SearchScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         OrbVaultSearchBar(
-            countryQuery = countryQuery,
-            onCountryQuery = { query ->
+            query = countryQuery,
+            onQueryChanged = { query ->
                 countriesViewModel.onCountryQueryChange(query)
 
                 if (query.isBlank()) {
@@ -64,8 +69,18 @@ fun SearchScreen(
                     countriesViewModel.fetchCountry(country = countryQuery)
                 }
             },
-            onBack = { onBack() },
-            onClearSearch = { countriesViewModel.clearSearch() }
+            leadingIcon = {
+                IconButton(
+                    onClick = { onBack() }
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                        contentDescription = null
+                    )
+                }
+            },
+            onClearSearch = { countriesViewModel.clearSearch() },
+            modifier = Modifier.padding(horizontal = 16.dp)
         )
         LazyColumn(
             modifier = Modifier
