@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.countries.remote.api.CountriesAPI
+import com.gblrod.orbvault.ui.countries.presentation.explore.continent.model.ContinentStats
+import com.gblrod.orbvault.ui.countries.presentation.explore.continent.state.ContinentUiState
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.AllStats
 import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
@@ -33,12 +35,25 @@ class ExploreViewModel(
         MutableStateFlow<ExploreUiState>(value = ExploreUiState.Loading)
     val allCountriesState: StateFlow<ExploreUiState> = _allCountriesState
 
+    private val _continentState =
+        MutableStateFlow<ContinentUiState>(ContinentUiState.Loading)
+    val continentState: StateFlow<ContinentUiState> = _continentState
+
+    private val _continentCountriesState =
+        MutableStateFlow<ExploreUiState>(ExploreUiState.Loading)
+
+    val continentCountriesState: StateFlow<ExploreUiState> = _continentCountriesState
+
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery
 
     init {
         if (_statsState.value !is StatsUiState.Success) {
             fetchCountriesStats()
+        }
+
+        if (_continentState.value !is ContinentUiState.Success) {
+            fetchContinentStats()
         }
     }
 
@@ -184,6 +199,78 @@ class ExploreViewModel(
         }
     }
 
+    fun fetchContinentStats() {
+        viewModelScope.launch {
+            try {
+                val countries = api.getAllCountries()
+
+                val stats = countries
+                    .filter { it.independent == true }
+                    .groupBy { it.region }
+                    .map { (region, countries) ->
+                        ContinentStats(
+                            continent = region,
+                            totalCountries = countries.size
+                        )
+                    }
+                    .sortedBy { it.continent }
+
+                _continentState.value = ContinentUiState.Success(continents = stats)
+
+            } catch (e: HttpException) {
+                _continentState.value = ContinentUiState.Error(
+                    messageResId = R.string.ui_state_http_exception,
+                    code = e.code()
+                )
+
+            } catch (e: IOException) {
+                _continentState.value =
+                    ContinentUiState.Error(messageResId = R.string.ui_state_io_exception)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _continentState.value =
+                    ContinentUiState.Error(messageResId = R.string.ui_state_generic_error)
+            }
+        }
+    }
+
+    fun fetchCountriesByContinent(region: String) {
+        viewModelScope.launch {
+            _continentCountriesState.value = ExploreUiState.Loading
+
+            try {
+                val countries = api.getAllCountries()
+
+                val filteredCountries = countries
+                    .filter { it.independent == true && it.region == region }
+                    .sortedBy { it.name.common }
+
+                _continentCountriesState.value =
+                    ExploreUiState.Success(
+                        countries = filteredCountries,
+                        totalCountries = filteredCountries.size
+                    )
+
+            } catch (e: HttpException) {
+                _continentCountriesState.value = ExploreUiState.Error(
+                    messageResId = R.string.ui_state_http_exception,
+                    code = e.code()
+                )
+
+            } catch (e: IOException) {
+                _continentCountriesState.value =
+                    ExploreUiState.Error(messageResId = R.string.ui_state_io_exception)
+
+            } catch (e: Exception) {
+                if (e is CancellationException) throw e
+                _continentCountriesState.value =
+                    ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
+            }
+        }
+    }
+
+
     fun onSearchQueryChanged(query: String) {
         _searchQuery.value = query
     }
@@ -197,5 +284,6 @@ class ExploreViewModel(
         fetchTopLargestCountries()
         fetchCountriesStats()
         fetchTopPopulatedCountries()
+        fetchContinentStats()
     }
 }

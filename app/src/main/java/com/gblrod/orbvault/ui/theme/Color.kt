@@ -36,6 +36,8 @@ val YellowDarkActions = Color(0xFFB28A01)
 val BlueActions = Color(0xFF0490F1)
 val PinkActions = Color(0xFFA604EE)
 val OrangeActions = Color(0xFFF38E00)
+val GreenActions = Color(0xFF07AF22)
+val RedActions = Color(0xFFDC4848)
 
 val QuizCorrectBackground = Color(0xFF67A22A)
 val QuizCardCorrectQuestion = Color(0xFF11AD38)

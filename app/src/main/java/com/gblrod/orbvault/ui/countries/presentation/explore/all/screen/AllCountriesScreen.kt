@@ -47,10 +47,11 @@ fun AllCountriesScreen(
             AllCountriesList(
                 exploreViewModel = exploreViewModel,
                 countryDetailsViewModel = countryDetailsViewModel,
-                countriesSize = state.totalCountries
+                countriesSize = state.totalCountries,
+                countries = state.countries
             )
         }
 
-        is ExploreUiState.GlobalStatsSucess -> {}
+        is ExploreUiState.GlobalStatsSuccess -> {}
     }
 }

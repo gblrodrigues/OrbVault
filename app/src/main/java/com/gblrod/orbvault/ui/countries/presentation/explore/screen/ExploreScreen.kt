@@ -13,6 +13,7 @@ import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.CardExploreDetails
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.CategoryItemsHeader
+import com.gblrod.orbvault.ui.countries.presentation.explore.continent.components.ContinentsActionsRow
 import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.components.ExploreActionsRow
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.screen.StatisticsScreen
@@ -76,6 +77,17 @@ fun ExploreScreen(
                 onClick = {
                     navHostController.navigate(route = Routes.RandomCountry.route)
                 }
+            )
+        }
+
+        item {
+            CategoryItemsHeader(title = R.string.explore_continent_title)
+        }
+
+        item {
+            ContinentsActionsRow(
+                navHostController = navHostController,
+                exploreViewModel = exploreViewModel
             )
         }
 
