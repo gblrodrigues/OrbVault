@@ -11,7 +11,7 @@ sealed class ExploreUiState {
         val totalCountries: Int
     ) : ExploreUiState()
 
-    data class GlobalStatsSucess(
+    data class GlobalStatsSuccess(
         val stats: AllStats,
     ) : ExploreUiState()
 

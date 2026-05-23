@@ -50,4 +50,10 @@ sealed class Routes(
     object Comparison : Routes(
         route = "comparison"
     )
+
+    object Continent : Routes(
+        route = "continent/{region}"
+    ) {
+        fun createRoute(region: String) = "continent/$region"
+    }
 }

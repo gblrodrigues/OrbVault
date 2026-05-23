@@ -27,7 +27,7 @@ fun LargestCountriesScreen(
 
     when (val state = uiState) {
 
-        is ExploreUiState.GlobalStatsSucess -> {}
+        is ExploreUiState.GlobalStatsSuccess -> {}
 
         is ExploreUiState.Loading -> {
             LoadingScreen()

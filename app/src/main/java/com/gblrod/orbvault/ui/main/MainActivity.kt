@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
         val language = LanguageManager.getStoredLanguage(newBase)
         val locale = LanguageManager.resolveLocale(language)
         val context = LanguageManager.applyLocale(newBase, locale)
-        super.attachBaseContext( context)
+        super.attachBaseContext(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +72,11 @@ class MainActivity : ComponentActivity() {
 
             val navBackStackEntry by navHostController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry?.destination?.route
-            val navigationUiState = mapRouteToNavigationUiState(route = currentRoute)
+            val region = navBackStackEntry?.arguments?.getString("region")
+            val navigationUiState = mapRouteToNavigationUiState(
+                route = currentRoute,
+                region = region
+            )
 
             splashScreen.setKeepOnScreenCondition {
                 theme == null

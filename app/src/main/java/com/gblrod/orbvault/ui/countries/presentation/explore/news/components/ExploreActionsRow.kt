@@ -24,7 +24,7 @@ fun ExploreActionsRow(
             label = stringResource(id = R.string.news_country_compare_description),
             value = stringResource(id = R.string.news_country_compare_label),
             icon = Icons.Default.BarChart,
-            onClick = { navHostController.navigateToBottomBar(route = Routes.Comparison.route) },
+            onClick = { navHostController.navigate(route = Routes.Comparison.route) },
             backgroundColor = BlueActions.copy(alpha = 0.15f),
             iconColor = BlueActions
         ),
@@ -32,9 +32,7 @@ fun ExploreActionsRow(
             label = stringResource(id = R.string.news_quiz_description),
             value = stringResource(id = R.string.news_quiz_label),
             icon = Icons.Default.Quiz,
-            onClick = {
-                navHostController.navigate(route = Routes.Quiz.route)
-            },
+            onClick = { navHostController.navigate(route = Routes.Quiz.route) },
             backgroundColor = PinkActions.copy(alpha = 0.15f),
             iconColor = PinkActions
         ),
@@ -42,9 +40,7 @@ fun ExploreActionsRow(
             label = stringResource(id = R.string.news_my_favorites_description),
             value = stringResource(id = R.string.news_my_favorites_label),
             icon = Icons.Default.FavoriteBorder,
-            onClick = {
-                navHostController.navigateToBottomBar(route = Routes.Favorites.route)
-            },
+            onClick = { navHostController.navigateToBottomBar(route = Routes.Favorites.route) },
             backgroundColor = YellowActions.copy(alpha = 0.15f),
             iconColor = YellowActions
         )

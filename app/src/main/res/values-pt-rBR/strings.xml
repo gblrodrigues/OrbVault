@@ -10,6 +10,11 @@
     <string name="topbar_populated_countries_title">Países Populosos</string>
     <string name="topbar_largest_countries_title">Maiores Países</string>
     <string name="topbar_random_country_title">País Aleatório</string>
+    <string name="topbar_continent_africa_title">Países da África</string>
+    <string name="topbar_continent_americas_title">Países das Américas</string>
+    <string name="topbar_continent_asia_title">Países da Ásia</string>
+    <string name="topbar_continent_europe_title">Países da Europa</string>
+    <string name="topbar_continent_oceania_title">Países da Oceania</string>
     <string name="topbar_news_title">Novidades</string>
     <string name="topbar_statistics_title">Estatísticas</string>
     <string name="topbar_principal_title">OrbVault</string>
@@ -60,6 +65,7 @@
     <string name="ui_state_http_exception">Erro do servidor: %1$d</string>
     <string name="ui_state_generic_error">Ocorreu um erro inesperado!</string>
     <string name="countries_ui_state_not_found">País não encontrado</string>
+    <string name="continent_ui_state_generic_error">Não foi possível carregar os \npaíses dos continentes.</string>
     <string name="stats_ui_state_generic_error">Não foi possível carregar \nas estatísticas.</string>
     <string name="quiz_ui_state_generic_error">Não foi possível carregar \nas perguntas do quiz.</string>
 
@@ -71,6 +77,7 @@
     <string name="explore_title_all_countries">Todos os Países</string>
     <string name="explore_title_random_country">País Aleatório</string>
     <string name="explore_news_title">Novidades</string>
+    <string name="explore_continent_title">Países por Continente</string>
     <string name="explore_show_all_items">Exibir tudo</string>
     <string name="explore_statistics_title">Estatísticas rápidas</string>
 
@@ -159,6 +166,14 @@
 
     <!-- AllCountries -->
     <string name="all_countries_label">Conhecendo todos os %1$d países</string>
+
+    <!-- Continent -->
+    <string name="continent_africa_label">África</string>
+    <string name="continent_america_label">Américas</string>
+    <string name="continent_asia_label">Ásia</string>
+    <string name="continent_europa_label">Europa</string>
+    <string name="continent_oceania_label">Oceania</string>
+    <string name="continent_all_countries">%1$d países</string>
 
     <!-- News -->
     <string name="news_label_description">Todas as novidades</string>
