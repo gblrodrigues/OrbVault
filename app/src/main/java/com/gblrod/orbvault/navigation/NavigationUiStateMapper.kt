@@ -3,7 +3,8 @@ package com.gblrod.orbvault.navigation
 import com.gblrod.orbvault.R
 
 fun mapRouteToNavigationUiState(
-    route: String?
+    route: String?,
+    region: String? = null
 ): NavigationUiState {
 
     val principalScreens = setOf(
@@ -31,6 +32,7 @@ fun mapRouteToNavigationUiState(
         Routes.Quiz.route -> R.string.topbar_quiz_title
         Routes.Explore.route -> R.string.topbar_explore_title
         Routes.Favorites.route -> R.string.topbar_favorite_title
+        Routes.Continent.route -> getContinentTitle(region ?: "")
         Routes.Comparison.route -> R.string.topbar_comparison_title
         Routes.StatisticsList.route -> R.string.topbar_statistics_title
         Routes.AllCountries.route -> R.string.explore_title_all_countries
@@ -47,4 +49,15 @@ fun mapRouteToNavigationUiState(
         showBottomBar = isPrincipalScreen,
         titleRes = titleRes
     )
+}
+
+fun getContinentTitle(region: String): Int {
+    return when (region) {
+        "Africa" -> R.string.topbar_continent_africa_title
+        "Americas" -> R.string.topbar_continent_americas_title
+        "Asia" -> R.string.topbar_continent_asia_title
+        "Europe" -> R.string.topbar_continent_europe_title
+        "Oceania" -> R.string.topbar_continent_oceania_title
+        else -> R.string.topbar_principal_title
+    }
 }

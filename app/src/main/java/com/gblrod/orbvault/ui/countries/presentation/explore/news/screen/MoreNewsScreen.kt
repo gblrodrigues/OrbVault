@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Quiz
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,11 +20,10 @@ import androidx.navigation.NavHostController
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.Routes
 import com.gblrod.orbvault.navigation.navigateToBottomBar
-import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.components.NewsItems
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.model.NewItem
+import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.theme.BlueActions
-import com.gblrod.orbvault.ui.theme.OrangeActions
 import com.gblrod.orbvault.ui.theme.PinkActions
 import com.gblrod.orbvault.ui.theme.YellowActions
 
@@ -53,18 +51,10 @@ fun MoreNewsScreen(
 
         val newsItems = listOf(
             NewItem(
-                label = stringResource(id = R.string.news_country_region_description),
-                value = stringResource(id = R.string.news_country_region_label),
-                icon = Icons.Default.Flag,
-                onClick = {},
-                backgroundColor = OrangeActions.copy(alpha = 0.15f),
-                iconColor = OrangeActions
-            ),
-            NewItem(
                 label = stringResource(id = R.string.news_country_compare_description),
                 value = stringResource(id = R.string.news_country_compare_label),
                 icon = Icons.Default.BarChart,
-                onClick = { navHostController.navigateToBottomBar(route = Routes.Comparison.route) },
+                onClick = { navHostController.navigate(route = Routes.Comparison.route) },
                 backgroundColor = BlueActions.copy(alpha = 0.15f),
                 iconColor = BlueActions
             ),
@@ -72,9 +62,7 @@ fun MoreNewsScreen(
                 label = stringResource(id = R.string.news_quiz_description),
                 value = stringResource(id = R.string.news_quiz_label),
                 icon = Icons.Default.Quiz,
-                onClick = {
-                    navHostController.navigate(route = Routes.Quiz.route)
-                },
+                onClick = { navHostController.navigate(route = Routes.Quiz.route) },
                 backgroundColor = PinkActions.copy(alpha = 0.15f),
                 iconColor = PinkActions
             ),

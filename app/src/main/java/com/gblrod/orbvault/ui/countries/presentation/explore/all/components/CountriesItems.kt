@@ -23,22 +23,20 @@ import com.gblrod.orbvault.data.countries.remote.dto.CountriesDto
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.home.components.OrbVaultSearchBar
-import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
 import com.gblrod.orbvault.ui.shared.components.ScreenHeader
 import com.gblrod.orbvault.ui.shared.components.country.CountryCard
 import com.gblrod.orbvault.ui.shared.extensions.matchesQuery
 
 @Composable
-fun AllCountriesItems(
+fun CountriesItems(
     exploreViewModel: ExploreViewModel,
     countryDetailsViewModel: CountryDetailsViewModel,
+    countries: List<CountriesDto>,
     primaryValue: String,
     secondValue: String,
     colorCustom: Color,
     onClick: (CountriesDto) -> Unit
 ) {
-    val uiState by exploreViewModel.allCountriesState.collectAsState()
-    val countries = (uiState as? ExploreUiState.Success)?.countries ?: emptyList()
     val favorites by countryDetailsViewModel.favorites.collectAsState()
     val searchQuery by exploreViewModel.searchQuery.collectAsState()
 

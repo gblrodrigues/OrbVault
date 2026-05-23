@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import com.gblrod.orbvault.ui.countries.presentation.explore.all.screen.AllCountriesScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.navigation.comparisonRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.viewmodel.ComparisonViewModel
+import com.gblrod.orbvault.ui.countries.presentation.explore.continent.navigation.continentRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.largest.screen.LargestCountriesScreen
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.navigation.newsRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.populated.screen.PopulatedCountriesScreen
@@ -118,6 +119,11 @@ fun NavigationGraph(
         comparisonRoute(
             exploreViewModel = exploreViewModel,
             comparisonViewModel = comparisonViewModel
+        )
+
+        continentRoute(
+            exploreViewModel = exploreViewModel,
+            countryDetailsViewModel = countryDetailsViewModel
         )
     }
 }

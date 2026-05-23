@@ -21,8 +21,8 @@ import com.gblrod.orbvault.ui.theme.LargestCountries
 @Composable
 fun CategoryItemsHeader(
     title: Int,
-    showAllItems: Int,
-    onClick: () -> Unit
+    showAllItems: Int? = null,
+    onClick: (() -> Unit)? = null
 ) {
     Spacer(modifier = Modifier.height(4.dp))
     Row(
@@ -34,21 +34,23 @@ fun CategoryItemsHeader(
             text = stringResource(id = title),
             style = MaterialTheme.typography.titleMedium
         )
-        Row(
-            modifier = Modifier.clickable { onClick() },
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = stringResource(id = showAllItems),
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurface
-            )
+        if (showAllItems != null && onClick != null) {
+            Row(
+                modifier = Modifier.clickable { onClick() },
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(id = showAllItems),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
 
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = null,
-                tint = LargestCountries
-            )
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = LargestCountries
+                )
+            }
         }
     }
     Spacer(modifier = Modifier.height(4.dp))

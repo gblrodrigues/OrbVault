@@ -164,7 +164,7 @@ fun ComparisonScreen(
                     )
                 }
 
-                is ExploreUiState.GlobalStatsSucess -> {}
+                is ExploreUiState.GlobalStatsSuccess -> {}
 
                 is ExploreUiState.Error -> {
                     val message = if (state.code == null) {
