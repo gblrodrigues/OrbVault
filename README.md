@@ -42,7 +42,7 @@ I developed this project to put into practice API consumption, state management,
   * Time zones  
 * Display of the country flag  
 * Country quick actions:
-  * View Weather (next feature)
+  * View Weather
   * View on Map  
   * View Neighbors  
 * Neighbor Countries
@@ -60,21 +60,12 @@ I developed this project to put into practice API consumption, state management,
 ### Explore
 * Top 10 most populous countries (by population)
 * Top 10 largest countries (by area)
-* Browse all countries catalog with lazy pagination
+* Browse the complete countries catalog
 * Random country with the possibility of generating new results  
-* Display of details in BottomSheet for a better navigation experience without leaving the main screen  
-* Navigation between different exploration categories  
-
-#### Global Statistics
-* Total number of countries, population, and global area  
-* Highlights:
-  * Most populous country  
-  * Largest country by area  
-* Opening details via BottomSheet (without navigation)  
-
-#### Upcoming (Explore)
-* Countries by Region (In Development)
-  * Exploration of countries organized by continent  
+* Countries by continent
+  * Exploration of countries organized by continent
+  * Dynamic navigation between continents
+  * Country count by continent
 * Country comparison
   * Compare two countries side by side
   * Visual highlights for key metrics (population, area, borders, currency, region)
@@ -88,6 +79,13 @@ I developed this project to put into practice API consumption, state management,
   * Final result with the user's score
   * Best score with persistence using DataStore
 * Quick access to favorite countries  
+
+#### Global Statistics
+* Total number of countries, population, and global area  
+* Highlights:
+  * Most populous country  
+  * Largest country by area  
+* Opening details via BottomSheet (without navigation)  
 
 ### Favorites
 * List of favorited countries with local persistence (Room)  
@@ -112,8 +110,12 @@ I developed this project to put into practice API consumption, state management,
 ### Main Screens
 <img src="https://github.com/user-attachments/assets/43d0f603-b51a-4ca2-a049-890440b2d7e6" width="250"/>
 <img src="https://github.com/user-attachments/assets/391be294-c7be-4445-acfc-9f1da4b3bfe9" width="250"/>
-<img src="https://github.com/user-attachments/assets/a7c4bb4f-2fad-411b-8d7e-c30ba8bdc116" width="250"/>
+<img src="https://github.com/user-attachments/assets/962dd70d-9873-4b61-b92a-253906a5594f" width="250"/>
 <img src="https://github.com/user-attachments/assets/c3e0b6ea-b12b-4e4a-8d58-b86f4de39a7d" width="250"/>
+
+### Countries by Continent (Example: Europe) & Country Comparison (Example: Brazil vs Denmark)
+<img src="https://github.com/user-attachments/assets/9d5686ac-8514-4116-815c-cf91a71e0975" width="250"/>
+<img src="https://github.com/user-attachments/assets/c783ae18-0bb2-443c-b0be-b51f99b40f06" width="250"/>
 
 ### Quiz
 <img src="https://github.com/user-attachments/assets/64759578-d250-4725-baf5-e83a2c60f241" width="250"/>
