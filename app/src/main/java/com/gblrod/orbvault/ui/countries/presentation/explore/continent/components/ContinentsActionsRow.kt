@@ -56,19 +56,19 @@ fun ContinentsActionsRow(
                     label = R.string.continent_america_label
                 ),
                 ContinentUi(
-                    image = painterResource(id = R.drawable.americas),
+                    image = painterResource(id = R.drawable.asia),
                     color = OrangeActions,
                     region = "Asia",
                     label = R.string.continent_asia_label
                 ),
                 ContinentUi(
-                    image = painterResource(id = R.drawable.americas),
+                    image = painterResource(id = R.drawable.europe),
                     color = BlueActions,
                     region = "Europe",
                     label = R.string.continent_europa_label
                 ),
                 ContinentUi(
-                    image = painterResource(id = R.drawable.americas),
+                    image = painterResource(id = R.drawable.oceania),
                     color = PinkActions,
                     region = "Oceania",
                     label = R.string.continent_oceania_label
