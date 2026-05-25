@@ -7,24 +7,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import com.gblrod.orbvault.ui.countries.presentation.explore.all.screen.AllCountriesScreen
-import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.navigation.comparisonRoute
+import com.gblrod.orbvault.navigation.graph.allCountriesRoute
+import com.gblrod.orbvault.navigation.graph.exploreRoute
+import com.gblrod.orbvault.navigation.graph.favoritesRoute
+import com.gblrod.orbvault.navigation.graph.homeRoute
+import com.gblrod.orbvault.navigation.graph.largestCountriesRoute
+import com.gblrod.orbvault.navigation.graph.populatedCountriesRoute
+import com.gblrod.orbvault.navigation.graph.randomCountryRoute
+import com.gblrod.orbvault.navigation.graph.searchRoute
+import com.gblrod.orbvault.navigation.graph.comparisonRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.viewmodel.ComparisonViewModel
-import com.gblrod.orbvault.ui.countries.presentation.explore.continent.navigation.continentRoute
-import com.gblrod.orbvault.ui.countries.presentation.explore.largest.screen.LargestCountriesScreen
-import com.gblrod.orbvault.ui.countries.presentation.explore.news.navigation.newsRoute
-import com.gblrod.orbvault.ui.countries.presentation.explore.populated.screen.PopulatedCountriesScreen
-import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.navigation.quizRoute
+import com.gblrod.orbvault.navigation.graph.continentRoute
+import com.gblrod.orbvault.navigation.graph.newsRoute
+import com.gblrod.orbvault.navigation.graph.quizRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
-import com.gblrod.orbvault.ui.countries.presentation.explore.random.screen.RandomCountryScreen
-import com.gblrod.orbvault.ui.countries.presentation.explore.screen.ExploreScreen
-import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.navigation.statisticsRoute
+import com.gblrod.orbvault.navigation.graph.statisticsRoute
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
-import com.gblrod.orbvault.ui.countries.presentation.favorites.screen.FavoritesScreen
-import com.gblrod.orbvault.ui.countries.presentation.home.components.SearchScreen
-import com.gblrod.orbvault.ui.countries.presentation.home.screen.HomeScreen
 import com.gblrod.orbvault.ui.countries.presentation.home.viewmodel.CountriesViewModel
 
 @Composable
@@ -43,65 +42,47 @@ fun NavigationGraph(
         startDestination = Routes.Home.route,
         modifier = Modifier.padding(paddingValues = paddingValues)
     ) {
-        composable(route = Routes.Home.route) {
-            HomeScreen(
-                onClick = { navHostController.navigate(Routes.Search.route) }
-            )
-        }
+        homeRoute(
+            navHostController = navHostController
+        )
 
-        composable(route = Routes.Explore.route) {
-            ExploreScreen(
-                navHostController = navHostController,
-                exploreViewModel = exploreViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
-            )
-        }
+        exploreRoute(
+            navHostController = navHostController,
+            countryDetailsViewModel = countryDetailsViewModel,
+            exploreViewModel = exploreViewModel
+        )
 
-        composable(route = Routes.Favorites.route) {
-            FavoritesScreen(
-                countryDetailsViewModel = countryDetailsViewModel,
-                snackbarHostState = snackbarHostState,
-                onNavigateExplore = {
-                    navHostController.navigateToBottomBar(route = Routes.Explore.route)
-                }
-            )
-        }
+        favoritesRoute(
+            navHostController = navHostController,
+            countryDetailsViewModel = countryDetailsViewModel,
+            snackbarHostState = snackbarHostState
+        )
 
-        composable(route = Routes.PopulatedCountries.route) {
-            PopulatedCountriesScreen(
-                exploreViewModel = exploreViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
-            )
-        }
+        populatedCountriesRoute(
+            countryDetailsViewModel = countryDetailsViewModel,
+            exploreViewModel = exploreViewModel
+        )
 
-        composable(route = Routes.LargestCountries.route) {
-            LargestCountriesScreen(
-                exploreViewModel = exploreViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
-            )
-        }
+        largestCountriesRoute(
+            countryDetailsViewModel = countryDetailsViewModel,
+            exploreViewModel = exploreViewModel
+        )
 
-        composable(route = Routes.AllCountries.route) {
-            AllCountriesScreen(
-                exploreViewModel = exploreViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
-            )
-        }
+        allCountriesRoute(
+            countryDetailsViewModel = countryDetailsViewModel,
+            exploreViewModel = exploreViewModel
+        )
 
-        composable(route = Routes.RandomCountry.route) {
-            RandomCountryScreen(
-                countriesViewModel = countriesViewModel,
-                countryDetailsViewModel = countryDetailsViewModel
-            )
-        }
+        randomCountryRoute(
+            countryDetailsViewModel = countryDetailsViewModel,
+            countriesViewModel = countriesViewModel
+        )
 
-        composable(route = Routes.Search.route) {
-            SearchScreen(
-                countryDetailsViewModel = countryDetailsViewModel,
-                countriesViewModel = countriesViewModel,
-                onBack = { navHostController.popBackStack() }
-            )
-        }
+        searchRoute(
+            navHostController = navHostController,
+            countryDetailsViewModel = countryDetailsViewModel,
+            countriesViewModel = countriesViewModel
+        )
 
         statisticsRoute(
             exploreViewModel = exploreViewModel,

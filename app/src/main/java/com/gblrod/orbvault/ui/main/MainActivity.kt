@@ -25,7 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.gblrod.orbvault.core.manager.LanguageManager
 import com.gblrod.orbvault.navigation.NavigationGraph
 import com.gblrod.orbvault.ui.shared.components.drawer.DrawerContent
-import com.gblrod.orbvault.navigation.mapRouteToNavigationUiState
+import com.gblrod.orbvault.navigation.state.mapRouteToNavigationUiState
 import com.gblrod.orbvault.ui.countries.presentation.explore.comparison.viewmodel.ComparisonViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.components.CountryBottomSheet
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.viewmodel.QuizViewModel
