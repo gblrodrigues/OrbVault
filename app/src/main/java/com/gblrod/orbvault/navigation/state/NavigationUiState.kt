@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.navigation
+package com.gblrod.orbvault.navigation.state
 
 data class NavigationUiState(
     val titleRes: Int,
