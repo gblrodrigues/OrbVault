@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.countries.presentation.explore.continent.navigation
+package com.gblrod.orbvault.navigation.graph
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable

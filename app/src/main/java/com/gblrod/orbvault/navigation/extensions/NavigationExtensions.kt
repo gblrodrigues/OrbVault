@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.navigation
+package com.gblrod.orbvault.navigation.extensions
 
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController

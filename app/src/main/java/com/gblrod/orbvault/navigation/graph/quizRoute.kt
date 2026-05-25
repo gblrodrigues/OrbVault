@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.countries.presentation.explore.quiz.navigation
+package com.gblrod.orbvault.navigation.graph
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavGraphBuilder

@@ -3,13 +3,14 @@ package com.gblrod.orbvault.ui.countries.presentation.explore.statistics.screen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import com.gblrod.orbvault.R
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.components.CountriesHighlights
-import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.extensions.getErrorMessage
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.CountryDetailsViewModel
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
+import com.gblrod.orbvault.ui.shared.utils.getErrorMessage
 
 @Composable
 fun StatisticsScreen(
@@ -33,9 +34,14 @@ fun StatisticsScreen(
         }
 
         is StatsUiState.Error -> {
-
+            val errorMessage = getErrorMessage(
+                showDetailedError = showDetailedError,
+                genericErrorResId = R.string.stats_ui_state_generic_error,
+                messageResId = state.messageResId,
+                code = state.code
+            )
             ErrorMessage(
-                message = state.getErrorMessage(showDetailedError = showDetailedError),
+                message = errorMessage,
                 onRetry = { exploreViewModel.allRetry() }
             )
         }

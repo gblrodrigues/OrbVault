@@ -8,6 +8,7 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.config.QuizDef
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.config.QuizDefaults.QUIZ_TIMER_INTERVAL
 import com.gblrod.orbvault.ui.countries.presentation.explore.quiz.data.QuizRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.QuizUiState
+import com.gblrod.orbvault.ui.shared.utils.safeApiCall
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,9 +17,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
-import kotlin.coroutines.cancellation.CancellationException
 
 class QuizViewModel(
     private val repository: QuizRepository,
@@ -45,7 +43,23 @@ class QuizViewModel(
         viewModelScope.launch {
             _quizUiState.value = QuizUiState.Loading
 
-            try {
+            safeApiCall(
+                onHttpError = { code ->
+                    _quizUiState.value =
+                        QuizUiState.Error(
+                            messageResId = R.string.ui_state_http_exception,
+                            code = code
+                        )
+                },
+                onIoError = {
+                    _quizUiState.value =
+                        QuizUiState.Error(messageResId = R.string.ui_state_io_exception)
+                },
+                onGenericError = {
+                    _quizUiState.value =
+                        QuizUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val questions = repository.getQuestions()
 
                 if (questions.isEmpty()) {
@@ -57,21 +71,6 @@ class QuizViewModel(
                         quizStarted = false
                     )
                 }
-
-            } catch (e: HttpException) {
-                _quizUiState.value =
-                    QuizUiState.Error(
-                        messageResId = R.string.ui_state_http_exception,
-                        code = e.code()
-                    )
-            } catch (e: IOException) {
-                _quizUiState.value =
-                    QuizUiState.Error(messageResId = R.string.ui_state_io_exception)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _quizUiState.value =
-                    QuizUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }

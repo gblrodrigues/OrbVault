@@ -8,13 +8,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.Routes
-import com.gblrod.orbvault.ui.countries.presentation.explore.continent.extensions.getErrorMessage
 import com.gblrod.orbvault.ui.countries.presentation.explore.continent.model.ContinentItem
 import com.gblrod.orbvault.ui.countries.presentation.explore.continent.model.ContinentUi
 import com.gblrod.orbvault.ui.countries.presentation.explore.continent.state.ContinentUiState
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
+import com.gblrod.orbvault.ui.shared.utils.getErrorMessage
 import com.gblrod.orbvault.ui.theme.BlueActions
 import com.gblrod.orbvault.ui.theme.GreenActions
 import com.gblrod.orbvault.ui.theme.OrangeActions
@@ -35,8 +35,14 @@ fun ContinentsActionsRow(
         }
 
         is ContinentUiState.Error -> {
+            val errorMessage = getErrorMessage(
+                showDetailedError = showDetailedError,
+                genericErrorResId = R.string.continent_ui_state_generic_error,
+                messageResId = state.messageResId,
+                code = state.code
+            )
             ErrorMessage(
-                message = state.getErrorMessage(showDetailedError = showDetailedError),
+                message = errorMessage,
                 onRetry = { exploreViewModel.allRetry() }
             )
         }

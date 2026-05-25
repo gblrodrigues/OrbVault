@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.countries.presentation.explore.news.navigation
+package com.gblrod.orbvault.navigation.graph
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController

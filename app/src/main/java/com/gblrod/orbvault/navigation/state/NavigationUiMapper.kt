@@ -1,6 +1,7 @@
-package com.gblrod.orbvault.navigation
+package com.gblrod.orbvault.navigation.state
 
 import com.gblrod.orbvault.R
+import com.gblrod.orbvault.navigation.Routes
 
 fun mapRouteToNavigationUiState(
     route: String?,

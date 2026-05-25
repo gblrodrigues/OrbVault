@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.navigation.Routes
-import com.gblrod.orbvault.navigation.navigateToBottomBar
+import com.gblrod.orbvault.navigation.extensions.navigateToBottomBar
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.components.NewsItems
 import com.gblrod.orbvault.ui.countries.presentation.explore.news.model.NewItem
 import com.gblrod.orbvault.ui.shared.components.ScreenHeader
