@@ -1,4 +1,4 @@
-package com.gblrod.orbvault.ui.shared.extensions
+package com.gblrod.orbvault.ui.shared.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource

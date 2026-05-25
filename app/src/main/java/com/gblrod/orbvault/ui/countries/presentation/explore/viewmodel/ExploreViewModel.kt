@@ -9,12 +9,10 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.continent.state.Con
 import com.gblrod.orbvault.ui.countries.presentation.explore.statistics.model.AllStats
 import com.gblrod.orbvault.ui.countries.presentation.state.ExploreUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
+import com.gblrod.orbvault.ui.shared.utils.safeApiCall
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
-import kotlin.coroutines.cancellation.CancellationException
 
 class ExploreViewModel(
     private val api: CountriesAPI
@@ -61,7 +59,23 @@ class ExploreViewModel(
         viewModelScope.launch {
             _topPopulatedState.value = ExploreUiState.Loading
 
-            try {
+            safeApiCall(
+                onHttpError = { code ->
+                    _topPopulatedState.value = ExploreUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = code
+                    )
+                },
+                onIoError = {
+                    _topPopulatedState.value =
+                        ExploreUiState.Error(
+                            messageResId = R.string.ui_state_io_exception)
+                },
+                onGenericError = {
+                    _topPopulatedState.value =
+                        ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val countries = api.getAllCountries()
 
                 val top10PopulatedCountries = countries
@@ -72,21 +86,6 @@ class ExploreViewModel(
                     countries = top10PopulatedCountries,
                     totalCountries = top10PopulatedCountries.size
                 )
-
-            } catch (e: HttpException) {
-                _topPopulatedState.value = ExploreUiState.Error(
-                    messageResId = R.string.ui_state_http_exception,
-                    code = e.code()
-                )
-
-            } catch (e: IOException) {
-                _topPopulatedState.value =
-                    ExploreUiState.Error(messageResId = R.string.ui_state_io_exception)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _topPopulatedState.value =
-                    ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -95,7 +94,23 @@ class ExploreViewModel(
         viewModelScope.launch {
             _largestCountriesState.value = ExploreUiState.Loading
 
-            try {
+            safeApiCall(
+                onHttpError = { code ->
+                    _largestCountriesState.value = ExploreUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = code
+                    )
+                },
+                onIoError = {
+                    _largestCountriesState.value =
+                        ExploreUiState.Error(
+                            messageResId = R.string.ui_state_io_exception)
+                },
+                onGenericError = {
+                    _largestCountriesState.value =
+                        ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val countries = api.getAllCountries()
 
                 val top10LargestCountries = countries
@@ -108,21 +123,6 @@ class ExploreViewModel(
                         countries = top10LargestCountries,
                         totalCountries = top10LargestCountries.size
                     )
-
-            } catch (e: HttpException) {
-                _largestCountriesState.value = ExploreUiState.Error(
-                    messageResId = R.string.ui_state_http_exception,
-                    code = e.code()
-                )
-
-            } catch (e: IOException) {
-                _largestCountriesState.value =
-                    ExploreUiState.Error(messageResId = R.string.ui_state_io_exception)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _largestCountriesState.value =
-                    ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -131,7 +131,23 @@ class ExploreViewModel(
         viewModelScope.launch {
             _allCountriesState.value = ExploreUiState.Loading
 
-            try {
+            safeApiCall(
+                onHttpError = { code ->
+                    _allCountriesState.value = ExploreUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = code
+                    )
+                },
+                onIoError = {
+                    _allCountriesState.value =
+                        ExploreUiState.Error(
+                            messageResId = R.string.ui_state_io_exception)
+                },
+                onGenericError = {
+                    _allCountriesState.value =
+                        ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val countries = api.getAllCountries()
 
                 val filteredCountries = countries
@@ -142,21 +158,6 @@ class ExploreViewModel(
                     countries = filteredCountries,
                     totalCountries = filteredCountries.size
                 )
-
-            } catch (e: HttpException) {
-                _allCountriesState.value = ExploreUiState.Error(
-                    messageResId = R.string.ui_state_http_exception,
-                    code = e.code()
-                )
-
-            } catch (e: IOException) {
-                _allCountriesState.value =
-                    ExploreUiState.Error(messageResId = R.string.ui_state_io_exception)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _allCountriesState.value =
-                    ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -165,7 +166,23 @@ class ExploreViewModel(
         viewModelScope.launch {
             _statsState.value = StatsUiState.Loading
 
-            try {
+            safeApiCall(
+                onHttpError = { code ->
+                    _statsState.value = StatsUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = code
+                    )
+                },
+                onIoError = {
+                    _statsState.value =
+                        StatsUiState.Error(
+                            messageResId = R.string.ui_state_io_exception)
+                },
+                onGenericError = {
+                    _statsState.value =
+                        StatsUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val countries = api.getAllCountries()
                 val filteredCountries = countries.filter { it.independent == true }
 
@@ -180,28 +197,29 @@ class ExploreViewModel(
                 _statsState.value = StatsUiState.Success(
                     stats = stats
                 )
-
-            } catch (e: HttpException) {
-                _statsState.value = StatsUiState.Error(
-                    messageResId = R.string.ui_state_http_exception,
-                    code = e.code()
-                )
-
-            } catch (e: IOException) {
-                _statsState.value =
-                    StatsUiState.Error(messageResId = R.string.ui_state_io_exception)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _statsState.value =
-                    StatsUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
 
     fun fetchContinentStats() {
         viewModelScope.launch {
-            try {
+            safeApiCall(
+                onHttpError = { code ->
+                    _continentState.value = ContinentUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = code
+                    )
+                },
+                onIoError = {
+                    _continentState.value =
+                        ContinentUiState.Error(
+                            messageResId = R.string.ui_state_io_exception)
+                },
+                onGenericError = {
+                    _continentState.value =
+                        ContinentUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val countries = api.getAllCountries()
 
                 val stats = countries
@@ -216,21 +234,6 @@ class ExploreViewModel(
                     .sortedBy { it.continent }
 
                 _continentState.value = ContinentUiState.Success(continents = stats)
-
-            } catch (e: HttpException) {
-                _continentState.value = ContinentUiState.Error(
-                    messageResId = R.string.ui_state_http_exception,
-                    code = e.code()
-                )
-
-            } catch (e: IOException) {
-                _continentState.value =
-                    ContinentUiState.Error(messageResId = R.string.ui_state_io_exception)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _continentState.value =
-                    ContinentUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -239,7 +242,23 @@ class ExploreViewModel(
         viewModelScope.launch {
             _continentCountriesState.value = ExploreUiState.Loading
 
-            try {
+            safeApiCall(
+                onHttpError = { code ->
+                    _continentCountriesState.value = ExploreUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = code
+                    )
+                },
+                onIoError = {
+                    _continentCountriesState.value =
+                        ExploreUiState.Error(
+                            messageResId = R.string.ui_state_io_exception)
+                },
+                onGenericError = {
+                    _continentCountriesState.value =
+                        ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val countries = api.getAllCountries()
 
                 val filteredCountries = countries
@@ -251,21 +270,6 @@ class ExploreViewModel(
                         countries = filteredCountries,
                         totalCountries = filteredCountries.size
                     )
-
-            } catch (e: HttpException) {
-                _continentCountriesState.value = ExploreUiState.Error(
-                    messageResId = R.string.ui_state_http_exception,
-                    code = e.code()
-                )
-
-            } catch (e: IOException) {
-                _continentCountriesState.value =
-                    ExploreUiState.Error(messageResId = R.string.ui_state_io_exception)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _continentCountriesState.value =
-                    ExploreUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }

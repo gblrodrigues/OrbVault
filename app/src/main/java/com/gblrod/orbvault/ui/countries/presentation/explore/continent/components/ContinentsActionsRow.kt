@@ -14,7 +14,7 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.continent.state.Con
 import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreViewModel
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
-import com.gblrod.orbvault.ui.shared.extensions.getErrorMessage
+import com.gblrod.orbvault.ui.shared.utils.getErrorMessage
 import com.gblrod.orbvault.ui.theme.BlueActions
 import com.gblrod.orbvault.ui.theme.GreenActions
 import com.gblrod.orbvault.ui.theme.OrangeActions
