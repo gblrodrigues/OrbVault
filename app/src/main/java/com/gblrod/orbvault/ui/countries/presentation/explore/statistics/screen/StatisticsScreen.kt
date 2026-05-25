@@ -10,7 +10,7 @@ import com.gblrod.orbvault.ui.countries.presentation.explore.viewmodel.ExploreVi
 import com.gblrod.orbvault.ui.countries.presentation.state.StatsUiState
 import com.gblrod.orbvault.ui.shared.components.ErrorMessage
 import com.gblrod.orbvault.ui.shared.components.LoadingScreen
-import com.gblrod.orbvault.ui.shared.extensions.getErrorMessage
+import com.gblrod.orbvault.ui.shared.utils.getErrorMessage
 
 @Composable
 fun StatisticsScreen(

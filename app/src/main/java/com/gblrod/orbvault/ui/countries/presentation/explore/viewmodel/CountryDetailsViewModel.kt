@@ -11,14 +11,12 @@ import com.gblrod.orbvault.data.countries.repository.FavoriteRepository
 import com.gblrod.orbvault.data.countries.repository.RecentCountryRepository
 import com.gblrod.orbvault.ui.countries.presentation.state.BordersUiState
 import com.gblrod.orbvault.ui.countries.presentation.state.CountriesUiState
+import com.gblrod.orbvault.ui.shared.utils.safeApiCall
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
-import kotlin.coroutines.cancellation.CancellationException
 
 class CountryDetailsViewModel(
     private val countriesRepository: CountriesRepository,
@@ -54,7 +52,24 @@ class CountryDetailsViewModel(
             _countryDetailsUiState.value =
                 CountriesUiState.Loading
             _bordersUiState.value = BordersUiState.Idle
-            try {
+
+            safeApiCall(
+                onHttpError = { code ->
+                    _countryDetailsUiState.value = CountriesUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = code
+                    )
+                },
+                onIoError = {
+                    _countryDetailsUiState.value =
+                        CountriesUiState.Error(
+                            messageResId = R.string.country_load_error)
+                },
+                onGenericError = {
+                    _countryDetailsUiState.value =
+                        CountriesUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val result = countriesRepository.fetchCountryByCode(code)
                 if (result != null) {
                     saveRecentCountry(result)
@@ -65,20 +80,6 @@ class CountryDetailsViewModel(
                     _countryDetailsUiState.value =
                         CountriesUiState.Error(messageResId = R.string.countries_ui_state_not_found)
                 }
-            } catch (e: HttpException) {
-                _countryDetailsUiState.value = CountriesUiState.Error(
-                    messageResId = R.string.ui_state_http_exception,
-                    code = e.code()
-                )
-
-            } catch (e: IOException) {
-                _countryDetailsUiState.value =
-                    CountriesUiState.Error(messageResId = R.string.country_load_error)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _countryDetailsUiState.value =
-                    CountriesUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }
@@ -86,24 +87,25 @@ class CountryDetailsViewModel(
     fun fetchBorders(country: CountriesDto) {
         viewModelScope.launch {
             _bordersUiState.value = BordersUiState.Loading
-            try {
+
+            safeApiCall(
+                onHttpError = { code ->
+                    _bordersUiState.value = BordersUiState.Error(
+                        messageResId = R.string.ui_state_http_exception,
+                        code = code
+                    )
+                },
+                onIoError = {
+                    _bordersUiState.value =
+                        BordersUiState.Error(messageResId = R.string.neighbors_error)
+                },
+                onGenericError = {
+                    _bordersUiState.value =
+                        BordersUiState.Error(messageResId = R.string.ui_state_generic_error)
+                }
+            ) {
                 val neighbors = countriesRepository.getBorders(country = country)
                 _bordersUiState.value = BordersUiState.Success(neighbors = neighbors)
-
-            } catch (e: HttpException) {
-                _bordersUiState.value = BordersUiState.Error(
-                    messageResId = R.string.ui_state_http_exception,
-                    code = e.code()
-                )
-
-            } catch (e: IOException) {
-                _bordersUiState.value =
-                    BordersUiState.Error(messageResId = R.string.neighbors_error)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _bordersUiState.value =
-                    BordersUiState.Error(messageResId = R.string.ui_state_generic_error)
             }
         }
     }

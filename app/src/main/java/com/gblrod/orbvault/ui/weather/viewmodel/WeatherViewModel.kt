@@ -4,13 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gblrod.orbvault.R
 import com.gblrod.orbvault.data.weather.repository.WeatherRepository
+import com.gblrod.orbvault.ui.shared.utils.safeApiCall
 import com.gblrod.orbvault.ui.weather.state.WeatherUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
-import java.io.IOException
-import kotlin.coroutines.cancellation.CancellationException
 
 class WeatherViewModel(
     private val repository: WeatherRepository
@@ -25,29 +23,29 @@ class WeatherViewModel(
         viewModelScope.launch {
             _weatherUiState.value = WeatherUiState.Loading
 
-            try {
+            safeApiCall(
+                onHttpError = { code ->
+                    _weatherUiState.value =
+                        WeatherUiState.Error(
+                            message = R.string.ui_state_http_exception,
+                            code = code
+                        )
+                },
+                onIoError = {
+                    _weatherUiState.value =
+                        WeatherUiState.Error(message = R.string.weather_load_error)
+                },
+                onGenericError = {
+                    _weatherUiState.value =
+                        WeatherUiState.Error(message = R.string.ui_state_generic_error)
+                }
+            ) {
                 val weather = repository.getCurrentWeather(
                     latitude = latitude,
                     longitude = longitude
                 )
 
                 _weatherUiState.value = WeatherUiState.Success(weather = weather)
-
-            } catch (e: HttpException) {
-                _weatherUiState.value =
-                    WeatherUiState.Error(
-                        message = R.string.ui_state_http_exception,
-                        code = e.code()
-                    )
-
-            } catch (e: IOException) {
-                _weatherUiState.value =
-                    WeatherUiState.Error(message = R.string.weather_load_error)
-
-            } catch (e: Exception) {
-                if (e is CancellationException) throw e
-                _weatherUiState.value =
-                    WeatherUiState.Error(message = R.string.ui_state_generic_error)
             }
         }
     }
